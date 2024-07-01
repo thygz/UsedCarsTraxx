@@ -18,6 +18,7 @@ import 'swiper/css/free-mode';
 import HomeSlider from '../components/HomeSlider';
 import CarBrand from '../components/CarBrand';
 import SearchInput from '../components/SearchInput';
+import ReadTheGuide from '../components/ReadTheGuide';
 
 export default function Home() {
     const [latestListings, setLatestListings] = useState([]);
@@ -85,19 +86,19 @@ export default function Home() {
     return (
         <div>
             <ScrollToTop />
-            <div className="h-[300px] md:h-[400px] xl:h-[500px] bg-car bg-center bg-cover bg-no-repeat mb-10">
+            <div className="h-[300px] md:h-[400px] xl:h-[500px] bg-car bg-center bg-cover bg-no-repeat bg-blend-darken mb-10">
                 <div className="max-w-6xl mx-auto px-3 flex h-[100%] justify-center items-center">
                     <h1
                         className="text-gray-100 font-bold text-4xl md:text-[2.6rem] lg:text-5xl xl:text-6xl text-center mt-40 min-[370px]:mt-48 sm:mt-52 md:mt-72 lg:mt-44 xl:mt-64"
                         style={{
-                            textShadow: '0px 7px 1px rgba(0,0,0,0.7)',
+                            textShadow: '0px 3px 1px rgba(0,0,0,0.7)',
                         }}
                     >
                         Find your next{' '}
                         <span
                             className="text-white"
                             style={{
-                                textShadow: '0px 7px 1px rgba(0,0,0,0.7)',
+                                textShadow: '0px 3px 1px rgba(0,0,0,0.7)',
                             }}
                         >
                             dream
@@ -292,6 +293,7 @@ export default function Home() {
                     </div>
                 )}
             </div>
+            <ReadTheGuide />
         </div>
     );
 }
