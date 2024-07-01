@@ -70,42 +70,80 @@ export const getListings = async (req, res, next) => {
     try {
         const limit = parseInt(req.query.limit) || 9;
         const startIndex = parseInt(req.query.startIndex) || 0;
-        let offer = req.query.offer;
+        // let offer = req.query.offer;
 
-        if (offer === undefined || offer === 'false') {
-            offer = { $in: [false, true] };
+        // if (offer === undefined || offer === 'false') {
+        //     offer = { $in: [false, true] };
+        // }
+
+        // let furnished = req.query.furnished;
+
+        // if (furnished === undefined || furnished === 'false') {
+        //     furnished = { $in: [false, true] };
+        // }
+
+        // let parking = req.query.parking;
+
+        // if (parking === undefined || parking === 'false') {
+        //     parking = { $in: [false, true] };
+        // }
+
+        // let type = req.query.type;
+
+        // if (type === undefined || type === 'all') {
+        //     type = { $in: ['sale', 'rent'] };
+        // }
+
+        // name:
+        // offer,
+        // furnished,
+        // parking,
+        // type
+
+        let transmission = req.query.transmission;
+
+        if (transmission === undefined || transmission === 'allTransmission') {
+            transmission = { $in: ['automatic', 'manual', 'cvt', 'others'] };
         }
 
-        let furnished = req.query.furnished;
+        let fuelType = req.query.fuelType;
 
-        if (furnished === undefined || furnished === 'false') {
-            furnished = { $in: [false, true] };
+        if (fuelType === undefined || fuelType === 'allFuelType') {
+            fuelType = { $in: ['diesel', 'gasoline'] };
         }
 
-        let parking = req.query.parking;
+        let bodyType = req.query.bodyType;
 
-        if (parking === undefined || parking === 'false') {
-            parking = { $in: [false, true] };
-        }
-
-        let type = req.query.type;
-
-        if (type === undefined || type === 'all') {
-            type = { $in: ['sale', 'rent'] };
+        if (bodyType === undefined || bodyType === 'allBodyType') {
+            bodyType = {
+                $in: [
+                    'Sedan',
+                    'Hatchback',
+                    'SUV',
+                    'MPV/MUV',
+                    'Van',
+                    'Crossover',
+                    'Pickup',
+                    'Hybrid',
+                    'Sports Car',
+                    'Others',
+                ],
+            };
         }
 
         const searchTerm = req.query.searchTerm || '';
+        const modelSearch = req.query.modelSearch || '';
 
-        const sort = req.query.sort || 'createdAt';
+        const sort = req.query.sort || 'price';
 
         const order = req.query.order || 'desc';
 
         const listings = await Listing.find({
-            name: { $regex: searchTerm, $options: 'i' },
-            offer,
-            furnished,
-            parking,
-            type,
+            make: { $regex: searchTerm, $options: 'i' },
+            model: { $regex: modelSearch, $options: 'i' },
+            transmission,
+            fuelType,
+            bodyType,
         })
             .sort({
                 [sort]: order,

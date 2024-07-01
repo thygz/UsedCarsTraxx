@@ -1,26 +1,22 @@
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import Listingitem from '../components/Listingitem';
+import Listingitem from '../components/Listingitem';
 import ScrollToTop from '../components/ScrollToTop';
 import SearchListingitem from '../components/SearchListingitem';
-import { FaFilter } from 'react-icons/fa';
-import { RiCloseLine } from 'react-icons/ri';
 
-export default function Search() {
+export default function StartSearch() {
     const navigate = useNavigate();
     const [sidebardata, setSidebardata] = useState({
         searchTerm: '',
         transmission: 'allTransmission',
         fuelType: 'allFuelType',
         bodyType: 'allBodyType',
-        sort: 'price',
+        sort: 'created_at',
         order: 'desc',
-        modelSearch: '',
     });
     const [loading, setLoading] = useState(false);
     const [listings, setListings] = useState([]);
     const [showMore, setShowMore] = useState(false);
-    const [toggleFilter, setToggleFilter] = useState(false);
     const searchResult = useRef(null);
 
     const bodyTypeOptions = [
@@ -40,7 +36,6 @@ export default function Search() {
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
         const searchTermFromUrl = urlParams.get('searchTerm');
-        const modelSearchFromUrl = urlParams.get('modelSearch');
         const transmissionFromUrl = urlParams.get('transmission');
         const fuelTypeFromUrl = urlParams.get('fuelType');
         const bodyTypeFromUrl = urlParams.get('bodyType');
@@ -49,7 +44,6 @@ export default function Search() {
 
         if (
             searchTermFromUrl ||
-            modelSearchFromUrl ||
             transmissionFromUrl ||
             fuelTypeFromUrl ||
             bodyTypeFromUrl ||
@@ -58,11 +52,10 @@ export default function Search() {
         ) {
             setSidebardata({
                 searchTerm: searchTermFromUrl || '',
-                modelSearch: modelSearchFromUrl || '',
                 transmission: transmissionFromUrl || 'allTransmission',
                 fuelType: fuelTypeFromUrl || 'allFuelType',
                 bodyType: bodyTypeFromUrl || 'allBodyType',
-                sort: sortFromUrl || 'price',
+                sort: sortFromUrl || 'created_at',
                 order: orderFromUrl || 'desc',
             });
         }
@@ -123,12 +116,8 @@ export default function Search() {
             setSidebardata({ ...sidebardata, searchTerm: e.target.value });
         }
 
-        if (e.target.id === 'modelSearch') {
-            setSidebardata({ ...sidebardata, modelSearch: e.target.value });
-        }
-
         if (e.target.id === 'price_order') {
-            const sort = e.target.value.split('_')[0] || 'price';
+            const sort = e.target.value.split('_')[0] || 'created_at';
             const order = e.target.value.split('_')[1] || 'desc';
             setSidebardata({ ...sidebardata, sort, order });
         }
@@ -138,7 +127,6 @@ export default function Search() {
         e.preventDefault();
         const urlParams = new URLSearchParams();
         urlParams.set('searchTerm', sidebardata.searchTerm);
-        urlParams.set('modelSearch', sidebardata.modelSearch);
         urlParams.set('transmission', sidebardata.transmission);
         urlParams.set('fuelType', sidebardata.fuelType);
         urlParams.set('bodyType', sidebardata.bodyType);
@@ -147,14 +135,13 @@ export default function Search() {
         const searchQuery = urlParams.toString();
         navigate(`/search?${searchQuery}`);
 
-        const scrollToElement = () => {
-            window.scrollTo({
-                top: searchResult.current.offsetTop,
-                behavior: 'smooth',
-            });
-        };
-        scrollToElement();
-        setToggleFilter(false);
+        // const scrollToElement = () => {
+        //     window.scrollTo({
+        //         top: searchResult.current.offsetTop,
+        //         behavior: 'smooth',
+        //     });
+        // };
+        // scrollToElement();
     };
 
     const onShowMoreClick = async () => {
@@ -172,13 +159,9 @@ export default function Search() {
     };
 
     return (
-        <div className="flex flex-col-reverse md:flex-row max-w-6xl mx-auto p-3 md:pt-10 md:pb-14 lg:px-4 min-h-[75vh]">
+        <div className="flex flex-col md:flex-row max-w-6xl mx-auto p-3 md:pt-10 pb-10 md:pb-14 lg:px-4 min-h-[75vh]">
             <ScrollToTop />
-            <div
-                className={`md:pr-4 p-3 md:px-0 md:pt-[5rem] md:border-r-2 lg:w-[22%] bg-white md:bg-inherit fixed md:static left-0 right-0 z-50 md:z-0 transition-all duration-150 ease-in ${
-                    toggleFilter ? 'bottom-0' : 'bottom-[-100%]'
-                }`}
-            >
+            <div className="md:pr-4 p-3 md:px-0 md:pt-[5rem] md:border-r-2 lg:w-[22%] bg-white md:bg-inherit">
                 <p className="text-base font-semibold lg:border-b p-1 text-slate-700 mb-3 lg:mb-4">
                     Filters
                 </p>
@@ -214,19 +197,6 @@ export default function Search() {
                             />
                         </div>
                         <div className="flex flex-col flex-1">
-                            <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
-                                Vehicle Model
-                            </p>
-                            <input
-                                type="text"
-                                className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-sm bg-inherit focus:outline-slate-400"
-                                id="modelSearch"
-                                // placeholder="Search..."
-                                onChange={handleChange}
-                                value={sidebardata.modelSearch}
-                            />
-                        </div>
-                        <div className="flex flex-col flex-1">
                             <label
                                 htmlFor="bodyType"
                                 className="text-xs font-semibold p-[0.15rem] text-gray-600"
@@ -237,7 +207,7 @@ export default function Search() {
                                 <select
                                     type="text"
                                     // name="bodyType"
-                                    className="py-2 rounded-sm text-sm focus:outline-none w-full bg-inherit cursor-pointer"
+                                    className="py-2 rounded-sm text-sm focus:outline-none w-full bg-inherit"
                                     // id="bodyType"
                                     // required
                                     value={sidebardata.bodyType}
@@ -261,22 +231,21 @@ export default function Search() {
                             <div className="border-[1px] border-slate-400 px-2">
                                 <select
                                     id="price_order"
-                                    className="py-2 rounded-sm text-sm focus:outline-none w-full bg-inherit cursor-pointer"
+                                    className="py-2 rounded-sm text-sm focus:outline-none w-full bg-inherit"
                                     onChange={handleChange}
-                                    // defaultValue={'price_desc'}
-                                    value={`${sidebardata.sort}_${sidebardata.order}`}
+                                    defaultValue={'created_at_desc'}
                                 >
                                     <option value="price_desc">
-                                        Highest to lowest
+                                        Price high to low
                                     </option>
                                     <option value="price_asc">
-                                        Lowest to highest
+                                        Price low to high
                                     </option>
                                     <option value="createdAt_desc">
-                                        Latest to oldest post
+                                        Latest
                                     </option>
                                     <option value="createdAt_asc">
-                                        Oldest to latest post
+                                        Oldest
                                     </option>
                                 </select>
                             </div>
@@ -403,18 +372,9 @@ export default function Search() {
                         Search
                     </button>
                 </form>
-                <RiCloseLine
-                    onClick={() => setToggleFilter(false)}
-                    className="text-2xl text-cyan-800 absolute top-2 right-3 md:hidden cursor-pointer"
-                />
-                <div className="hidden">
-                    {toggleFilter
-                        ? (document.body.style.overflow = 'hidden')
-                        : (document.body.style.overflow = 'visible')}
-                </div>
             </div>
             <div
-                className="p-2 md:p-0 md:ml-5 xl:ml-7 flex-1"
+                className="p-2 md:p-0 md:ml-5 xl:ml-7 flex-1 hidden md:block"
                 ref={searchResult}
             >
                 <h1 className="text-lg md:text-xl font-semibold pb-5 md:pb-10 text-slate-700 mt-1">
@@ -444,27 +404,13 @@ export default function Search() {
                     {showMore && (
                         <button
                             onClick={onShowMoreClick}
-                            className="text-cyan-800 hover:underline p-3 text-center w-full uppercase text-sm font-semibold"
+                            className="text-cyan-700 hover:underline p-3 text-center w-full uppercase text-sm font-semibold"
                         >
                             Show more
                         </button>
                     )}
                 </div>
             </div>
-            <div
-                className="fixed bottom-3 right-2 h-10 w-10 rounded-full bg-cyan-700 flex justify-center items-center shadow-2xl md:hidden"
-                onClick={() => setToggleFilter(true)}
-            >
-                <FaFilter className="text-white" />
-            </div>
-            <div
-                onClick={() => setToggleFilter(false)}
-                className={`fixed bg-black bg-opacity-60 z-40 top-0 left-0 right-0 bottom-0 ${
-                    toggleFilter
-                        ? 'opacity-1 pointer-events-auto'
-                        : 'opacity-0 pointer-events-none'
-                }`}
-            ></div>
         </div>
     );
 }

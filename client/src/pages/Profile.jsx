@@ -20,6 +20,8 @@ import {
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Toaster, toast } from 'sonner';
+import ScrollToTop from '../components/ScrollToTop';
 
 export default function Profile() {
     const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -29,8 +31,6 @@ export default function Profile() {
     const [fileUploadError, setFileUploadError] = useState(false);
     const [formData, setFormData] = useState({});
     const [updateSuccess, setUpdateSuccess] = useState(false);
-    const [showListingsError, setShowListingsError] = useState(false);
-    const [userListings, setUserListings] = useState([]);
     const dispatch = useDispatch();
     // firebase storage
     // allow read;
@@ -64,6 +64,7 @@ export default function Profile() {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     setFormData({ ...formData, avatar: downloadURL });
                 });
+                setFileUploadError(false);
             }
         );
     };
@@ -127,179 +128,140 @@ export default function Profile() {
         }
     };
 
-    const handleShowListings = async () => {
-        try {
-            setShowListingsError(false);
-            const res = await fetch(`/api/user/listings/${currentUser._id}`);
-            const data = await res.json();
-            if (data.success === false) {
-                setShowListingsError(true);
-                return;
-            }
-            setUserListings(data);
-        } catch (error) {
-            setShowListingsError(true);
-        }
-    };
-
-    const handleDeleteListing = async (listingId) => {
-        try {
-            const res = await fetch(`/api/listing/delete/${listingId}`, {
-                method: 'DELETE',
-            });
-            const data = await res.json();
-            if (data.success === false) {
-                console.log(data.message);
-                return;
-            }
-
-            setUserListings((prev) =>
-                prev.filter((listing) => listing._id !== listingId)
-            );
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
-
     return (
-        <div className="p-3 max-w-lg mx-auto">
-            <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <input
-                    onChange={(e) => setFile(e.target.files[0])}
-                    type="file"
-                    ref={fileRef}
-                    hidden
-                    accept="image/*"
-                />
-                <img
-                    src={formData.avatar || currentUser.avatar}
-                    alt="profile"
-                    className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2"
-                    onClick={() => fileRef.current.click()}
-                />
-                <p className="text-sm self-center">
-                    {fileUploadError ? (
-                        <span className="text-red-700">
-                            Error image upload (Image must be less than 2mb)
-                        </span>
-                    ) : filePerc > 0 && filePerc < 100 ? (
-                        <span className="text-slate-700">
-                            Uploading {filePerc}%
-                        </span>
-                    ) : filePerc === 100 ? (
-                        <span className="text-green-700">
-                            Image successfully uploaded!
-                        </span>
-                    ) : (
-                        ''
-                    )}
-                </p>
-                <input
-                    type="text"
-                    placeholder="username"
-                    defaultValue={currentUser.username}
-                    id="username"
-                    className="border p-3 rounded-lg"
-                    onChange={handleChange}
-                />
-                <input
-                    type="email"
-                    placeholder="email"
-                    defaultValue={currentUser.email}
-                    id="email"
-                    className="border p-3 rounded-lg"
-                    onChange={handleChange}
-                />
-                <input
-                    type="password"
-                    placeholder="password"
-                    id="password"
-                    className="border p-3 rounded-lg"
-                    onChange={handleChange}
-                />
-                <button
-                    disabled={loading}
-                    className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80"
+        <div className="max-w-3xl mx-auto px-3 pt-10 pb-14 min-h-[75vh]">
+            <ScrollToTop />
+            <div className="p-3 bg-white rounded-sm">
+                <h1 className="text-2xl font-semibold mt-5 mb-7 text-slate-800 text-center">
+                    Edit Your Profile
+                </h1>
+                <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-col md:flex-row-reverse gap-10 md:gap-3"
                 >
-                    {loading ? 'Loading...' : 'Update'}
-                </button>
-                <Link
-                    to={'/create-listing'}
-                    className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95"
-                >
-                    Create Listing
-                </Link>
-            </form>
-            <div className="flex justify-between mt-5">
-                <span
-                    onClick={handleDeleteUser}
-                    className="text-red-700 cursor-pointer"
-                >
-                    Delete account
-                </span>
-                <span
-                    onClick={handleSignOut}
-                    className="text-red-700 cursor-pointer"
-                >
-                    Sign out
-                </span>
-            </div>
-            <p className="text-red-700 mt-5">{error ? error : ''}</p>
-            <p className="text-green-700 mt-5">
-                {updateSuccess ? 'User is updated successfully!' : ''}
-            </p>
-            <button
-                onClick={handleShowListings}
-                className="text-green-700 w-full"
-            >
-                Show Listings
-            </button>
-            <p className="text-red-700 mt-5">
-                {showListingsError ? 'Error showing listings' : ''}
-            </p>
-            {userListings && userListings.length > 0 && (
-                <div className="flex flex-col gap-4">
-                    <h1 className="text-center my-7 text-2xl font-semibold">
-                        Your Listings
-                    </h1>
-                    {userListings.map((listing) => (
+                    <div className="w-full md:w-[35%] flex flex-col justify-center items-center">
+                        <input
+                            onChange={(e) => setFile(e.target.files[0])}
+                            type="file"
+                            ref={fileRef}
+                            hidden
+                            accept="image/*"
+                        />
                         <div
-                            key={listing._id}
-                            className="border rounded-lg p-3 flex justify-between items-center gap-4"
+                            className="flex flex-col justify-center items-center gap-3 cursor-pointer text-slate-500 hover:text-cyan-700"
+                            onClick={() => fileRef.current.click()}
                         >
-                            <Link to={`/listing/${listing._id}`}>
-                                <img
-                                    src={listing.imageUrls[0]}
-                                    alt="listing image"
-                                    className="h-16 w-16 object-contain"
-                                />
-                            </Link>
-                            <Link
-                                className="text-slate-700 font-semibold hover:underline truncate flex-1"
-                                to={`/listings/${listing._id}`}
-                            >
-                                <p>{listing.name}</p>
-                            </Link>
-                            <div className="flex flex-col items-center">
-                                <button
-                                    onClick={() =>
-                                        handleDeleteListing(listing._id)
-                                    }
-                                    className="text-red-700 uppercase"
-                                >
-                                    Delete
-                                </button>
-                                <Link to={`/update-listing/${listing._id}`}>
-                                    <button className="text-green-700 uppercase">
-                                        Edit
-                                    </button>
-                                </Link>
-                            </div>
+                            <img
+                                src={formData.avatar || currentUser.avatar}
+                                alt="profile"
+                                className="rounded-full h-28 w-28 object-cover self-center mt-2 md:mt-0"
+                            />
+                            <p className="capitalize text-sm underline">
+                                Upload a new photo
+                            </p>
                         </div>
-                    ))}
+                        <p className="text-xs mt-3 mx-auto text-center max-w-[8.5rem]">
+                            {fileUploadError ? (
+                                <span className="text-red-700">
+                                    Error image upload (Image must be less than
+                                    2mb)
+                                </span>
+                            ) : filePerc > 0 && filePerc < 100 ? (
+                                <span className="text-slate-700">
+                                    Uploading {filePerc}%
+                                </span>
+                            ) : filePerc === 100 ? (
+                                <span className="text-green-700">
+                                    Image successfully uploaded!
+                                </span>
+                            ) : (
+                                ''
+                            )}
+                        </p>
+                    </div>
+                    <div className="flex flex-col flex-1 gap-5">
+                        <div className="flex flex-col flex-1">
+                            <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                Username
+                            </p>
+                            <input
+                                type="text"
+                                placeholder="username"
+                                defaultValue={currentUser.username}
+                                id="username"
+                                className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="flex flex-col flex-1">
+                            <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                Email
+                            </p>
+                            <input
+                                type="email"
+                                placeholder="email"
+                                defaultValue={currentUser.email}
+                                id="email"
+                                className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="flex flex-col flex-1">
+                            <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                Password
+                            </p>
+                            <input
+                                type="password"
+                                id="password"
+                                className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <button
+                            disabled={loading}
+                            className="bg-cyan-700 text-white p-2 mt-5 rounded-sm font-semibold hover:opacity-95 disabled:opacity-80"
+                        >
+                            {loading ? 'Loading...' : 'Save Changes'}
+                        </button>
+                        <div className="flex justify-between mt-2 text-sm">
+                            <span
+                                onClick={handleDeleteUser}
+                                className="text-red-700 cursor-pointer"
+                            >
+                                Delete account
+                            </span>
+                            <span
+                                onClick={handleSignOut}
+                                className="text-red-700 cursor-pointer"
+                            >
+                                Sign out
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                <p className="text-red-700 mt-5 text-xs">
+                    {error ? error : ''}
+                </p>
+                {/* <div
+                    className={`fixed p-5 rounded-xl flex justify-center items-center gap-1 bg-cyan-500 text-white font-semibold text-sm left-[50%] translate-x-[-50%] translate-y-[-50%] z-10 whitespace-nowrap transition-all duration-150 ease-in-out ${
+                        updateSuccess ? 'top-[15%]' : 'top-[-10%]'
+                    }`}
+                >
+                    <FaCheckCircle />
+                    <p>Profile updated successfully!</p>
+                    <p className="text-green-700 mt-5 text-xs">
+                        {updateSuccess ? 'Profile updated successfully!' : ''}
+                    </p>
+                </div> */}
+                <div>
+                    <Toaster />
+                    <p className="hidden">
+                        {updateSuccess
+                            ? toast.success('Profile Updated Successfully')
+                            : ''}
+                    </p>
                 </div>
-            )}
+            </div>
         </div>
     );
 }

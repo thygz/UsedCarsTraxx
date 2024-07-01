@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import SignIn from './pages/Signin';
+import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import About from './pages/About';
 import Profile from './pages/Profile';
@@ -10,6 +10,9 @@ import CreateListing from './pages/CreateListing';
 import UpdateListing from './pages/UpdateListing';
 import Listing from './pages/Listing';
 import Search from './pages/Search';
+import ShowListing from './pages/ShowListing';
+import StartSearch from './pages/StartSearch';
+import Footer from './components/Footer';
 
 export default function App() {
     return (
@@ -21,6 +24,7 @@ export default function App() {
                 <Route path="/sign-up" element={<SignUp />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/search" element={<Search />}></Route>
+                <Route path="/start-search" element={<StartSearch />}></Route>
                 <Route path="/listing/:listingId" element={<Listing />}></Route>
                 <Route element={<PrivateRoute />}>
                     <Route path="/profile" element={<Profile />}></Route>
@@ -32,8 +36,13 @@ export default function App() {
                         path="/update-listing/:listingId"
                         element={<UpdateListing />}
                     ></Route>
+                    <Route
+                        path="/show-listing"
+                        element={<ShowListing />}
+                    ></Route>
                 </Route>
             </Routes>
+            <Footer />
         </BrowserRouter>
     );
 }

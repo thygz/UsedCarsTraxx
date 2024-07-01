@@ -2,8 +2,32 @@ import mongoose from 'mongoose';
 
 const listingSchema = new mongoose.Schema(
     {
-        name: {
+        make: {
             type: String,
+            required: true,
+        },
+        model: {
+            type: String,
+            required: true,
+        },
+        year: {
+            type: Number,
+            required: true,
+        },
+        bodyType: {
+            type: String,
+            required: true,
+        },
+        engineSize: {
+            type: String,
+            required: true,
+        },
+        mileage: {
+            type: Number,
+            required: true,
+        },
+        doors: {
+            type: Number,
             required: true,
         },
         description: {
@@ -14,38 +38,30 @@ const listingSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        regularPrice: {
+        price: {
             type: Number,
             required: true,
         },
-        discountPrice: {
-            type: Number,
-            required: true,
-        },
-        bathrooms: {
-            type: Number,
-            required: true,
-        },
-        bedrooms: {
-            type: Number,
-            required: true,
-        },
-        furnished: {
-            type: Boolean,
-            required: true,
-        },
-        parking: {
-            type: Boolean,
-            required: true,
-        },
-        type: {
+        transmission: {
             type: String,
             required: true,
         },
-        offer: {
-            type: Boolean,
+        fuelType: {
+            type: String,
             required: true,
         },
+        // furnished: {
+        //     type: Boolean,
+        //     required: true,
+        // },
+        // parking: {
+        //     type: Boolean,
+        //     required: true,
+        // },
+        // type: {
+        //     type: String,
+        //     required: true,
+        // },
         imageUrls: {
             type: Array,
             required: true,

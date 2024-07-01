@@ -7,6 +7,7 @@ import {
     signInFailure,
 } from '../redux/user/userSlice';
 import OAuth from '../components/OAuth';
+import ScrollToTop from '../components/ScrollToTop';
 
 export default function SignIn() {
     const [formData, setFormData] = useState({});
@@ -46,38 +47,59 @@ export default function SignIn() {
         }
     };
     return (
-        <div className="p-3 max-w-lg mx-auto">
-            <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
-            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    placeholder="email"
-                    className="border p-3 rounded-lg"
-                    id="email"
-                    onChange={handleChange}
-                />
-                <input
-                    type="password"
-                    placeholder="password"
-                    className="border p-3 rounded-lg"
-                    id="password"
-                    onChange={handleChange}
-                />
-                <button
-                    disabled={loading}
-                    className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+        <div className="max-w-sm md:max-w-md mx-auto px-3 pt-10 pb-14 min-h-[75vh]">
+            <ScrollToTop />
+            <div className="bg-inherit px-4 py-6 md:p-7 border-2">
+                <h1 className="text-2xl text-center mb-7 font-bold text-slate-800">
+                    Welcome Back!
+                </h1>
+                <form
+                    className="flex flex-col gap-3 md:gap-5"
+                    onSubmit={handleSubmit}
                 >
-                    {loading ? 'Loading...' : 'Sign In'}
-                </button>
-                <OAuth />
-            </form>
-            <div className="flex gap-2 mt-5">
-                <p>Dont have an account?</p>
-                <Link to={'/sign-up'}>
-                    <span className="text-blue-700">Sign Up</span>
-                </Link>
+                    <div className="flex flex-col gap-1">
+                        <p className="text-xs font-semibold px-1 text-gray-600">
+                            Email address
+                        </p>
+                        <input
+                            type="email"
+                            className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                            id="email"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                        <p className="text-xs font-semibold px-1 text-gray-600">
+                            Password
+                        </p>
+                        <input
+                            type="password"
+                            className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                            id="password"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <button
+                        disabled={loading}
+                        className="bg-cyan-700 text-white p-2 mt-5 rounded-sm font-semibold hover:opacity-95 disabled:opacity-80"
+                    >
+                        {loading ? 'Loading...' : 'Login'}
+                    </button>
+                    <div className="flex justify-center items-center gap-3">
+                        <span className="bg-gray-300 h-[.5px] w-full"></span>
+                        <p className="text-gray-500">or</p>
+                        <span className="bg-gray-300 h-[.5px] w-full"></span>
+                    </div>
+                    <OAuth />
+                </form>
+                <div className="flex gap-2 mt-5 text-xs">
+                    <p>Dont have an account?</p>
+                    <Link to={'/sign-up'}>
+                        <span className="text-cyan-800">Sign Up</span>
+                    </Link>
+                </div>
+                {error && <p className="text-red-500 mt-5 text-xs">{error}</p>}
             </div>
-            {error && <p className="text-red-500 mt-5">{error}</p>}
         </div>
     );
 }
