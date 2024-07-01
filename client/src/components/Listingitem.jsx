@@ -18,20 +18,20 @@ export default function Listingitem({ listing }) {
                     </div>
                 </div>
                 <div className="px-2 md:px-3 pt-1 pb-4 flex flex-col justify-center items-center gap-5 md:gap-6 xl:gap-7">
-                    <div className="text-sm lg:text-base font-semibold text-slate-700 text-center truncate">
+                    <div className="text-sm xl:text-base font-semibold text-slate-900 text-center truncate">
                         {listing.year} {''}
                         {listing.make} {''}
                         {listing.model}
                     </div>
                     <div className="flex flex-col justify-center items-center gap-1">
-                        <div className="flex justify-between items-center text-[0.65rem] lg:text-xs font-medium capitalize text-gray-500 gap-2 md:gap-3 truncate">
+                        <div className="flex justify-between items-center text-[0.65rem] xl:text-xs font-normal capitalize text-slate-700 gap-2 md:gap-3 truncate">
                             <p>{listing.mileage.toLocaleString('en-US')} Km</p>
                             <p>{listing.fuelType}</p>
                             <p>
                                 {listing.engineSize} {listing.transmission}
                             </p>
                         </div>
-                        <p className="text-sm lg:text-base text-slate-600 font-semibold">
+                        <p className="text-sm xl:text-base text-slate-700 font-semibold">
                             &#8369;
                             {listing.price.toLocaleString('en-US')}
                         </p>

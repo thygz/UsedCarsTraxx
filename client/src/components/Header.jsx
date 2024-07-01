@@ -151,22 +151,22 @@ export default function Header() {
                             onClick={() => setToggleMenu(false)}
                         >
                             <Link to="/">
-                                <li className="inline text-cyan-800 hover:text-cyan-500 duration-300">
+                                <li className="inline text-cyan-900 hover:text-cyan-500 duration-300">
                                     Home
                                 </li>
                             </Link>
                             <Link to="/about">
-                                <li className="inline text-cyan-800 hover:text-cyan-500 duration-300">
+                                <li className="inline text-cyan-900 hover:text-cyan-500 duration-300">
                                     About
                                 </li>
                             </Link>
                             <Link>
-                                <li className="inline text-cyan-800 hover:text-cyan-500 duration-300">
+                                <li className="inline text-cyan-900 hover:text-cyan-500 duration-300">
                                     Buy Car
                                 </li>
                             </Link>
                             <Link>
-                                <li className="inline text-cyan-800 hover:text-cyan-500 duration-300">
+                                <li className="inline text-cyan-900 hover:text-cyan-500 duration-300">
                                     Sell Car
                                 </li>
                             </Link>
