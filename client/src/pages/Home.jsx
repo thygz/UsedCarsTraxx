@@ -19,6 +19,7 @@ import HomeSlider from '../components/HomeSlider';
 import CarBrand from '../components/CarBrand';
 import SearchInput from '../components/SearchInput';
 import ReadTheGuide from '../components/ReadTheGuide';
+import HowUsedcarstraxxWork from '../components/HowUsedcarstraxxWork';
 
 export default function Home() {
     const [latestListings, setLatestListings] = useState([]);
@@ -150,7 +151,7 @@ export default function Home() {
                     </Link>
                 </div> */}
             </div>
-
+            <HowUsedcarstraxxWork />
             {/* <Swiper navigation>
                 {offerListings &&
                     offerListings.length > 0 &&
