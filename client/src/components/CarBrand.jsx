@@ -15,14 +15,24 @@ const brandImage = [
 
 export default function CarBrand() {
     return (
-        <div className="max-w-full bg-slate-200 shadow-md">
-            <div className="max-w-6xl mx-auto px-2 md:px-10 lg:px-14 py-10 flex flex-col lg:flex-row gap-10">
+        <div className="max-w-full bg-carPark bg-center bg-cover bg-no-repeat bg-gray-500 bg-blend-exclusion">
+            <div className="max-w-6xl mx-auto px-2 md:px-10 lg:px-20 py-10 flex flex-col lg:flex-row gap-10">
                 <div className="flex flex-col gap-8 justify-center items-center lg:items-start flex-1">
                     <div className="flex flex-col items-center lg:items-start gap-5">
-                        <h1 className="text-2xl font-bold text-slate-800">
+                        <h1
+                            className="text-2xl font-bold text-white subpixel-antialiased"
+                            style={{
+                                textShadow: '0px 1px 2px rgba(0,0,0,0.7)',
+                            }}
+                        >
                             Popular Brands
                         </h1>
-                        <div className="text-base font-medium text-slate-600 text-center lg:text-start">
+                        <div
+                            className="text-base font-medium text-slate-50 text-center lg:text-start"
+                            style={{
+                                textShadow: '0px 1px 2px rgba(0,0,0,0.7)',
+                            }}
+                        >
                             <p className="leading-8">Planning to buy a car?</p>
                             <p>
                                 Checkout the leading and the most popular brands
@@ -36,12 +46,14 @@ export default function CarBrand() {
                         </button>
                     </Link>
                 </div>
-                <div className="flex flex-wrap gap-1 sm:gap-3 lg:gap-5 justify-center items-center flex-1">
+                <div className="flex flex-wrap gap-2 sm:gap-3 lg:gap-5 justify-center items-center flex-1">
                     {brandImage.map((item) => (
                         <Link to={`/search?searchTerm=${item.make}`}>
-                            <div className="w-32 h-32 bg-slate-400 bg-opacity-50 rounded-full flex flex-col justify-center items-center gap-3">
+                            <div className="w-28 h-28 bg-gray-400 shadow-md rounded-full flex flex-col justify-center items-center gap-3">
                                 <img src={item.image} alt="logo" />
-                                <p className="text-xs">{item.make}</p>
+                                <p className="text-xs text-slate-900">
+                                    {item.make}
+                                </p>
                             </div>
                         </Link>
                     ))}

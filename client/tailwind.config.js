@@ -5,6 +5,7 @@ export default {
         extend: {
             backgroundImage: {
                 car: 'url(./assets/car3.jpg)',
+                carPark: 'url(./assets/carpark.jpg)',
             },
         },
     },

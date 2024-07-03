@@ -55,14 +55,14 @@ export default function SearchInput() {
     };
 
     return (
-        <div className="max-w-full lg:max-w-4xl mx-auto px-5 min-[500px]:px-20 min-[610px]:px-32 md:px-10 pt-10 pb-10 md:pb-3 bg-slate-200 shadow-md lg:rounded-xl flex flex-col gap-1 md:gap-7 justify-center items-center mt-[-2.5rem] lg:mt-[-7rem]">
+        <div className="max-w-full lg:max-w-4xl mx-auto px-5 min-[500px]:px-20 min-[610px]:px-32 md:px-10 pt-10 pb-10 md:pb-3 bg-slate-500 bg-opacity-80 shadow-md lg:rounded-xl flex flex-col gap-1 md:gap-7 justify-center items-center mt-[-2.5rem] lg:mt-[-7rem]">
             <form
                 onSubmit={handleSubmit}
                 className="flex flex-col lg:flex-row justify-center items-center lg:items-end gap-8 md:gap-4 lg:gap-3 w-full"
             >
                 <div className="flex flex-1 flex-col md:flex-row gap-3 w-full">
                     <div className="flex flex-col flex-1">
-                        <p className="text-xs font-semibold px-1 text-gray-900 uppercase">
+                        <p className="text-xs font-medium px-1 text-white uppercase">
                             Make
                         </p>
                         <input
@@ -74,7 +74,7 @@ export default function SearchInput() {
                         />
                     </div>
                     <div className="flex flex-col flex-1">
-                        <p className="text-xs font-semibold px-1 text-gray-900 uppercase">
+                        <p className="text-xs font-medium px-1 text-white uppercase">
                             Model
                         </p>
                         <input
@@ -86,7 +86,7 @@ export default function SearchInput() {
                         />
                     </div>
                     <div className="flex flex-col flex-1 w-full">
-                        <label className="text-xs font-semibold px-1 text-gray-900 uppercase">
+                        <label className="text-xs font-medium px-1 text-white uppercase">
                             Price
                         </label>
                         <div className="border border-slate-400 px-3 py-2 rounded-md bg-white">
@@ -147,7 +147,7 @@ export default function SearchInput() {
                 </div>
             </form>
             <div className="w-full">
-                <p className="text-[0.7rem] text-center text-slate-500">
+                <p className="text-[0.7rem] text-center text-slate-800">
                     Note: Can search even one input is field or key word is not
                     complete.
                 </p>
