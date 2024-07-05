@@ -26,8 +26,23 @@ export default function Home() {
     const [sedanListings, setSedanListings] = useState([]);
     const [suvListings, setSuvListings] = useState([]);
     const [hatchbackListings, setHatchbackListings] = useState([]);
+    const [carBodyType, setCarBodyType] = useState('Sedan');
+    const [bodyTypeListings, setBodyTypeListings] = useState([]);
+    const [carTransmission, setCarTransmission] = useState('automatic');
+    const [transmissionListings, setTransmissionListings] = useState([]);
     SwiperCore.use([Navigation]);
     console.log(latestListings);
+
+    const bodyTypeOptions = [
+        'Sedan',
+        'Hatchback',
+        'SUV',
+        'MPV/MUV',
+        'Van',
+        'Pickup',
+    ];
+
+    const transmissionOptions = ['automatic', 'manual', 'CVT', 'others'];
 
     useEffect(() => {
         const fetchLatestListings = async () => {
@@ -49,7 +64,7 @@ export default function Home() {
                     '/api/listing/get?bodyType=Sedan&limit=5'
                 );
                 const data = await res.json();
-                setSedanListings(data);
+                setBodyTypeListings(data);
                 fetchSuvListings();
             } catch (error) {
                 console.log(error);
@@ -76,6 +91,19 @@ export default function Home() {
                 );
                 const data = await res.json();
                 setHatchbackListings(data);
+                fetchAutomaticListings();
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        const fetchAutomaticListings = async () => {
+            try {
+                const res = await fetch(
+                    '/api/listing/get?transmission=automatic&limit=5'
+                );
+                const data = await res.json();
+                setTransmissionListings(data);
             } catch (error) {
                 console.log(error);
             }
@@ -84,10 +112,34 @@ export default function Home() {
         fetchLatestListings();
     }, []);
 
+    const handleClickBodyType = async (bodyTypeName) => {
+        try {
+            const res = await fetch(
+                `/api/listing/get?bodyType=${bodyTypeName}&limit=5`
+            );
+            const data = await res.json();
+            setBodyTypeListings(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleClickTransmission = async (transmissionName) => {
+        try {
+            const res = await fetch(
+                `/api/listing/get?transmission=${transmissionName}&limit=5`
+            );
+            const data = await res.json();
+            setTransmissionListings(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div>
             <ScrollToTop />
-            <div className="h-[300px] md:h-[400px] xl:h-[500px] bg-car bg-center bg-cover bg-no-repeat bg-blend-darken mb-10">
+            <div className="h-[300px] md:h-[400px] xl:h-[500px] bg-car bg-center bg-cover bg-no-repeat bg-slate-900 bg-blend-lighten mb-10">
                 <div className="max-w-6xl mx-auto px-3 flex h-[100%] justify-center items-center">
                     <h1
                         className="text-gray-100 font-bold text-4xl md:text-[2.6rem] lg:text-5xl xl:text-6xl text-center mt-40 min-[370px]:mt-48 sm:mt-52 md:mt-72 lg:mt-44 xl:mt-64"
@@ -170,19 +222,42 @@ export default function Home() {
             </Swiper> */}
 
             <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 mt-10 md:mt-16 mb-10 md:mb-16">
-                {sedanListings && sedanListings.length > 0 && (
-                    <div>
-                        <div className="my-3">
-                            <h2 className="text-xl lg:text-2xl font-semibold text-slate-800">
-                                Sedan
-                            </h2>
-                        </div>
+                <div>
+                    <div className="mt-3 mb-5">
+                        <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-2">
+                            Cars by Body Type
+                        </h2>
+                        {bodyTypeOptions.map((item, index) => (
+                            <button
+                                key={index}
+                                className={`pr-5 text-sm font-medium text-slate-800 hover:text-cyan-500 duration-300 ${
+                                    item === carBodyType
+                                        ? 'text-cyan-500 underline underline-offset-8 decoration-2'
+                                        : ''
+                                }`}
+                                onClick={() => {
+                                    setCarBodyType(item);
+                                    handleClickBodyType(item);
+                                }}
+                            >
+                                {item}
+                            </button>
+                        ))}
+                    </div>
+                    {carBodyType === 'Sedan' ? (
                         <HomeSlider
-                            bodytypeListings={sedanListings}
-                            carBodytype={'bodyType=Sedan'}
-                            showMore={'Sedan'}
+                            bodytypeListings={bodyTypeListings}
+                            carBodytype={`bodyType=${carBodyType}`}
+                            showMore={carBodyType}
                         />
-                        {/* <div className="flex flex-wrap justify-between gap-y-7">
+                    ) : (
+                        <HomeSlider
+                            bodytypeListings={bodyTypeListings}
+                            carBodytype={`bodyType=${carBodyType}`}
+                            showMore={carBodyType}
+                        />
+                    )}
+                    {/* <div className="flex flex-wrap justify-between gap-y-7">
                             {sedanListings.map((listing) => (
                                 <Listingitem
                                     listing={listing}
@@ -198,20 +273,48 @@ export default function Home() {
                                 Show more Sedan
                             </Link>
                         </div> */}
-                    </div>
-                )}
+                </div>
                 {suvListings && suvListings.length > 0 && (
                     <div>
-                        <div className="my-3">
-                            <h2 className="text-xl lg:text-2xl font-semibold text-slate-800">
-                                SUV
+                        <div className="mt-3 mb-5">
+                            <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-2">
+                                Cars by Transmission
                             </h2>
+                            {transmissionOptions.map((item, index) => (
+                                <button
+                                    key={index}
+                                    className={`pr-5 text-sm font-medium text-slate-800 hover:text-cyan-500 duration-300 capitalize ${
+                                        item === carTransmission
+                                            ? 'text-cyan-500 underline underline-offset-8 decoration-2'
+                                            : ''
+                                    }`}
+                                    onClick={() => {
+                                        setCarTransmission(item);
+                                        handleClickTransmission(item);
+                                    }}
+                                >
+                                    {item}
+                                </button>
+                            ))}
                         </div>
-                        <HomeSlider
-                            bodytypeListings={suvListings}
-                            carBodytype={'bodyType=SUV'}
-                            showMore={'SUV'}
-                        />
+                        {carTransmission === 'automatic' ? (
+                            <HomeSlider
+                                bodytypeListings={transmissionListings}
+                                carBodytype={`transmission=${carTransmission}`}
+                                showMore={carTransmission}
+                            />
+                        ) : (
+                            <HomeSlider
+                                bodytypeListings={transmissionListings}
+                                carBodytype={`transmission=${carTransmission}`}
+                                showMore={carTransmission}
+                            />
+                        )}
+                        {/* <HomeSlider
+                            bodytypeListings={transmissionListings}
+                            carBodytype={`transmission=${carTransmission}`}
+                            showMore={carTransmission}
+                        /> */}
                         {/* <div className="flex flex-wrap justify-between gap-y-7">
                             {suvListings.map((listing) => (
                                 <Listingitem
