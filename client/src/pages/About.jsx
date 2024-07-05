@@ -16,12 +16,12 @@ export default function About() {
                 makes it easy so you can spend less time looking for your ideal
                 car and more time driving it.
             </p>
-            <p className="text-cyan-800 text-center text-lg mb-10">
+            <p className="text-cyan-800 text-center text-lg mb-16">
                 "It's our mission to provide all the informative tools you need
                 to find that ideal vehicle while making the experience easy and
                 enjoyable.""
             </p>
-            <h1 className="text-3xl font-bold mb-8 text-slate-800 capitalize text-center">
+            <h1 className="text-2xl font-bold mb-8 text-slate-800 capitalize text-center">
                 What car should you buy?
             </h1>
             <p className="mb-8 text-slate-700 text-justify">
@@ -32,7 +32,7 @@ export default function About() {
                 With so many different makes and models out there, trying to
                 figure out which car you want to buy can be overwhelming.
             </p>
-            <h1 className="text-2xl font-bold text-slate-800 capitalize mb-2">
+            <h1 className="text-xl font-bold text-slate-800 capitalize mb-2">
                 Figure out what you need
             </h1>
             <p className="mb-4 text-slate-700 text-justify">
@@ -59,7 +59,7 @@ export default function About() {
                 buying a sweet ride that turns into a headache when you take it
                 home.
             </p>
-            <h1 className="text-2xl font-bold text-slate-800 capitalize mb-2">
+            <h1 className="text-xl font-bold text-slate-800 capitalize mb-2">
                 Get an idea of what you want
             </h1>
             <p className="mb-4 text-slate-700 text-justify">
@@ -94,7 +94,7 @@ export default function About() {
                 intention of buying immediately. Most good dealers will still be
                 happy to help.
             </p>
-            <div className="flex flex-col justify-center items-center px-10 py-6 bg-slate-200">
+            <div className="flex flex-col justify-center items-center px-10 py-8 bg-slate-200">
                 <h1 className="text-center mb-5 text-slate-800 text-xl font-semibold">
                     Get the best and latest used car deals
                 </h1>
@@ -102,7 +102,7 @@ export default function About() {
                     to={'/search'}
                     className="flex flex-1 justify-center items-center"
                 >
-                    <button className="flex justify-center items-center bg-cyan-800 w-52 py-3 text-white text-sm sm:text-base rounded-md font-semibold hover:opacity-90">
+                    <button className="flex justify-center items-center bg-cyan-800 w-52 py-2 text-white text-sm sm:text-base rounded-md font-semibold hover:opacity-90">
                         Check all cars
                     </button>
                 </Link>

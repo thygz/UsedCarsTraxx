@@ -33,14 +33,7 @@ export default function Home() {
     SwiperCore.use([Navigation]);
     console.log(latestListings);
 
-    const bodyTypeOptions = [
-        'Sedan',
-        'Hatchback',
-        'SUV',
-        'MPV/MUV',
-        'Van',
-        'Pickup',
-    ];
+    const bodyTypeOptions = ['Sedan', 'Hatchback', 'SUV', 'MPV/MUV', 'Pickup'];
 
     const transmissionOptions = ['automatic', 'manual', 'CVT', 'others'];
 
@@ -144,7 +137,7 @@ export default function Home() {
                     <h1
                         className="text-gray-100 font-bold text-4xl md:text-[2.6rem] lg:text-5xl xl:text-6xl text-center mt-40 min-[370px]:mt-48 sm:mt-52 md:mt-72 lg:mt-44 xl:mt-64"
                         style={{
-                            textShadow: '0px 3px 1px rgba(0,0,0,0.7)',
+                            textShadow: '0px 3px 2px rgba(0,0,0,0.7)',
                         }}
                     >
                         Find your next{' '}
@@ -230,10 +223,10 @@ export default function Home() {
                         {bodyTypeOptions.map((item, index) => (
                             <button
                                 key={index}
-                                className={`pr-5 text-sm font-medium text-slate-800 hover:text-cyan-500 duration-300 ${
+                                className={`pr-3 min-[400px]:pr-6 text-sm font-medium hover:text-cyan-600 duration-300 ${
                                     item === carBodyType
-                                        ? 'text-cyan-500 underline underline-offset-8 decoration-2'
-                                        : ''
+                                        ? 'text-cyan-600 underline underline-offset-8 decoration-2'
+                                        : 'text-slate-800'
                                 }`}
                                 onClick={() => {
                                     setCarBodyType(item);
@@ -274,48 +267,47 @@ export default function Home() {
                             </Link>
                         </div> */}
                 </div>
-                {suvListings && suvListings.length > 0 && (
-                    <div>
-                        <div className="mt-3 mb-5">
-                            <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-2">
-                                Cars by Transmission
-                            </h2>
-                            {transmissionOptions.map((item, index) => (
-                                <button
-                                    key={index}
-                                    className={`pr-5 text-sm font-medium text-slate-800 hover:text-cyan-500 duration-300 capitalize ${
-                                        item === carTransmission
-                                            ? 'text-cyan-500 underline underline-offset-8 decoration-2'
-                                            : ''
-                                    }`}
-                                    onClick={() => {
-                                        setCarTransmission(item);
-                                        handleClickTransmission(item);
-                                    }}
-                                >
-                                    {item}
-                                </button>
-                            ))}
-                        </div>
-                        {carTransmission === 'automatic' ? (
-                            <HomeSlider
-                                bodytypeListings={transmissionListings}
-                                carBodytype={`transmission=${carTransmission}`}
-                                showMore={carTransmission}
-                            />
-                        ) : (
-                            <HomeSlider
-                                bodytypeListings={transmissionListings}
-                                carBodytype={`transmission=${carTransmission}`}
-                                showMore={carTransmission}
-                            />
-                        )}
-                        {/* <HomeSlider
+                <div>
+                    <div className="mt-3 mb-5">
+                        <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-2">
+                            Cars by Transmission
+                        </h2>
+                        {transmissionOptions.map((item, index) => (
+                            <button
+                                key={index}
+                                className={`pr-3 min-[400px]:pr-6 text-sm font-medium hover:text-cyan-600 duration-300 capitalize ${
+                                    item === carTransmission
+                                        ? 'text-cyan-600 underline underline-offset-8 decoration-2'
+                                        : 'text-slate-800'
+                                }`}
+                                onClick={() => {
+                                    setCarTransmission(item);
+                                    handleClickTransmission(item);
+                                }}
+                            >
+                                {item}
+                            </button>
+                        ))}
+                    </div>
+                    {carTransmission === 'automatic' ? (
+                        <HomeSlider
+                            bodytypeListings={transmissionListings}
+                            carBodytype={`transmission=${carTransmission}`}
+                            showMore={carTransmission}
+                        />
+                    ) : (
+                        <HomeSlider
+                            bodytypeListings={transmissionListings}
+                            carBodytype={`transmission=${carTransmission}`}
+                            showMore={carTransmission}
+                        />
+                    )}
+                    {/* <HomeSlider
                             bodytypeListings={transmissionListings}
                             carBodytype={`transmission=${carTransmission}`}
                             showMore={carTransmission}
                         /> */}
-                        {/* <div className="flex flex-wrap justify-between gap-y-7">
+                    {/* <div className="flex flex-wrap justify-between gap-y-7">
                             {suvListings.map((listing) => (
                                 <Listingitem
                                     listing={listing}
@@ -331,8 +323,7 @@ export default function Home() {
                                 Show more SUV
                             </Link>
                         </div> */}
-                    </div>
-                )}
+                </div>
             </div>
             <CarBrand />
             <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 mt-10 md:mt-16 mb-10 md:mb-20">

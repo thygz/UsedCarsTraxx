@@ -16,7 +16,7 @@ const brandImage = [
 export default function CarBrand() {
     return (
         <div className="max-w-full bg-carPark bg-center bg-cover bg-no-repeat bg-gray-500 bg-blend-exclusion">
-            <div className="max-w-6xl mx-auto px-2 md:px-10 lg:px-20 py-10 flex flex-col lg:flex-row gap-10">
+            <div className="max-w-6xl mx-auto px-2 md:px-10 lg:px-20 py-10 lg:py-14 flex flex-col lg:flex-row gap-10">
                 <div className="flex flex-col gap-8 justify-center items-center lg:items-start flex-1">
                     <div className="flex flex-col items-center lg:items-start gap-5">
                         <h1
@@ -49,7 +49,7 @@ export default function CarBrand() {
                 <div className="flex flex-wrap gap-2 sm:gap-3 lg:gap-5 justify-center items-center flex-1">
                     {brandImage.map((item) => (
                         <Link to={`/search?searchTerm=${item.make}`}>
-                            <div className="w-28 h-28 bg-gray-400 shadow-md rounded-full flex flex-col justify-center items-center gap-3">
+                            <div className="w-28 h-28 bg-gray-400 bg-opacity-70 shadow-md rounded-full flex flex-col justify-center items-center gap-3">
                                 <img src={item.image} alt="logo" />
                                 <p className="text-xs text-slate-900">
                                     {item.make}

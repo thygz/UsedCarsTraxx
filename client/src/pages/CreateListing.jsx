@@ -254,29 +254,33 @@ export default function CreateListing() {
                         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                             <div className="flex flex-col flex-1">
                                 <label
-                                    for="bodyType"
+                                    htmlFor="bodyType"
                                     className="text-xs font-semibold p-[0.15rem] text-gray-600"
                                 >
                                     Body Type
                                 </label>
-                                <select
-                                    type="text"
-                                    // name="bodyType"
-                                    className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400 appearance-none"
-                                    // id="bodyType"
-                                    // required
-                                    value={formData.bodyType}
-                                    onChange={handleChange}
-                                >
-                                    {bodyTypeOptions.map((option, index) => (
-                                        <option
-                                            key={index}
-                                            value={option.value}
-                                        >
-                                            {option.label}
-                                        </option>
-                                    ))}
-                                </select>
+                                <div className="border-[1px] border-slate-400 px-2">
+                                    <select
+                                        type="text"
+                                        // name="bodyType"
+                                        className="py-2 rounded-sm text-sm focus:outline-none w-full bg-inherit"
+                                        // id="bodyType"
+                                        // required
+                                        value={formData.bodyType}
+                                        onChange={handleChange}
+                                    >
+                                        {bodyTypeOptions.map(
+                                            (option, index) => (
+                                                <option
+                                                    key={index}
+                                                    value={option.value}
+                                                >
+                                                    {option.label}
+                                                </option>
+                                            )
+                                        )}
+                                    </select>
+                                </div>
                             </div>
                             <div className="flex flex-col flex-1">
                                 <p className="text-xs font-semibold p-[0.15rem] text-gray-600">

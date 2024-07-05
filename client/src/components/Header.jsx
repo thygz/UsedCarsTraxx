@@ -94,33 +94,33 @@ export default function Header() {
                                     </div>
                                     <div className="h-[1px] w-full bg-slate-400"></div>
                                     <ul
-                                        className="flex flex-col text-sm font-semibold mt-2"
+                                        className="flex flex-col text-sm font-semibold mt-3"
                                         onClick={() => setToggleMenu(false)}
                                     >
                                         <Link to="/profile">
-                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 border-b-[1px]">
+                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 border-b-[1px]">
                                                 Edit Profile
                                             </li>
                                         </Link>
                                         <Link to="/create-listing">
-                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 border-b-[1px]">
+                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 border-b-[1px]">
                                                 Sell Your Car
                                             </li>
                                         </Link>
                                         <Link to="/show-listing">
-                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 border-b-[1px]">
+                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 border-b-[1px]">
                                                 Show Listings
                                             </li>
                                         </Link>
                                         <li
-                                            className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 border-b-[1px] cursor-pointer"
+                                            className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 border-b-[1px] cursor-pointer"
                                             onClick={handleDeleteUser}
                                         >
                                             Delete Account
                                         </li>
                                         <Link to="/sign-in">
                                             <li
-                                                className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 border-b-[1px] cursor-pointer"
+                                                className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 border-b-[1px] cursor-pointer"
                                                 onClick={handleSignOut}
                                             >
                                                 Log out
@@ -147,7 +147,7 @@ export default function Header() {
                             )}
                         </div>
                         <ul
-                            className="gap-4 lg:gap-10 capitalize font-semibold lg:text-center flex flex-col lg:flex-row text-sm pl-5 lg:pl-0 mt-2 lg:mt-0"
+                            className="gap-6 lg:gap-10 capitalize font-semibold lg:text-center flex flex-col lg:flex-row text-sm pl-5 lg:pl-0 mt-2 lg:mt-0"
                             onClick={() => setToggleMenu(false)}
                         >
                             <Link to="/">

@@ -3,7 +3,7 @@ import { MdLocationOn } from 'react-icons/md';
 
 export default function Listingitem({ listing }) {
     return (
-        <div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-[240px] sm:w-[250px] lg:w-[240px] xl:w-[270px] h-auto">
+        <div className="bg-inherit shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-[240px] sm:w-[250px] lg:w-[240px] xl:w-[270px] h-auto">
             <Link to={`/listing/${listing._id}`}>
                 <div className="p-[0.6rem]">
                     <div className="h-[130px] xl:h-[145px] overflow-hidden rounded-lg">

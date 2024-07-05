@@ -12,7 +12,8 @@
 @tailwind utilities;
 
 body {
-    background-color: rgb(241, 245, 249);
+    /* background-color: rgb(241, 245, 249); */
+    background-color: rgb(248, 250, 255);
     font-family: 'Libre Franklin', sans-serif;
 }
 
