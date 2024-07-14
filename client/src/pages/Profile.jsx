@@ -20,7 +20,7 @@ import {
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Toaster, toast } from 'sonner';
+import { toast } from 'react-toastify';
 import ScrollToTop from '../components/ScrollToTop';
 
 export default function Profile() {
@@ -91,6 +91,16 @@ export default function Profile() {
             }
             dispatch(updateUserSuccess(data));
             setUpdateSuccess(true);
+            toast.success('Profile updated successfully', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'colored',
+            });
         } catch (error) {
             dispatch(updateUserFailure(error.message));
         }
@@ -129,17 +139,17 @@ export default function Profile() {
     };
 
     return (
-        <div className="max-w-3xl mx-auto px-3 pt-10 pb-14 min-h-[75vh]">
+        <div className="max-w-xl mx-auto px-3 pt-10 pb-14 min-h-[75vh]">
             <ScrollToTop />
-            <div className="p-3 bg-white rounded-sm">
+            <div className="p-3 bg-inherit rounded-sm">
                 <h1 className="text-2xl font-semibold mt-5 mb-7 text-slate-800 text-center">
                     Edit Your Profile
                 </h1>
                 <form
                     onSubmit={handleSubmit}
-                    className="flex flex-col md:flex-row-reverse gap-10 md:gap-3"
+                    className="flex flex-col gap-10 md:gap-3"
                 >
-                    <div className="w-full md:w-[35%] flex flex-col justify-center items-center">
+                    <div className="w-full flex flex-col justify-center items-center">
                         <input
                             onChange={(e) => setFile(e.target.files[0])}
                             type="file"
@@ -253,14 +263,14 @@ export default function Profile() {
                         {updateSuccess ? 'Profile updated successfully!' : ''}
                     </p>
                 </div> */}
-                <div>
+                {/* <div>
                     <Toaster />
                     <p className="hidden">
                         {updateSuccess
                             ? toast.success('Profile Updated Successfully')
                             : ''}
                     </p>
-                </div>
+                </div> */}
             </div>
         </div>
     );
