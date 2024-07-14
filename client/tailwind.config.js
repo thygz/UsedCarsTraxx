@@ -4,7 +4,7 @@ export default {
     theme: {
         extend: {
             backgroundImage: {
-                car: 'url(./assets/car3.jpg)',
+                car: 'url(./assets/car4.jpg)',
                 carPark: 'url(./assets/carpark.jpg)',
             },
         },
