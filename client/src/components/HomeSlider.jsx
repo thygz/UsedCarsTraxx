@@ -26,20 +26,32 @@ export default function HomeSlider({
             // }}
             // navigation
             breakpoints={{
+                320: {
+                    slidesPerView: 1.15,
+                    spaceBetween: 6,
+                },
                 350: {
-                    slidesPerView: 1.35,
+                    slidesPerView: 1.2,
+                    spaceBetween: 6,
+                },
+                370: {
+                    slidesPerView: 1.25,
                     spaceBetween: 6,
                 },
                 390: {
-                    slidesPerView: 1.5,
-                    spaceBetween: 10,
+                    slidesPerView: 1.3,
+                    spaceBetween: 6,
+                },
+                410: {
+                    slidesPerView: 1.38,
+                    spaceBetween: 6,
                 },
                 430: {
-                    slidesPerView: 1.65,
+                    slidesPerView: 1.45,
                     spaceBetween: 6,
                 },
                 510: {
-                    slidesPerView: 2,
+                    slidesPerView: 1.9,
                     spaceBetween: 12,
                 },
                 580: {
@@ -80,7 +92,7 @@ export default function HomeSlider({
             ))}
             <SwiperSlide>
                 <Link to={`/search?${carBodytype}`}>
-                    <div className="bg-inherit shadow-md hover:shadow-lg rounded-lg w-[95%] flex flex-col justify-center items-center gap-5 py-[4.15rem] sm:py-[4.3rem] lg:py-[4.53rem] xl:py-[5.14rem] group">
+                    <div className="bg-inherit shadow-md hover:shadow-lg rounded-lg w-[95%] flex flex-col justify-center items-center gap-5 py-[4.6rem] sm:py-[4.72rem] md:py-[4.74rem] xl:py-[5.14rem] group">
                         <div className="h-20 w-20 rounded-full bg-slate-200 group-hover:bg-cyan-600 flex justify-center items-center">
                             <FaArrowRight className="text-xl text-slate-700 group-hover:text-white" />
                         </div>

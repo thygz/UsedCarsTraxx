@@ -5,7 +5,7 @@ export default function About() {
     return (
         <div className="pt-10 sm:pt-14 pb-20 px-4 max-w-3xl mx-auto">
             <ScrollToTop />
-            <h1 className="text-3xl font-bold mb-8 text-slate-800 capitalize text-center">
+            <h1 className="text-3xl font-bold mb-14 text-slate-800 capitalize text-center">
                 About Us
             </h1>
             <p className="mb-8 text-slate-700 text-justify">
@@ -16,7 +16,7 @@ export default function About() {
                 makes it easy so you can spend less time looking for your ideal
                 car and more time driving it.
             </p>
-            <p className="text-cyan-800 text-center text-lg mb-16">
+            <p className="text-cyan-800 text-center text-lg mb-24">
                 "It's our mission to provide all the informative tools you need
                 to find that ideal vehicle while making the experience easy and
                 enjoyable.""

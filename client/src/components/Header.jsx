@@ -54,7 +54,7 @@ export default function Header() {
     // bg-slate-100
     return (
         <header className="bg-slate-100 shadow-md sticky top-0 z-30">
-            <div className="flex justify-between items-center max-w-6xl mx-auto p-2 h-[54px]">
+            <div className="flex justify-between items-center max-w-6xl mx-auto px-3 py-2 h-[54px]">
                 <div
                     className={`flex justify-center items-center gap-1 ${
                         toggleMenu ? 'hidden' : 'visible'

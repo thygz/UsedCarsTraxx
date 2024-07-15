@@ -31,11 +31,11 @@ export default function Home() {
     const [carTransmission, setCarTransmission] = useState('automatic');
     const [transmissionListings, setTransmissionListings] = useState([]);
     SwiperCore.use([Navigation]);
-    console.log(latestListings);
+    // console.log(latestListings);
 
     const bodyTypeOptions = ['Sedan', 'Hatchback', 'SUV', 'MPV/MUV', 'Pickup'];
 
-    const transmissionOptions = ['automatic', 'manual', 'CVT', 'others'];
+    const transmissionOptions = ['automatic', 'manual', 'cvt', 'others'];
 
     useEffect(() => {
         const fetchLatestListings = async () => {
@@ -214,7 +214,7 @@ export default function Home() {
                     ))}
             </Swiper> */}
 
-            <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 mt-10 md:mt-16 mb-10 md:mb-16">
+            <div className="max-w-6xl mx-auto px-5 py-3 flex flex-col gap-8 mt-10 md:mt-16 mb-10 md:mb-16">
                 <div>
                     <div className="mt-3 mb-5">
                         <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-2">
@@ -223,7 +223,7 @@ export default function Home() {
                         {bodyTypeOptions.map((item, index) => (
                             <button
                                 key={index}
-                                className={`pr-3 min-[400px]:pr-6 text-sm font-medium hover:text-cyan-600 duration-300 ${
+                                className={`pr-2 min-[350px]:pr-3 min-[400px]:pr-5 min-[420px]:pr-6 text-sm font-medium hover:text-cyan-600 duration-300 ${
                                     item === carBodyType
                                         ? 'text-cyan-600 underline underline-offset-8 decoration-2'
                                         : 'text-slate-800'
@@ -275,7 +275,7 @@ export default function Home() {
                         {transmissionOptions.map((item, index) => (
                             <button
                                 key={index}
-                                className={`pr-3 min-[400px]:pr-6 text-sm font-medium hover:text-cyan-600 duration-300 capitalize ${
+                                className={`pr-2 min-[350px]:pr-3 min-[400px]:pr-5 min-[420px]:pr-6 text-sm font-medium hover:text-cyan-600 duration-300 capitalize ${
                                     item === carTransmission
                                         ? 'text-cyan-600 underline underline-offset-8 decoration-2'
                                         : 'text-slate-800'
@@ -326,7 +326,7 @@ export default function Home() {
                 </div>
             </div>
             <CarBrand />
-            <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 mt-10 md:mt-16 mb-10 md:mb-20">
+            <div className="max-w-6xl mx-auto px-5 py-3 flex flex-col gap-8 mt-10 md:mt-16 mb-10 md:mb-20">
                 {hatchbackListings && hatchbackListings.length > 0 && (
                     <div>
                         <div className="my-3">
