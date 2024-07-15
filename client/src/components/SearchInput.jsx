@@ -55,7 +55,7 @@ export default function SearchInput() {
     };
 
     return (
-        <div className="max-w-full lg:max-w-4xl mx-auto px-5 min-[500px]:px-20 min-[610px]:px-32 md:px-10 pt-10 pb-10 md:pb-3 bg-gradient-to-b from-cyan-800 to-slate-500 shadow-md lg:rounded-xl flex flex-col gap-1 md:gap-7 justify-center items-center mt-[-2.5rem] lg:mt-[-7rem]">
+        <div className="max-w-full lg:max-w-4xl mx-auto px-5 min-[500px]:px-20 min-[610px]:px-32 md:px-10 pt-10 pb-10 md:pb-3 bg-gradient-to-b from-gray-600 to-slate-400 shadow-md lg:rounded-xl flex flex-col gap-1 md:gap-7 justify-center items-center mt-[-2.5rem] lg:mt-[-7rem]">
             <form
                 onSubmit={handleSubmit}
                 className="flex flex-col lg:flex-row justify-center items-center lg:items-end gap-8 md:gap-4 lg:gap-3 w-full"

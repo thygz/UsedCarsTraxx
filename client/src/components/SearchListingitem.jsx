@@ -3,7 +3,7 @@ import { MdLocationOn } from 'react-icons/md';
 
 export default function SearchListingitem({ listing }) {
     return (
-        <div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full min-[500px]:w-[220px] md:w-[235px] xl:w-[270px]">
+        <div className="bg-inherit shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full min-[500px]:w-[220px] md:w-[235px] xl:w-[270px]">
             <Link to={`/listing/${listing._id}`}>
                 <div className="p-[0.6rem]">
                     <div className="h-[200px] min-[500px]:h-[130px] xl:h-[145px] overflow-hidden rounded-lg">

@@ -73,8 +73,8 @@ export default function ListingSlider({
             <SwiperSlide>
                 {showMore && (
                     <Link to={`/search?bodyType=${carBodytype}`}>
-                        <div className="bg-white shadow-md hover:shadow-lg rounded-lg w-[95%] flex flex-col justify-center items-center gap-5 py-[4.15rem] sm:py-[4.3rem] lg:py-[4.53rem] xl:py-[5.14rem] group">
-                            <div className="h-20 w-20 rounded-full bg-cyan-50 group-hover:bg-cyan-600 flex justify-center items-center">
+                        <div className="bg-inherit shadow-md hover:shadow-lg rounded-lg w-[95%] flex flex-col justify-center items-center gap-5 py-[4.15rem] sm:py-[4.3rem] lg:py-[4.53rem] xl:py-[5.14rem] group">
+                            <div className="h-20 w-20 rounded-full bg-slate-200 group-hover:bg-cyan-600 flex justify-center items-center">
                                 <FaArrowRight className="text-xl text-slate-700 group-hover:text-white" />
                             </div>
                             <p className="text-xs text-slate-900 uppercase">

@@ -41,7 +41,7 @@ export default function CarBrand() {
                         </div>
                     </div>
                     <Link to={'/search'}>
-                        <button className="flex justify-center items-center bg-cyan-800 w-52 py-2 text-white text-sm sm:text-base rounded-md font-semibold hover:opacity-90">
+                        <button className="flex justify-center items-center shadow-slate-400 shadow-sm bg-cyan-800 w-52 py-2 text-white text-sm sm:text-base rounded-md font-semibold hover:opacity-90">
                             Check all cars
                         </button>
                     </Link>
@@ -49,7 +49,7 @@ export default function CarBrand() {
                 <div className="flex flex-wrap gap-2 sm:gap-3 lg:gap-5 justify-center items-center flex-1">
                     {brandImage.map((item) => (
                         <Link to={`/search?searchTerm=${item.make}`}>
-                            <div className="w-28 h-28 bg-gray-400 bg-opacity-70 shadow-md rounded-full flex flex-col justify-center items-center gap-3">
+                            <div className="w-28 h-28 bg-gray-400 bg-opacity-70 shadow-xl rounded-full hover:bg-opacity-90 duration-200 flex flex-col justify-center items-center gap-3">
                                 <img src={item.image} alt="logo" />
                                 <p className="text-xs text-slate-900">
                                     {item.make}

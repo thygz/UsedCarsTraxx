@@ -7,7 +7,7 @@ import { FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
     return (
-        <footer className="bg-slate-100">
+        <footer className="bg-inherit">
             <div className="border-y-[1px] border-gray-300">
                 <div className="max-w-6xl mx-auto flex justify-between flex-wrap py-10 px-5">
                     <div className="hidden min-[600px]:block">
