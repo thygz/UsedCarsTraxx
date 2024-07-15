@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import usedCarsTraxxLogo from '../assets/usedCarsTraxxLogo.png';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
@@ -12,7 +11,7 @@ import {
     signOutUserFailure,
     signOutUserSuccess,
 } from '../redux/user/userSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Header() {
     const { currentUser } = useSelector((state) => state.user);
@@ -139,7 +138,7 @@ export default function Header() {
                                         </li>
                                     </Link>
                                     <Link to="/sign-up">
-                                        <li className="text-gray-500 hover:text-gray-400 duration-300 py-[0.42rem] px-[5.35rem] bg-white border-gray-500 border-[1px] rounded-sm">
+                                        <li className="text-gray-500 hover:text-gray-400 duration-300 py-[0.42rem] px-[5.35rem] bg-slate-50 border-gray-500 border-[1px] rounded-sm">
                                             Sign Up
                                         </li>
                                     </Link>
@@ -160,16 +159,33 @@ export default function Header() {
                                     About
                                 </li>
                             </Link>
-                            <Link>
-                                <li className="inline text-cyan-900 hover:text-cyan-500 duration-300">
-                                    Buy Car
-                                </li>
-                            </Link>
-                            <Link>
-                                <li className="inline text-cyan-900 hover:text-cyan-500 duration-300">
-                                    Sell Car
-                                </li>
-                            </Link>
+
+                            {!currentUser ? (
+                                <Link to={'/sign-in'}>
+                                    <li className="inline text-cyan-900 hover:text-cyan-500 duration-300">
+                                        Sell Car
+                                    </li>
+                                </Link>
+                            ) : (
+                                <Link to={'/create-listing'}>
+                                    <li className="inline text-cyan-900 hover:text-cyan-500 duration-300">
+                                        Sell Car
+                                    </li>
+                                </Link>
+                            )}
+                            {!currentUser ? (
+                                <Link to={'/sign-in'}>
+                                    <li className="inline text-cyan-900 hover:text-cyan-500 duration-300">
+                                        Favorites
+                                    </li>
+                                </Link>
+                            ) : (
+                                <Link to={'/favorites'}>
+                                    <li className="inline text-cyan-900 hover:text-cyan-500 duration-300">
+                                        Favorites
+                                    </li>
+                                </Link>
+                            )}
                         </ul>
                         {/* <form
                             onSubmit={handleSubmit}
@@ -221,7 +237,7 @@ export default function Header() {
                     <div className={`${toggleMenu ? 'hidden' : 'visible'}`}>
                         {currentUser ? (
                             <div
-                                className="hidden lg:flex justify-center items-center text-cyan-800 hover:text-cyan-600 duration-300 text-sm font-semibold tracking-wide bg-white px-2 gap-2 rounded-full border-[1px] border-gray-300 relative whitespace-nowrap cursor-pointer z-20 h-[2.15rem]"
+                                className="hidden lg:flex justify-center items-center text-cyan-800 hover:text-cyan-600 duration-300 text-sm font-semibold tracking-wide bg-slate-50 px-2 gap-2 rounded-full border-[1px] border-gray-300 relative whitespace-nowrap cursor-pointer z-20 h-[2.15rem]"
                                 onMouseEnter={() => setToggleProfile(true)}
                                 onMouseLeave={() => setToggleProfile(false)}
                             >
@@ -239,9 +255,9 @@ export default function Header() {
                                     }`}
                                 >
                                     <div className="pt-14">
-                                        <div className="absolute w-4 h-4 top-12 right-3 bg-white border-l-[2px] border-t-[2px] rotate-45"></div>
+                                        {/* <div className="absolute w-4 h-4 top-12 right-3 bg-slate-50 border-l-[2px] border-t-[2px] rotate-45"></div> */}
                                     </div>
-                                    <div className="bg-white pt-4 pb-3 border-2 rounded-md cursor-default">
+                                    <div className="bg-slate-50 pt-4 pb-3 border-2 rounded-md cursor-default">
                                         <div className="mb-3 pl-5 pr-16">
                                             <p className="text-cyan-900 font-bold text-base truncate max-w-[9rem]">
                                                 Welcome {currentUser.username}!
@@ -290,7 +306,7 @@ export default function Header() {
                         ) : (
                             <div>
                                 <div
-                                    className="hidden lg:flex justify-center items-center text-cyan-800 hover:text-cyan-600 duration-300 text-sm font-semibold tracking-wide bg-white p-2 gap-2 rounded-full border-[1px] border-gray-300 relative whitespace-nowrap cursor-pointer"
+                                    className="hidden lg:flex justify-center items-center text-cyan-800 hover:text-cyan-600 duration-300 text-sm font-semibold tracking-wide bg-slate-50 p-2 gap-2 rounded-full border-[1px] border-gray-300 relative whitespace-nowrap cursor-pointer"
                                     onMouseEnter={() =>
                                         setToggleLoginSignup(true)
                                     }
@@ -309,9 +325,9 @@ export default function Header() {
                                         }`}
                                     >
                                         <div className="pt-14">
-                                            <div className="absolute w-4 h-4 top-12 right-3 bg-white border-l-[2px] border-t-[2px] rotate-45"></div>
+                                            {/* <div className="absolute w-4 h-4 top-12 right-3 bg-slate-50 border-l-[2px] border-t-[2px] rotate-45"></div> */}
                                         </div>
-                                        <div className="bg-white border-2 p-3 rounded-md">
+                                        <div className="bg-slate-50 border-2 p-3 rounded-md">
                                             <ul
                                                 className="flex text-sm font-semibold gap-2"
                                                 onClick={() =>
@@ -324,7 +340,7 @@ export default function Header() {
                                                     </li>
                                                 </Link>
                                                 <Link to="/sign-up">
-                                                    <li className="text-gray-500 hover:text-gray-400 duration-300 py-[0.46rem] px-4 bg-white border-gray-500 border-[1px] rounded-sm">
+                                                    <li className="text-gray-500 hover:text-gray-400 duration-300 py-[0.46rem] px-4 bg-slate-50 border-gray-500 border-[1px] rounded-sm">
                                                         Sign Up
                                                     </li>
                                                 </Link>
