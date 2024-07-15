@@ -4,18 +4,21 @@ import {
     ref,
     uploadBytesResumable,
 } from 'firebase/storage';
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { app } from '../firebase';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FaUpload } from 'react-icons/fa6';
 import ScrollToTop from '../components/ScrollToTop';
+import { AiOutlineCloudUpload } from 'react-icons/ai';
+import { IoMdClose } from 'react-icons/io';
+import carThreeD from '../assets/3dCar.webp';
 
 export default function CreateListing() {
     const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
+    const imageFileRef = useRef(null);
     const [files, setFiles] = useState([]);
-    // const fileRef = useRef(null);
     const [formData, setFormData] = useState({
         imageUrls: [],
         make: '',
@@ -35,7 +38,7 @@ export default function CreateListing() {
     const [uploading, setUploading] = useState(false);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
-    console.log(formData);
+    // console.log(formData);
 
     const bodyTypeOptions = [
         { label: 'Sedan', value: 'Sedan' },
@@ -50,37 +53,40 @@ export default function CreateListing() {
         { label: 'Others', value: 'Others' },
     ];
 
-    const handleImageSubmit = (e) => {
-        // fileRef.current.click();
-        if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
-            setUploading(true);
-            setImageUploadError(false);
-            const promises = [];
-
-            for (let i = 0; i < files.length; i++) {
-                promises.push(storeImage(files[i]));
-            }
-
-            Promise.all(promises)
-                .then((urls) => {
-                    setFormData({
-                        ...formData,
-                        imageUrls: formData.imageUrls.concat(urls),
+    useEffect(() => {
+        const handleImageSubmit = (e) => {
+            if (
+                files.length >= 0 &&
+                files.length + formData.imageUrls.length < 7
+            ) {
+                setUploading(true);
+                setImageUploadError(false);
+                const promises = [];
+                for (let i = 0; i < files.length; i++) {
+                    promises.push(storeImage(files[i]));
+                }
+                Promise.all(promises)
+                    .then((urls) => {
+                        setFormData({
+                            ...formData,
+                            imageUrls: formData.imageUrls.concat(urls),
+                        });
+                        setImageUploadError(false);
+                        setUploading(false);
+                    })
+                    .catch((err) => {
+                        setImageUploadError(
+                            'Image upload failed (2mb max per image)'
+                        );
+                        setUploading(false);
                     });
-                    setImageUploadError(false);
-                    setUploading(false);
-                })
-                .catch((err) => {
-                    setImageUploadError(
-                        'Image upload failed (2mb max per image)'
-                    );
-                    setUploading(false);
-                });
-        } else {
-            setImageUploadError('You can only upload 6 images per listing');
-            setUploading(false);
-        }
-    };
+            } else {
+                setImageUploadError('You can only upload 6 images per listing');
+                setUploading(false);
+            }
+        };
+        handleImageSubmit();
+    }, [files]);
 
     const storeImage = async (file) => {
         return new Promise((resolve, reject) => {
@@ -154,17 +160,6 @@ export default function CreateListing() {
             });
         }
 
-        // if (
-        //     e.target.id === 'parking' ||
-        //     e.target.id === 'furnished' ||
-        //     e.target.id === 'offer'
-        // ) {
-        //     setFormData({
-        //         ...formData,
-        //         [e.target.id]: e.target.checked,
-        //     });
-        // }
-
         if (
             e.target.type === 'number' ||
             e.target.type === 'text' ||
@@ -182,10 +177,6 @@ export default function CreateListing() {
         try {
             if (formData.imageUrls.length < 1)
                 return setError('You must upload at least one image');
-            // if (+formData.regularPrice < +formData.discountPrice)
-            //     return setError(
-            //         'Discount price must be lower from regular price'
-            //     );
             setLoading(true);
             setError(false);
             const res = await fetch('/api/listing/create', {
@@ -211,12 +202,35 @@ export default function CreateListing() {
     };
 
     return (
-        <main className="px-3 pt-3 md:pt-10 pb-14 max-w-3xl mx-auto">
+        <main className="pb-14">
             <ScrollToTop />
-            <div className="p-3 bg-white rounded-sm">
-                <h1 className="text-2xl font-semibold text-center text-slate-800 mt-5 mb-7 md:mb-10">
+            <div className="bg-gradient-to-b from-gray-400 to-slate-200 flex justify-center items-center mb-3 px-5 lg:px-10 pb-12 md:py-9 lg:py-8 xl:py-14">
+                <div className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row justify-center items-center">
+                    <div className="flex flex-col flex-1 text-center md:text-start gap-5">
+                        <h1 className="text-2xl lg:text-3xl font-bold text-slate-800">
+                            Sell Your Car
+                        </h1>
+                        <p className="text-cyan-600 font-bold text-lg lg:text-xl">
+                            Looking for a buyer?
+                        </p>
+                        <p className="text-slate-800 text-sm lg:text-base">
+                            Make your listing here at UsedCarsTraxx and make
+                            selling easier with the best price for your car.
+                        </p>
+                    </div>
+                    <div className="flex flex-1 justify-center md:justify-end items-center">
+                        <img
+                            src={carThreeD}
+                            alt="3d car"
+                            className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className="p-6 bg-inherit rounded-sm max-w-3xl mx-auto">
+                {/* <h1 className="text-2xl font-semibold text-center text-slate-800 mt-5 mb-7 md:mb-10">
                     Sell Your Car
-                </h1>
+                </h1> */}
                 <form onSubmit={handleSubmit} className="flex flex-col">
                     <div className="flex flex-col gap-3 sm:gap-5 flex-1">
                         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -226,7 +240,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="text"
-                                    className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="make"
                                     maxLength="50"
                                     minLength="2"
@@ -241,7 +255,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="text"
-                                    className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="model"
                                     maxLength="50"
                                     minLength="2"
@@ -259,7 +273,7 @@ export default function CreateListing() {
                                 >
                                     Body Type
                                 </label>
-                                <div className="border-[1px] border-slate-400 px-2">
+                                <div className="border border-slate-400 px-2">
                                     <select
                                         type="text"
                                         // name="bodyType"
@@ -288,7 +302,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="text"
-                                    className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="engineSize"
                                     // min="0.8"
                                     // max="8.0"
@@ -305,7 +319,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="number"
-                                    className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="doors"
                                     min="2"
                                     max="5"
@@ -322,7 +336,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="number"
-                                    className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="year"
                                     min="1900"
                                     max="3000"
@@ -337,7 +351,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="number"
-                                    className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="mileage"
                                     min="500"
                                     max="500000"
@@ -352,7 +366,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="number"
-                                    className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="price"
                                     min="10000"
                                     max="5000000"
@@ -472,7 +486,7 @@ export default function CreateListing() {
                             <input
                                 type="text"
                                 // placeholder="Address"
-                                className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                 id="address"
                                 required
                                 onChange={handleChange}
@@ -486,7 +500,7 @@ export default function CreateListing() {
                             <textarea
                                 type="text"
                                 // placeholder="Description"
-                                className="border-[1px] border-slate-400 p-3 rounded-sm text-sm focus:outline-slate-400"
+                                className="border bg-inherit border-slate-400 p-3 rounded-sm text-sm focus:outline-slate-400"
                                 id="description"
                                 required
                                 onChange={handleChange}
@@ -500,7 +514,7 @@ export default function CreateListing() {
                                 </p>
                                 <p className="font-normal text-xs p-[0.15rem] text-gray-600">
                                     Note: The first image will be the cover
-                                    (max-6)
+                                    (maximum of 6 images)
                                 </p>
                             </div>
                             <div className="flex flex-col gap-4">
@@ -511,32 +525,16 @@ export default function CreateListing() {
                                     id="images"
                                     accept="image/*"
                                     multiple
-                                    // ref={fileRef}
+                                    hidden
+                                    ref={imageFileRef}
                                 />
-                                <button
-                                    type="button"
-                                    disabled={uploading}
-                                    onClick={handleImageSubmit}
-                                    className="p-2 text-cyan-700 border border-cyan-700 text-sm rounded-sm uppercase hover:shadow-lg disabled:opacity-80"
+                                <div
+                                    onClick={() => imageFileRef.current.click()}
+                                    className="flex flex-col justify-center items-center gap-1 border border-slate-500 border-dashed cursor-pointer p-3 text-gray-600 hover:text-cyan-600 font-medium"
                                 >
-                                    <div className="flex justify-center items-center gap-2 font-semibold">
-                                        <FaUpload />
-                                        {uploading ? 'Uploading...' : 'Upload'}
-                                    </div>
-                                </button>
-                                {/* <div
-                                disabled={uploading}
-                                onClick={() => {
-                                    fileRef.current.click();
-                                    handleImageSubmit();
-                                }}
-                                className="p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
-                            >
-                                <div className="flex justify-center items-center gap-2">
-                                    <FaUpload />
-                                    {uploading ? 'Uploading...' : 'Upload'}
+                                    <AiOutlineCloudUpload className="text-2xl" />
+                                    <p className="text-xs">Upload images</p>
                                 </div>
-                            </div> */}
                             </div>
                             <p className="text-red-700 text-sm">
                                 {imageUploadError && imageUploadError}
@@ -557,9 +555,9 @@ export default function CreateListing() {
                                             onClick={() =>
                                                 handleRemoveImage(index)
                                             }
-                                            className="p-3 text-red-700 rounded-lg text-sm uppercase hover:opacity-75"
+                                            className="p-1 text-slate-700 rounded-lg text-xl hover:bg-gray-100"
                                         >
-                                            Delete
+                                            <IoMdClose />
                                         </button>
                                     </div>
                                 ))}
