@@ -75,3 +75,53 @@ export const getUser = async (req, res, next) => {
         next(error);
     }
 };
+
+export const addFavoriteCar = async (req, res, next) => {
+    if (req.user.id !== req.params.id)
+        return next(errorHandler(401, 'You can only update your own account!'));
+    try {
+        const updateFavorite = await User.findByIdAndUpdate(
+            req.params.id,
+            { $push: { favorites: req.body.favorites } },
+            { new: true }
+        );
+        res.status(200).json(updateFavorite);
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const getFavoriteCar = async (req, res, next) => {
+    try {
+        // const user = await User.find(
+        //     {
+        //         _id: req.params.id,
+        //     },
+        //     { 'favorites._id': 1 }
+        // );
+
+        const user = await User.find(
+            {
+                _id: req.params.id,
+            },
+            { favorites: 1 }
+        );
+
+        res.status(200).json(user);
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const deleteFavoriteCar = async (req, res, next) => {
+    try {
+        await User.findByIdAndUpdate(
+            { _id: req.user.id },
+            { $pull: { favorites: { _id: req.params.id } } },
+            { multi: true }
+        );
+        res.status(200).json('Listing has been deleted');
+    } catch (error) {
+        next(error);
+    }
+};
