@@ -8,6 +8,7 @@ import ScrollToTop from '../components/ScrollToTop';
 export default function ShowListing() {
     const { currentUser, loading, error } = useSelector((state) => state.user);
     const [showListingsError, setShowListingsError] = useState(false);
+    const [listingLoading, setListingLoading] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(false);
     const [userListings, setUserListings] = useState([]);
 
@@ -15,6 +16,7 @@ export default function ShowListing() {
         const handleShowListings = async () => {
             try {
                 setShowListingsError(false);
+                setListingLoading(true);
                 const res = await fetch(
                     `/api/user/listings/${currentUser._id}`
                 );
@@ -24,8 +26,10 @@ export default function ShowListing() {
                     return;
                 }
                 setUserListings(data);
+                setListingLoading(false);
             } catch (error) {
                 setShowListingsError(true);
+                setListingLoading(false);
             }
         };
         handleShowListings();
@@ -53,7 +57,7 @@ export default function ShowListing() {
     return (
         <div className="px-3 pt-10 pb-14 max-w-3xl mx-auto min-h-[75vh]">
             <ScrollToTop />
-            <div className="p-3 bg-white rounded-sm">
+            <div className="p-3 bg-inherit rounded-sm">
                 {/* <p className="text-red-700 mt-5 text-center font-semibold text-2xl">
                     {showListingsError ? 'Error showing listings' : ''}
                 </p> */}
@@ -104,9 +108,14 @@ export default function ShowListing() {
                     </div>
                 ) : (
                     <div className="flex justify-center items-center h-[60vh]">
-                        {showListingsError ? (
+                        {showListingsError && (
                             <p className="text-xl font-semibold text-red-700">
                                 Error showing the listings
+                            </p>
+                        )}
+                        {listingLoading ? (
+                            <p className="text-center text-2xl font-semibold text-slate-600">
+                                Loading...
                             </p>
                         ) : (
                             <p className="text-xl font-semibold text-slate-600">
