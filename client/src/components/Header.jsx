@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function Header() {
     const { currentUser } = useSelector((state) => state.user);
     const [toggleMenu, setToggleMenu] = useState(false);
+    const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
     const [toggleProfile, setToggleProfile] = useState(false);
     const [toggleLoginSignup, setToggleLoginSignup] = useState(false);
     const dispatch = useDispatch();
@@ -51,7 +52,6 @@ export default function Header() {
             dispatch(deleteUserFailure(error.message));
         }
     };
-    // bg-slate-100
     return (
         <header className="bg-slate-100 shadow-md sticky top-0 z-30">
             <div className="flex justify-between items-center max-w-6xl mx-auto px-3 py-2 h-[54px]">
@@ -66,10 +66,6 @@ export default function Header() {
                             src={usedCarsTraxxLogo}
                             alt="logo"
                         />
-                        {/* <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-                        <span className="text-slate-500">UsedCars</span>
-                        <span className="text-slate-700">Traxx</span>
-                    </h1> */}
                     </Link>
                 </div>
                 <div className="flex justify-center items-center gap-10">
@@ -87,7 +83,7 @@ export default function Header() {
                                             alt="profile"
                                             className="rounded-full h-[1.7rem] w-[1.7rem] object-cover"
                                         />
-                                        <p className="text-cyan-900 font-bold text-base truncate max-w-[8.5rem]">
+                                        <p className="text-cyan-700 font-semibold text-base truncate max-w-[8.5rem]">
                                             Welcome {currentUser.username}!
                                         </p>
                                     </div>
@@ -97,29 +93,26 @@ export default function Header() {
                                         onClick={() => setToggleMenu(false)}
                                     >
                                         <Link to="/profile">
-                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 border-b-[1px]">
+                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12">
                                                 Edit Profile
                                             </li>
                                         </Link>
-                                        <Link to="/create-listing">
-                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 border-b-[1px]">
-                                                Sell Your Car
-                                            </li>
-                                        </Link>
                                         <Link to="/show-listing">
-                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 border-b-[1px]">
+                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12">
                                                 Show Listings
                                             </li>
                                         </Link>
                                         <li
-                                            className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 border-b-[1px] cursor-pointer"
-                                            onClick={handleDeleteUser}
+                                            className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 cursor-pointer"
+                                            onClick={() =>
+                                                setToggleDeleteModal(true)
+                                            }
                                         >
                                             Delete Account
                                         </li>
                                         <Link to="/sign-in">
                                             <li
-                                                className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 border-b-[1px] cursor-pointer"
+                                                className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 cursor-pointer"
                                                 onClick={handleSignOut}
                                             >
                                                 Log out
@@ -159,7 +152,6 @@ export default function Header() {
                                     About
                                 </li>
                             </Link>
-
                             {!currentUser ? (
                                 <Link to={'/sign-in'}>
                                     <li className="inline text-cyan-900 hover:text-cyan-500 duration-300">
@@ -187,36 +179,6 @@ export default function Header() {
                                 </Link>
                             )}
                         </ul>
-                        {/* <form
-                            onSubmit={handleSubmit}
-                            className="bg-white py-3 px-3 rounded-sm flex items-center w-full lg:w-80 xl:w-96 mt-2 lg:mt-0"
-                        >
-                            <input
-                                type="text"
-                                placeholder="Search brand, price and more"
-                                className="bg-transparent focus:outline-none w-full lg:w-80 xl:w-96 text-xs placeholder-gray-500"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
-                            <button>
-                                <FaSearch className="text-slate-600" />
-                            </button>
-                        </form>
-                        <form
-                            onSubmit={handleSubmit}
-                            className="bg-white py-3 px-3 rounded-sm flex items-center w-full lg:w-80 xl:w-96 mt-2 lg:mt-0"
-                        >
-                            <input
-                                type="text"
-                                placeholder="Search brand, price and more"
-                                className="bg-transparent focus:outline-none w-full lg:w-80 xl:w-96 text-xs placeholder-gray-500"
-                                value={modelSearch}
-                                onChange={(e) => setModelSearch(e.target.value)}
-                            />
-                            <button>
-                                <FaSearch className="text-slate-600" />
-                            </button>
-                        </form> */}
                         <div
                             onClick={() => setToggleMenu(false)}
                             className="w-full flex justify-center items-center lg:hidden"
@@ -242,28 +204,24 @@ export default function Header() {
                                 onMouseLeave={() => setToggleProfile(false)}
                             >
                                 <RiMenu3Line className="text-4xl" />
-                                {/* <FaCircleUser className="text-lg" /> */}
                                 <img
                                     src={currentUser.avatar}
                                     alt="profile"
                                     className="rounded-full h-[1.2rem] w-[1.2rem] object-cover"
                                 />
-                                {/* hidden group-hover:block hover:block */}
                                 <div
                                     className={`absolute top-[-15px] right-2 ${
                                         toggleProfile ? 'block' : 'hidden'
                                     }`}
                                 >
-                                    <div className="pt-14">
-                                        {/* <div className="absolute w-4 h-4 top-12 right-3 bg-slate-50 border-l-[2px] border-t-[2px] rotate-45"></div> */}
-                                    </div>
-                                    <div className="bg-slate-50 pt-4 pb-3 border-2 rounded-md cursor-default">
-                                        <div className="mb-3 pl-5 pr-16">
-                                            <p className="text-cyan-900 font-bold text-base truncate max-w-[9rem]">
+                                    <div className="pt-14"></div>
+                                    <div className="bg-slate-50 pt-3 pb-3 border-2 rounded-md cursor-default">
+                                        <div className="mb-2 pl-5 pr-16">
+                                            <p className="text-cyan-500 font-semibold text-sm truncate max-w-[9rem]">
                                                 Welcome {currentUser.username}!
                                             </p>
                                         </div>
-                                        <div className="h-[1px] w-full bg-slate-400"></div>
+                                        <div className="h-[1px] w-full bg-slate-400 mb-2"></div>
                                         <ul
                                             className="flex flex-col text-sm font-semibold"
                                             onClick={() =>
@@ -271,29 +229,26 @@ export default function Header() {
                                             }
                                         >
                                             <Link to="/profile">
-                                                <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 border-b-[1px]">
+                                                <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12">
                                                     Edit Profile
                                                 </li>
                                             </Link>
-                                            <Link to="/create-listing">
-                                                <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 border-b-[1px]">
-                                                    Sell Your Car
-                                                </li>
-                                            </Link>
                                             <Link to="/show-listing">
-                                                <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 border-b-[1px]">
+                                                <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12">
                                                     Show Listings
                                                 </li>
                                             </Link>
                                             <li
-                                                className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 border-b-[1px] cursor-pointer"
-                                                onClick={handleDeleteUser}
+                                                className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 cursor-pointer"
+                                                onClick={() =>
+                                                    setToggleDeleteModal(true)
+                                                }
                                             >
                                                 Delete Account
                                             </li>
                                             <Link to="sign-in">
                                                 <li
-                                                    className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 border-b-[1px] cursor-pointer"
+                                                    className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 cursor-pointer"
                                                     onClick={handleSignOut}
                                                 >
                                                     Log out
@@ -324,9 +279,7 @@ export default function Header() {
                                                 : 'hidden'
                                         }`}
                                     >
-                                        <div className="pt-14">
-                                            {/* <div className="absolute w-4 h-4 top-12 right-3 bg-slate-50 border-l-[2px] border-t-[2px] rotate-45"></div> */}
-                                        </div>
+                                        <div className="pt-14"></div>
                                         <div className="bg-slate-50 border-2 p-3 rounded-md">
                                             <ul
                                                 className="flex text-sm font-semibold gap-2"
@@ -348,14 +301,11 @@ export default function Header() {
                                         </div>
                                     </div>
                                 </div>
-                                {/* <button className="bg-red-600 text-white text-xs lg:text-sm py-2 px-3 lg:px-4 hover:opacity-90 tracking-wide rounded">
-                                    Login
-                                </button> */}
                             </div>
                         )}
                     </div>
                     <div className="hidden">
-                        {toggleMenu
+                        {toggleMenu || toggleDeleteModal
                             ? (document.body.style.overflow = 'hidden')
                             : (document.body.style.overflow = 'visible')}
                     </div>
@@ -369,7 +319,6 @@ export default function Header() {
                             onClick={() => setToggleMenu(true)}
                         >
                             <RiMenu3Line className="text-[1.2rem]" />
-                            {/* <FaCircleUser className="text-lg" /> */}
                             <img
                                 src={currentUser.avatar}
                                 alt="profile"
@@ -392,9 +341,45 @@ export default function Header() {
                 </div>
             </div>
             <div
+                className={`fixed flex flex-col justify-center items-center gap-7 inset-0 w-80 sm:w-96 h-32 rounded-lg mx-auto my-auto bg-slate-50 z-50 ${
+                    toggleDeleteModal ? 'block' : 'hidden'
+                }`}
+            >
+                <p className="text-center text-xs sm:text-sm text-slate-800 font-medium">
+                    Are you sure you want to delete your account?
+                </p>
+                <div className="flex gap-5">
+                    <Link to={'/sign-in'}>
+                        <button
+                            className="text-white text-sm bg-red-600 w-24 h-8 rounded-md hover:bg-opacity-90 font-medium"
+                            onClick={() => {
+                                handleDeleteUser();
+                                setToggleDeleteModal(false);
+                            }}
+                        >
+                            Delete
+                        </button>
+                    </Link>
+                    <button
+                        className="text-sm bg-white w-24 h-8 rounded-md shadow-sm font-medium"
+                        onClick={() => setToggleDeleteModal(false)}
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </div>
+            <div
                 onClick={() => setToggleMenu(false)}
                 className={`fixed bg-black bg-opacity-60 z-10 top-0 left-0 right-0 bottom-0 ${
                     toggleMenu
+                        ? 'opacity-1 pointer-events-auto'
+                        : 'opacity-0 pointer-events-none'
+                }`}
+            ></div>
+            <div
+                onClick={() => setToggleDeleteModal(false)}
+                className={`fixed bg-black bg-opacity-70 z-40 top-0 left-0 right-0 bottom-0 ${
+                    toggleDeleteModal
                         ? 'opacity-1 pointer-events-auto'
                         : 'opacity-0 pointer-events-none'
                 }`}
