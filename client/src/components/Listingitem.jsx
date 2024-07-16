@@ -3,17 +3,17 @@ import { MdLocationOn } from 'react-icons/md';
 
 export default function Listingitem({ listing }) {
     return (
-        <div className="bg-inherit shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-[240px] sm:w-[250px] lg:w-[240px] xl:w-[270px] h-auto">
+        <div className="bg-inherit shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-[260px] sm:w-[250px] lg:w-[240px] xl:w-[270px] h-auto">
             <Link to={`/listing/${listing._id}`}>
                 <div className="p-[0.6rem]">
-                    <div className="h-[130px] xl:h-[145px] overflow-hidden rounded-lg">
+                    <div className="h-[145px] overflow-hidden rounded-lg">
                         <img
                             src={
                                 listing.imageUrls[0] ||
                                 'https://hooquest.com/wp-content/uploads/2021/11/facebook-cover-8.jpg'
                             }
                             alt="listing cover"
-                            className="h-[130px] xl:h-[145px] w-full object-cover hover:scale-105 transition-scale duration-300"
+                            className="h-[145px] w-full object-cover hover:scale-105 transition-scale duration-300"
                         />
                     </div>
                 </div>
