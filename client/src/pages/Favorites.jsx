@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { Link, useParams } from 'react-router-dom';
-import { clearFavorite, removeFavorite } from '../redux/favorite/favoriteSlice';
 
 export default function Favorites() {
     const [error, setError] = useState(false);
