@@ -13,6 +13,8 @@ import Search from './pages/Search';
 import ShowListing from './pages/ShowListing';
 import StartSearch from './pages/StartSearch';
 import Footer from './components/Footer';
+import Favorites from './pages/Favorites';
+import Listings from './pages/Listings';
 
 export default function App() {
     return (
@@ -26,7 +28,12 @@ export default function App() {
                 <Route path="/search" element={<Search />}></Route>
                 <Route path="/start-search" element={<StartSearch />}></Route>
                 <Route path="/listing/:listingId" element={<Listing />}></Route>
+                <Route
+                    path="/listings/:listingId"
+                    element={<Listings />}
+                ></Route>
                 <Route element={<PrivateRoute />}>
+                    <Route path="/favorites" element={<Favorites />}></Route>
                     <Route path="/profile" element={<Profile />}></Route>
                     <Route
                         path="/create-listing"
