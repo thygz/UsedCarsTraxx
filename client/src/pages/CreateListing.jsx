@@ -204,9 +204,9 @@ export default function CreateListing() {
     return (
         <main className="pb-14">
             <ScrollToTop />
-            <div className="bg-gradient-to-b from-gray-400 to-slate-200 flex justify-center items-center mb-3 px-5 lg:px-10 pb-12 md:py-9 lg:py-8 xl:py-14">
-                <div className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row justify-center items-center">
-                    <div className="flex flex-col flex-1 text-center md:text-start gap-5">
+            <div className="bg-gradient-to-b from-gray-400 to-slate-200 flex justify-center items-center mb-3 px-5 md:px-12 lg:px-14 xl:px-10 pb-12 md:py-9 lg:py-8 xl:py-12">
+                <div className="max-w-4xl mx-auto flex flex-col-reverse md:flex-row justify-center items-center">
+                    <div className="flex flex-col flex-1 text-center md:text-start gap-5  lg:pl-7">
                         <h1 className="text-2xl lg:text-3xl font-bold text-slate-800">
                             Sell Your Car
                         </h1>
@@ -222,7 +222,7 @@ export default function CreateListing() {
                         <img
                             src={carThreeD}
                             alt="3d car"
-                            className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80"
+                            className="w-36 h-36 md:w-60 md:h-60 lg:w-72 lg:h-72"
                         />
                     </div>
                 </div>
@@ -235,12 +235,12 @@ export default function CreateListing() {
                     <div className="flex flex-col gap-3 sm:gap-5 flex-1">
                         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Vehicle Make
                                 </p>
                                 <input
                                     type="text"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-300 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="make"
                                     maxLength="50"
                                     minLength="2"
@@ -250,12 +250,12 @@ export default function CreateListing() {
                                 />
                             </div>
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Model
                                 </p>
                                 <input
                                     type="text"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-300 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="model"
                                     maxLength="50"
                                     minLength="2"
@@ -269,11 +269,11 @@ export default function CreateListing() {
                             <div className="flex flex-col flex-1">
                                 <label
                                     htmlFor="bodyType"
-                                    className="text-xs font-semibold p-[0.15rem] text-gray-600"
+                                    className="text-xs font-semibold p-[0.15rem] text-gray-800"
                                 >
                                     Body Type
                                 </label>
-                                <div className="border border-slate-400 px-2">
+                                <div className="border border-slate-300 px-2">
                                     <select
                                         type="text"
                                         // name="bodyType"
@@ -297,12 +297,12 @@ export default function CreateListing() {
                                 </div>
                             </div>
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Engine Size
                                 </p>
                                 <input
                                     type="text"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-300 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="engineSize"
                                     // min="0.8"
                                     // max="8.0"
@@ -314,12 +314,12 @@ export default function CreateListing() {
                                 />
                             </div>
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Number of Doors
                                 </p>
                                 <input
                                     type="number"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-300 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="doors"
                                     min="2"
                                     max="5"
@@ -331,12 +331,12 @@ export default function CreateListing() {
                         </div>
                         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Year
                                 </p>
                                 <input
                                     type="number"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-300 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="year"
                                     min="1900"
                                     max="3000"
@@ -346,12 +346,12 @@ export default function CreateListing() {
                                 />
                             </div>
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Mileage
                                 </p>
                                 <input
                                     type="number"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-300 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="mileage"
                                     min="500"
                                     max="500000"
@@ -361,12 +361,12 @@ export default function CreateListing() {
                                 />
                             </div>
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Price
                                 </p>
                                 <input
                                     type="number"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-300 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="price"
                                     min="10000"
                                     max="5000000"
@@ -378,7 +378,7 @@ export default function CreateListing() {
                         </div>
                         <div className="flex flex-row gap-0 sm:gap-20">
                             <div className="flex flex-col flex-1 gap-2 mt-2 sm:mt-0">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Transmission
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between flex-wrap">
@@ -444,7 +444,7 @@ export default function CreateListing() {
                                 </div>
                             </div>
                             <div className="flex flex-col flex-1 gap-2 mt-2 sm:mt-0">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Fuel Type
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-16 flex-wrap">
@@ -480,13 +480,13 @@ export default function CreateListing() {
                             </div>
                         </div>
                         <div className="flex flex-col flex-1 mt-2 sm:mt-0">
-                            <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                            <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                 Address
                             </p>
                             <input
                                 type="text"
                                 // placeholder="Address"
-                                className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
+                                className="border bg-inherit border-slate-300 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                 id="address"
                                 required
                                 onChange={handleChange}
@@ -494,13 +494,13 @@ export default function CreateListing() {
                             />
                         </div>
                         <div className="flex flex-col flex-1">
-                            <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                            <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                 Description
                             </p>
                             <textarea
                                 type="text"
                                 // placeholder="Description"
-                                className="border bg-inherit border-slate-400 p-3 rounded-sm text-sm focus:outline-slate-400"
+                                className="border bg-inherit border-slate-300 p-3 rounded-sm text-sm focus:outline-slate-400"
                                 id="description"
                                 required
                                 onChange={handleChange}
@@ -509,10 +509,10 @@ export default function CreateListing() {
                         </div>
                         <div className="flex flex-col flex-1 gap-4 mt-3">
                             <div>
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Upload Image of Your Car
                                 </p>
-                                <p className="font-normal text-xs p-[0.15rem] text-gray-600">
+                                <p className="text-xs p-[0.15rem] text-gray-600">
                                     Note: The first image will be the cover
                                     (maximum of 6 images)
                                 </p>
@@ -530,7 +530,7 @@ export default function CreateListing() {
                                 />
                                 <div
                                     onClick={() => imageFileRef.current.click()}
-                                    className="flex flex-col justify-center items-center gap-1 border border-slate-500 border-dashed cursor-pointer p-3 text-gray-600 hover:text-cyan-600 font-medium"
+                                    className="flex flex-col justify-center items-center gap-1 border border-slate-400 border-dashed cursor-pointer p-3 text-gray-700 hover:text-cyan-600 font-medium"
                                 >
                                     <AiOutlineCloudUpload className="text-2xl" />
                                     <p className="text-xs">Upload images</p>

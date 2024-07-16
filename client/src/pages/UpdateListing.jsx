@@ -224,7 +224,7 @@ export default function CreateListing() {
                     <div className="flex flex-col gap-3 sm:gap-5 flex-1">
                         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Vehicle Make
                                 </p>
                                 <input
@@ -239,7 +239,7 @@ export default function CreateListing() {
                                 />
                             </div>
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Model
                                 </p>
                                 <input
@@ -258,7 +258,7 @@ export default function CreateListing() {
                             <div className="flex flex-col flex-1">
                                 <label
                                     htmlFor="bodyType"
-                                    className="text-xs font-semibold p-[0.15rem] text-gray-600"
+                                    className="text-xs font-semibold p-[0.15rem] text-gray-800"
                                 >
                                     Body Type
                                 </label>
@@ -286,7 +286,7 @@ export default function CreateListing() {
                                 </div>
                             </div>
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Engine Size
                                 </p>
                                 <input
@@ -303,7 +303,7 @@ export default function CreateListing() {
                                 />
                             </div>
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Number of Doors
                                 </p>
                                 <input
@@ -320,7 +320,7 @@ export default function CreateListing() {
                         </div>
                         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Year
                                 </p>
                                 <input
@@ -335,7 +335,7 @@ export default function CreateListing() {
                                 />
                             </div>
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Mileage
                                 </p>
                                 <input
@@ -350,7 +350,7 @@ export default function CreateListing() {
                                 />
                             </div>
                             <div className="flex flex-col flex-1">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Price
                                 </p>
                                 <input
@@ -367,7 +367,7 @@ export default function CreateListing() {
                         </div>
                         <div className="flex flex-row gap-0 sm:gap-20">
                             <div className="flex flex-col flex-1 gap-2 mt-2 sm:mt-0">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Transmission
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between flex-wrap">
@@ -433,7 +433,7 @@ export default function CreateListing() {
                                 </div>
                             </div>
                             <div className="flex flex-col flex-1 gap-2 mt-2 sm:mt-0">
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Fuel Type
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-16 flex-wrap">
@@ -469,7 +469,7 @@ export default function CreateListing() {
                             </div>
                         </div>
                         <div className="flex flex-col flex-1 mt-2 sm:mt-0">
-                            <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                            <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                 Address
                             </p>
                             <input
@@ -483,7 +483,7 @@ export default function CreateListing() {
                             />
                         </div>
                         <div className="flex flex-col flex-1">
-                            <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                            <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                 Description
                             </p>
                             <textarea
@@ -498,7 +498,7 @@ export default function CreateListing() {
                         </div>
                         <div className="flex flex-col flex-1 gap-4 mt-3">
                             <div>
-                                <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                <p className="text-xs font-semibold p-[0.15rem] text-gray-800">
                                     Upload Image of Your Car
                                 </p>
                                 <p className="font-normal text-xs p-[0.15rem] text-gray-600">
@@ -519,7 +519,7 @@ export default function CreateListing() {
                                 />
                                 <div
                                     onClick={() => imageFileRef.current.click()}
-                                    className="flex flex-col justify-center items-center gap-1 border border-slate-500 border-dashed cursor-pointer p-3 text-gray-600 hover:text-cyan-600 font-medium"
+                                    className="flex flex-col justify-center items-center gap-1 border border-slate-500 border-dashed cursor-pointer p-3 text-gray-700 hover:text-cyan-600 font-medium"
                                 >
                                     <AiOutlineCloudUpload className="text-2xl" />
                                     <p className="text-xs">Upload images</p>

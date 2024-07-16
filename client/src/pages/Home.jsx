@@ -1,13 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, FreeMode } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
-import Listingitem from '../components/Listingitem';
-import audi from '../assets/audi.png';
 import ScrollToTop from '../components/ScrollToTop';
-import { FaArrowRight } from 'react-icons/fa6';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -31,7 +27,6 @@ export default function Home() {
     const [carTransmission, setCarTransmission] = useState('automatic');
     const [transmissionListings, setTransmissionListings] = useState([]);
     SwiperCore.use([Navigation]);
-    // console.log(latestListings);
 
     const bodyTypeOptions = ['Sedan', 'Hatchback', 'SUV', 'MPV/MUV', 'Pickup'];
 
@@ -151,69 +146,12 @@ export default function Home() {
                         </span>{' '}
                         car with ease
                     </h1>
-                    {/* <div>
-                        <Link to={'/start-search'}>
-                            <button
-                                className="bg-red-700 text-gray-100 px-5 md:px-8 py-3 rounded-full tracking-wide font-semibold text-xs lg:text-sm text-center hover:opacity-90 mb-3 md:mb-7 xl:mb-10 uppercase"
-                                style={{
-                                    textShadow: '0px 1px 1px rgba(0,0,0,0.7)',
-                                }}
-                            >
-                                Start The Engine
-                            </button>
-                        </Link>
-                    </div> */}
-                    {/* <div className="text-gray-400 text-xs sm:text-sm">
-                        Sahand Estate will help you find your home fast, easy
-                        and comfortable. <br /> Our expert support are always
-                        available.
-                    </div>
-                    <Link
-                        to={'/search'}
-                        className="text-xs sm:text-sm text-blue-800 font-bold hover:underline"
-                    >
-                        Let's get started...
-                    </Link> */}
                 </div>
-                {/* <img
-                    className="w-5/12 hidden sm:block opacity-90"
-                    src={audi}
-                    alt="audi_image"
-                /> */}
             </div>
             <div className="">
                 <SearchInput />
-                {/* <div>
-                    <Link to={'/start-search'}>
-                        <button
-                            className="bg-red-700 text-gray-100 px-5 md:px-8 py-3 rounded-sm tracking-wide font-semibold text-xs lg:text-sm text-center hover:opacity-90"
-                            style={{
-                                textShadow: '0px 1px 1px rgba(0,0,0,0.7)',
-                            }}
-                        >
-                            Advance Search
-                        </button>
-                    </Link>
-                </div> */}
             </div>
             <HowUsedcarstraxxWork />
-            {/* <Swiper navigation>
-                {offerListings &&
-                    offerListings.length > 0 &&
-                    offerListings.map((listing) => (
-                        <SwiperSlide>
-                            <div
-                                style={{
-                                    background: `url(${listing.imageUrls[0]}) center no-repeat`,
-                                    backgroundSize: 'cover',
-                                }}
-                                className="h-[500px]"
-                                key={listing._id}
-                            ></div>
-                        </SwiperSlide>
-                    ))}
-            </Swiper> */}
-
             <div className="max-w-6xl mx-auto px-5 py-3 flex flex-col gap-8 mt-10 md:mt-16 mb-10 md:mb-16">
                 <div>
                     <div className="mt-3 mb-5">
