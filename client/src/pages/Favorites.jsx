@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { Link, useParams } from 'react-router-dom';
+import { LiaSearchPlusSolid } from 'react-icons/lia';
 
 export default function Favorites() {
     const [error, setError] = useState(false);
@@ -122,9 +123,20 @@ export default function Favorites() {
                                 Loading...
                             </p>
                         ) : (
-                            <p className="text-xl font-semibold text-slate-600">
-                                You have no favorite listing yet.
-                            </p>
+                            <div className="flex flex-col gap-3">
+                                <p className="text-xl font-semibold text-slate-600">
+                                    You have no favorite listing yet.
+                                </p>
+                                <Link
+                                    to={'/search'}
+                                    className="flex flex-1 justify-center items-center"
+                                >
+                                    <button className="flex flex-col justify-center items-center p-3 text-slate-600 text-sm rounded-md font-medium hover:bg-slate-100">
+                                        <LiaSearchPlusSolid className="text-4xl -scale-x-100" />
+                                        Check cars
+                                    </button>
+                                </Link>
+                            </div>
                         )}
                         {error && (
                             <p className="text-center text-2xl font-semibold text-slate-600">
