@@ -35,6 +35,7 @@ export default function Profile() {
         password: '',
     });
     const [validationErrors, setValidationErrors] = useState({});
+    const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
     const [updateSuccess, setUpdateSuccess] = useState(false);
     const dispatch = useDispatch();
     // firebase storage
@@ -285,7 +286,7 @@ export default function Profile() {
                         </button>
                         <div className="flex justify-between mt-2 text-sm">
                             <span
-                                onClick={handleDeleteUser}
+                                onClick={() => setToggleDeleteModal(true)}
                                 className="text-red-700 cursor-pointer"
                             >
                                 Delete account
@@ -302,6 +303,47 @@ export default function Profile() {
                 <p className="text-red-700 mt-5 text-xs">
                     {error ? error : ''}
                 </p>
+                <div
+                    className={`fixed flex flex-col justify-center items-center gap-5 inset-0 w-80 sm:w-96 h-32 rounded-lg mx-auto my-auto bg-slate-50 p-3 z-50 ${
+                        toggleDeleteModal ? 'block' : 'hidden'
+                    }`}
+                >
+                    <p className="text-center text-sm text-slate-800 font-semibold">
+                        Are you sure you want to delete your account?
+                    </p>
+                    <div className="flex gap-5">
+                        <Link to={'/sign-in'}>
+                            <button
+                                className="text-white text-sm bg-red-600 w-24 h-8 rounded-md hover:bg-opacity-90 font-medium"
+                                onClick={() => {
+                                    handleDeleteUser();
+                                    setToggleDeleteModal(false);
+                                }}
+                            >
+                                Delete
+                            </button>
+                        </Link>
+                        <button
+                            className="text-sm bg-white w-24 h-8 rounded-md shadow-sm font-medium"
+                            onClick={() => setToggleDeleteModal(false)}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+                <div className="hidden">
+                    {toggleDeleteModal
+                        ? (document.body.style.overflow = 'hidden')
+                        : (document.body.style.overflow = 'auto')}
+                </div>
+                <div
+                    onClick={() => setToggleDeleteModal(false)}
+                    className={`fixed bg-black bg-opacity-70 z-40 top-0 left-0 right-0 bottom-0 ${
+                        toggleDeleteModal
+                            ? 'opacity-1 pointer-events-auto'
+                            : 'opacity-0 pointer-events-none'
+                    }`}
+                ></div>
             </div>
         </div>
     );
