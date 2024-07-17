@@ -141,7 +141,7 @@ export default function SearchInput() {
                             </select>
                         </div>
                     </div> */}
-                    <button className="bg-cyan-600 text-white text-sm sm:text-base font-semibold rounded-md capitalize hover:opacity-80 px-20 lg:px-6 py-3 sm:py-[0.6rem] lg:py-[0.52rem] flex justify-center items-center w-full">
+                    <button className="bg-cyan-600 text-white text-sm sm:text-base font-semibold rounded-md capitalize hover:opacity-90 px-20 lg:px-6 py-3 sm:py-[0.6rem] lg:py-[0.52rem] flex justify-center items-center w-full">
                         Search
                     </button>
                 </div>

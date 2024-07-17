@@ -132,7 +132,7 @@ export default function Favorites() {
                                     className="flex flex-1 justify-center items-center"
                                 >
                                     <button className="flex flex-col justify-center items-center p-3 text-slate-600 text-sm rounded-md font-medium hover:bg-slate-100">
-                                        <LiaSearchPlusSolid className="text-4xl -scale-x-100" />
+                                        <LiaSearchPlusSolid className="text-5xl -scale-x-100" />
                                         Check cars
                                     </button>
                                 </Link>

@@ -345,7 +345,7 @@ export default function Header() {
                     toggleDeleteModal ? 'block' : 'hidden'
                 }`}
             >
-                <p className="text-center text-xs sm:text-sm text-slate-800 font-medium">
+                <p className="text-center text-xs sm:text-sm text-slate-800 font-semibold">
                     Are you sure you want to delete your account?
                 </p>
                 <div className="flex gap-5">
