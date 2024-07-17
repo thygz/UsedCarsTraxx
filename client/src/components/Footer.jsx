@@ -4,8 +4,11 @@ import { FaFacebookF } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
 import { FaYoutube } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 export default function Footer() {
+    const { currentUser } = useSelector((state) => state.user);
+
     return (
         <footer className="bg-inherit">
             <div className="border-y-[1px] border-gray-300">
@@ -31,16 +34,32 @@ export default function Footer() {
                                     About
                                 </li>
                             </Link>
-                            <Link>
-                                <li className="inline text-cyan-800 hover:text-cyan-500 duration-300">
-                                    Buy Car
-                                </li>
-                            </Link>
-                            <Link>
-                                <li className="inline text-cyan-800 hover:text-cyan-500 duration-300">
-                                    Sell Car
-                                </li>
-                            </Link>
+                            {!currentUser ? (
+                                <Link to={'/sign-in'}>
+                                    <li className="inline text-cyan-800 hover:text-cyan-500 duration-300">
+                                        Sell Car
+                                    </li>
+                                </Link>
+                            ) : (
+                                <Link to={'/create-listing'}>
+                                    <li className="inline text-cyan-800 hover:text-cyan-500 duration-300">
+                                        Sell Car
+                                    </li>
+                                </Link>
+                            )}
+                            {!currentUser ? (
+                                <Link to={'/sign-in'}>
+                                    <li className="inline text-cyan-800 hover:text-cyan-500 duration-300">
+                                        Favorites
+                                    </li>
+                                </Link>
+                            ) : (
+                                <Link to={'/favorites'}>
+                                    <li className="inline text-cyan-800 hover:text-cyan-500 duration-300">
+                                        Favorites
+                                    </li>
+                                </Link>
+                            )}
                         </ul>
                     </div>
                     <div>
