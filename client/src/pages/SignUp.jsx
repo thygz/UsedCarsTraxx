@@ -4,8 +4,13 @@ import OAuth from '../components/OAuth';
 import ScrollToTop from '../components/ScrollToTop';
 
 export default function SignUp() {
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
+    });
     const [error, setError] = useState(null);
+    const [validationErrors, setValidationErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -19,23 +24,41 @@ export default function SignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            setLoading(true);
-            const res = await fetch('/api/auth/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-            const data = await res.json();
-            if (data.success === false) {
-                setLoading(false);
-                setError(data.message);
-                return;
+            const validationErrors = {};
+            if (!formData.username.trim()) {
+                validationErrors.username = 'Username is required';
             }
-            setLoading(false);
-            setError(null);
-            navigate('/sign-in');
+            if (!formData.email.trim()) {
+                validationErrors.email = 'Email is required';
+            } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+                validationErrors.email = 'Invalid email address';
+            }
+            if (!formData.password.trim()) {
+                validationErrors.password = 'Password is required';
+            } else if (formData.password.length < 8) {
+                validationErrors.password =
+                    'Password must be at least 8 characters long';
+            }
+            setValidationErrors(validationErrors);
+            if (Object.keys(validationErrors).length === 0) {
+                setLoading(true);
+                const res = await fetch('/api/auth/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+                const data = await res.json();
+                if (data.success === false) {
+                    setLoading(false);
+                    setError(data.message);
+                    return;
+                }
+                setLoading(false);
+                setError(null);
+                navigate('/sign-in');
+            }
         } catch (error) {
             setLoading(false);
             setError(error.message);
@@ -58,10 +81,19 @@ export default function SignUp() {
                         </p>
                         <input
                             type="text"
-                            className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                            className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                                validationErrors.username
+                                    ? 'border-red-600 focus:outline-none'
+                                    : 'border-gray-300 focus:outline-gray-400'
+                            }`}
                             id="username"
                             onChange={handleChange}
                         />
+                        {validationErrors.username && (
+                            <span className="text-xs text-red-600 font-semibold px-1">
+                                {validationErrors.username}
+                            </span>
+                        )}
                     </div>
                     <div className="flex flex-col gap-1">
                         <p className="text-xs font-semibold px-1 text-gray-600">
@@ -69,10 +101,19 @@ export default function SignUp() {
                         </p>
                         <input
                             type="email"
-                            className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                            className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                                validationErrors.email
+                                    ? 'border-red-600 focus:outline-none'
+                                    : 'border-gray-300 focus:outline-gray-400'
+                            }`}
                             id="email"
                             onChange={handleChange}
                         />
+                        {validationErrors.email && (
+                            <span className="text-xs text-red-600 font-semibold px-1">
+                                {validationErrors.email}
+                            </span>
+                        )}
                     </div>
                     <div className="flex flex-col gap-1">
                         <p className="text-xs font-semibold px-1 text-gray-600">
@@ -80,10 +121,19 @@ export default function SignUp() {
                         </p>
                         <input
                             type="password"
-                            className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                            className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                                validationErrors.password
+                                    ? 'border-red-600 focus:outline-none'
+                                    : 'border-gray-300 focus:outline-gray-400'
+                            }`}
                             id="password"
                             onChange={handleChange}
                         />
+                        {validationErrors.password && (
+                            <span className="text-xs text-red-600 font-semibold px-1">
+                                {validationErrors.password}
+                            </span>
+                        )}
                     </div>
                     <button
                         disabled={loading}
