@@ -29,7 +29,12 @@ export default function Profile() {
     const [file, setFile] = useState(undefined);
     const [filePerc, setFilePerc] = useState(0);
     const [fileUploadError, setFileUploadError] = useState(false);
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        username: '' || currentUser.username,
+        email: '' || currentUser.email,
+        password: '',
+    });
+    const [validationErrors, setValidationErrors] = useState({});
     const [updateSuccess, setUpdateSuccess] = useState(false);
     const dispatch = useDispatch();
     // firebase storage
@@ -76,31 +81,49 @@ export default function Profile() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            dispatch(updateUserStart());
-            const res = await fetch(`/api/user/update/${currentUser._id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-            const data = await res.json();
-            if (data.success === false) {
-                dispatch(updateUserFailure(data.message));
-                return;
+            const validationErrors = {};
+            if (!formData.username.trim()) {
+                validationErrors.username = 'Username is required';
             }
-            dispatch(updateUserSuccess(data));
-            setUpdateSuccess(true);
-            toast.success('Profile updated successfully', {
-                position: 'top-right',
-                autoClose: 3000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'colored',
-            });
+            if (!formData.email.trim()) {
+                validationErrors.email = 'Email is required';
+            } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+                validationErrors.email = 'Invalid email address';
+            }
+            if (!formData.password.trim()) {
+                validationErrors.password = 'Password is required';
+            } else if (formData.password.length < 8) {
+                validationErrors.password =
+                    'Password must be at least 8 characters long';
+            }
+            setValidationErrors(validationErrors);
+            if (Object.keys(validationErrors).length === 0) {
+                dispatch(updateUserStart());
+                const res = await fetch(`/api/user/update/${currentUser._id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+                const data = await res.json();
+                if (data.success === false) {
+                    dispatch(updateUserFailure(data.message));
+                    return;
+                }
+                dispatch(updateUserSuccess(data));
+                setUpdateSuccess(true);
+                toast.success('Profile updated successfully', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'colored',
+                });
+            }
         } catch (error) {
             dispatch(updateUserFailure(error.message));
         }
@@ -199,9 +222,18 @@ export default function Profile() {
                                 placeholder="username"
                                 defaultValue={currentUser.username}
                                 id="username"
-                                className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                                className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                                    validationErrors.username
+                                        ? 'border-red-600 focus:outline-none'
+                                        : 'border-gray-300 focus:outline-gray-400'
+                                }`}
                                 onChange={handleChange}
                             />
+                            {validationErrors.username && (
+                                <span className="text-xs text-red-600 font-semibold px-1">
+                                    {validationErrors.username}
+                                </span>
+                            )}
                         </div>
                         <div className="flex flex-col flex-1">
                             <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
@@ -212,9 +244,18 @@ export default function Profile() {
                                 placeholder="email"
                                 defaultValue={currentUser.email}
                                 id="email"
-                                className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                                className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                                    validationErrors.email
+                                        ? 'border-red-600 focus:outline-none'
+                                        : 'border-gray-300 focus:outline-gray-400'
+                                }`}
                                 onChange={handleChange}
                             />
+                            {validationErrors.email && (
+                                <span className="text-xs text-red-600 font-semibold px-1">
+                                    {validationErrors.email}
+                                </span>
+                            )}
                         </div>
                         <div className="flex flex-col flex-1">
                             <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
@@ -223,9 +264,18 @@ export default function Profile() {
                             <input
                                 type="password"
                                 id="password"
-                                className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                                className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                                    validationErrors.password
+                                        ? 'border-red-600 focus:outline-none'
+                                        : 'border-gray-300 focus:outline-gray-400'
+                                }`}
                                 onChange={handleChange}
                             />
+                            {validationErrors.password && (
+                                <span className="text-xs text-red-600 font-semibold px-1">
+                                    {validationErrors.password}
+                                </span>
+                            )}
                         </div>
                         <button
                             disabled={loading}
@@ -252,25 +302,6 @@ export default function Profile() {
                 <p className="text-red-700 mt-5 text-xs">
                     {error ? error : ''}
                 </p>
-                {/* <div
-                    className={`fixed p-5 rounded-xl flex justify-center items-center gap-1 bg-cyan-500 text-white font-semibold text-sm left-[50%] translate-x-[-50%] translate-y-[-50%] z-10 whitespace-nowrap transition-all duration-150 ease-in-out ${
-                        updateSuccess ? 'top-[15%]' : 'top-[-10%]'
-                    }`}
-                >
-                    <FaCheckCircle />
-                    <p>Profile updated successfully!</p>
-                    <p className="text-green-700 mt-5 text-xs">
-                        {updateSuccess ? 'Profile updated successfully!' : ''}
-                    </p>
-                </div> */}
-                {/* <div>
-                    <Toaster />
-                    <p className="hidden">
-                        {updateSuccess
-                            ? toast.success('Profile Updated Successfully')
-                            : ''}
-                    </p>
-                </div> */}
             </div>
         </div>
     );
