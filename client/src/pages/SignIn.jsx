@@ -63,10 +63,19 @@ export default function SignIn() {
                         </p>
                         <input
                             type="email"
-                            className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                            className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                                error
+                                    ? 'border-red-600 focus:outline-none'
+                                    : 'border-gray-300 focus:outline-gray-400'
+                            }`}
                             id="email"
                             onChange={handleChange}
                         />
+                        {error && (
+                            <span className="text-red-600 font-semibold text-xs px-1">
+                                Email address or password is incorrect
+                            </span>
+                        )}
                     </div>
                     <div className="flex flex-col gap-1">
                         <p className="text-xs font-semibold px-1 text-gray-600">
@@ -74,7 +83,11 @@ export default function SignIn() {
                         </p>
                         <input
                             type="password"
-                            className="border border-gray-300 bg-inherit px-3 py-2 rounded-sm text-sm focus:outline-gray-400"
+                            className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                                error
+                                    ? 'border-red-600 focus:outline-none'
+                                    : 'border-gray-300 focus:outline-gray-400'
+                            }`}
                             id="password"
                             onChange={handleChange}
                         />
@@ -98,7 +111,6 @@ export default function SignIn() {
                         <span className="text-cyan-800">Sign Up</span>
                     </Link>
                 </div>
-                {error && <p className="text-red-500 mt-5 text-xs">{error}</p>}
             </div>
         </div>
     );
