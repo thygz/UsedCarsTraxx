@@ -6,10 +6,15 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { Link, useParams } from 'react-router-dom';
 import { LiaSearchPlusSolid } from 'react-icons/lia';
+import { toast } from 'react-toastify';
 
 export default function Favorites() {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
+    const [deleteId, setDeleteId] = useState('');
+    const [deleteMake, setDeleteMake] = useState('');
+    const [deleteModel, setDeleteModel] = useState('');
     const [favoriteListing, setFavoriteListing] = useState(null);
     const { currentUser } = useSelector((state) => state.user);
     const params = useParams();
@@ -56,9 +61,26 @@ export default function Favorites() {
             setFavoriteListing((prev) =>
                 prev.filter((listing) => listing._id !== listingId)
             );
+            toast.info('Favorite unsaved', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'colored',
+            });
         } catch (error) {
             console.log(error.message);
         }
+    };
+
+    const handleOpenDeleteModal = (listingId, make, model) => {
+        setDeleteId(listingId);
+        setDeleteMake(make);
+        setDeleteModel(model);
+        setToggleDeleteModal(true);
     };
 
     return (
@@ -107,12 +129,45 @@ export default function Favorites() {
                                 </Link>
                                 <button
                                     onClick={() =>
-                                        handleDeleteFavorite(item._id)
+                                        handleOpenDeleteModal(
+                                            item._id,
+                                            item.make,
+                                            item.model
+                                        )
                                     }
                                     className="text-lg bg-slate-200 p-1 hover:bg-slate-300 duration-300 rounded-sm"
                                 >
                                     <RiDeleteBin6Line />
                                 </button>
+                                <div
+                                    className={`fixed flex flex-col justify-center items-center gap-5 inset-0 w-80 sm:w-96 h-32 rounded-lg mx-auto my-auto bg-slate-50 p-3 sm:p-5 z-50 ${
+                                        toggleDeleteModal ? 'block' : 'hidden'
+                                    }`}
+                                >
+                                    <p className="text-center text-sm text-slate-800 font-semibold">
+                                        Are you sure you want to delete{' '}
+                                        {deleteMake} {deleteModel}?
+                                    </p>
+                                    <div className="flex gap-5">
+                                        <button
+                                            className="text-white text-sm bg-red-600 w-24 h-8 rounded-md hover:bg-opacity-90 font-medium"
+                                            onClick={() => {
+                                                handleDeleteFavorite(deleteId);
+                                                setToggleDeleteModal(false);
+                                            }}
+                                        >
+                                            Delete
+                                        </button>
+                                        <button
+                                            className="text-sm bg-white w-24 h-8 rounded-md shadow-sm font-medium"
+                                            onClick={() =>
+                                                setToggleDeleteModal(false)
+                                            }
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -145,6 +200,19 @@ export default function Favorites() {
                         )}
                     </div>
                 )}
+                <div className="hidden">
+                    {toggleDeleteModal
+                        ? (document.body.style.overflow = 'hidden')
+                        : (document.body.style.overflow = 'auto')}
+                </div>
+                <div
+                    onClick={() => setToggleDeleteModal(false)}
+                    className={`fixed bg-black bg-opacity-70 z-40 top-0 left-0 right-0 bottom-0 ${
+                        toggleDeleteModal
+                            ? 'opacity-1 pointer-events-auto'
+                            : 'opacity-0 pointer-events-none'
+                    }`}
+                ></div>
             </div>
         </div>
     );
