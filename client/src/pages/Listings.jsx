@@ -126,7 +126,7 @@ export default function Listings() {
             setShowFavoriteCarList(data);
             toast(toastAddFavorites(), {
                 position: 'bottom-center',
-                autoClose: 5000,
+                autoClose: 4000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -157,7 +157,7 @@ export default function Listings() {
             );
             toast(toastRemoveFavorites(), {
                 position: 'bottom-center',
-                autoClose: 5000,
+                autoClose: 4000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
