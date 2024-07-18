@@ -76,18 +76,11 @@ export default function HomeSlider({
                 },
             }}
             modules={[Pagination, Navigation]}
-            // style={{
-            //     '--swiper-pagination-bottom': '7px',
-            //     '--swiper-pagination-top': 'auto',
-            //     '--swiper-pagination-right': 'auto',
-            //     '--swiper-pagination-left': '8px',
-            //     '--swiper-pagination-color': '#06B6D4',
-            // }}
             className="pb-5 lg:pb-0"
         >
             {bodytypeListings.map((listing) => (
-                <SwiperSlide>
-                    <Listingitem listing={listing} key={listing._id} />
+                <SwiperSlide key={listing._id}>
+                    <Listingitem listing={listing} />
                 </SwiperSlide>
             ))}
             <SwiperSlide>

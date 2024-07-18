@@ -78,8 +78,8 @@ export default function ListingsSlider({
             className="pb-10 recommended"
         >
             {recommendedListings.map((listing) => (
-                <SwiperSlide>
-                    <ListingsItem listing={listing} key={listing._id} />
+                <SwiperSlide key={listing._id}>
+                    <ListingsItem listing={listing} />
                 </SwiperSlide>
             ))}
             <SwiperSlide>

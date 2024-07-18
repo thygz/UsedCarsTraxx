@@ -47,8 +47,11 @@ export default function CarBrand() {
                     </Link>
                 </div>
                 <div className="flex flex-wrap gap-2 sm:gap-3 lg:gap-5 justify-center items-center flex-1">
-                    {brandImage.map((item) => (
-                        <Link to={`/search?searchTerm=${item.make}`}>
+                    {brandImage.map((item, index) => (
+                        <Link
+                            to={`/search?searchTerm=${item.make}`}
+                            key={index}
+                        >
                             <div className="w-28 h-28 bg-gray-400 bg-opacity-70 shadow-xl rounded-full hover:bg-opacity-90 duration-200 flex flex-col justify-center items-center gap-3">
                                 <img src={item.image} alt="logo" />
                                 <p className="text-xs text-slate-900">
