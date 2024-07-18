@@ -579,8 +579,7 @@ export default function Listing() {
                         <ListingsSlider
                             recommendedListings={recommendedListings}
                             carBodytype={listing.bodyType}
-                            showMore={showMore}
-                            car={'car'}
+                            showMore={listing.bodyType}
                         />
                     </div>
                 )}

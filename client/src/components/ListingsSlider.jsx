@@ -11,12 +11,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/free-mode';
 import 'swiper/css/bundle';
 
-export default function ListingsSlider({
-    recommendedListings,
-    carBodytype,
-    showMore,
-    car,
-}) {
+export default function ListingsSlider({ recommendedListings, carBodytype }) {
     return (
         <Swiper
             slidesPerView={1.25}
@@ -83,7 +78,7 @@ export default function ListingsSlider({
                 </SwiperSlide>
             ))}
             <SwiperSlide>
-                {showMore.length < 5 ? (
+                {recommendedListings.length < 5 ? (
                     <Link to={'/search'}>
                         <div className="bg-inherit shadow-md hover:shadow-lg rounded-lg w-[95%] flex flex-col justify-center items-center gap-5 py-[4.6rem] sm:py-[4.72rem] md:py-[4.74rem] xl:py-[5.14rem] group">
                             <div className="h-20 w-20 rounded-full bg-slate-200 group-hover:bg-cyan-600 flex justify-center items-center">
@@ -101,7 +96,7 @@ export default function ListingsSlider({
                                 <FaArrowRight className="text-xl text-slate-700 group-hover:text-white" />
                             </div>
                             <p className="text-xs text-slate-900 uppercase">
-                                Show more {car}
+                                Show more {carBodytype} car
                             </p>
                         </div>
                     </Link>
