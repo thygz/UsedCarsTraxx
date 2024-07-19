@@ -341,11 +341,11 @@ export default function Header() {
                 </div>
             </div>
             <div
-                className={`fixed flex flex-col justify-center items-center gap-7 inset-0 w-80 sm:w-96 h-32 rounded-lg mx-auto my-auto bg-slate-50 z-50 ${
+                className={`fixed flex flex-col justify-center items-center gap-5 inset-0 w-80 sm:w-96 h-32 rounded-lg mx-auto my-auto bg-slate-50 p-3 z-50 ${
                     toggleDeleteModal ? 'block' : 'hidden'
                 }`}
             >
-                <p className="text-center text-xs sm:text-sm text-slate-800 font-semibold">
+                <p className="text-center text-sm text-slate-800 font-semibold">
                     Are you sure you want to delete your account?
                 </p>
                 <div className="flex gap-5">

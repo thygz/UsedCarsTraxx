@@ -9,26 +9,25 @@ export default function HowUsedcarstraxxWork() {
                 <h1 className="text-center mb-16 text-slate-800 text-2xl font-semibold px-3">
                     How UsedCarsTraxx Works
                 </h1>
-                <div className="flex flex-col md:flex-row gap-14 md:gap-5 lg:gap-14 px-14 md:px-5 lg:px-10 xl:px-20">
-                    <div className="flex flex-col flex-1 gap-4 bg-slate-300 rounded-lg px-5 py-7">
+                <div className="flex flex-col md:flex-row gap-14 md:gap-5 lg:gap-10 px-16 md:px-5 lg:px-20 xl:px-28">
+                    <div className="flex flex-col flex-1 gap-4 bg-slate-300 rounded-lg px-6 md:px-5 lg:px-6 py-7 md:py-5 lg:py-6">
                         <div className="flex flex-col justify-center items-center">
                             <MdOutlineScreenSearchDesktop className="text-4xl text-cyan-800" />
-                            <h1 className="text-slate-950 text-lg">
+                            <h1 className="text-slate-950 text-lg text-center">
                                 Search on any device
                             </h1>
                         </div>
                         <div>
                             <p className="text-center text-slate-800 text-sm leading-6">
                                 UsedCarsTraxx works well on any device. Browse
-                                them by source, with all the sorting options
-                                you'd expect.
+                                them with all the sorting options you'd expect.
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-col flex-1 gap-4 bg-slate-300 rounded-lg px-5 py-7">
+                    <div className="flex flex-col flex-1 gap-4 bg-slate-300 rounded-lg px-6 md:px-5 lg:px-6 py-7 md:py-5 lg:py-6">
                         <div className="flex flex-col justify-center items-center">
                             <FaRegHandPointUp className="text-4xl text-cyan-800" />
-                            <h1 className="text-slate-950 text-lg">
+                            <h1 className="text-slate-950 text-lg text-center">
                                 Choose your car
                             </h1>
                         </div>
@@ -40,10 +39,10 @@ export default function HowUsedcarstraxxWork() {
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-col flex-1 gap-4 bg-slate-300 rounded-lg px-5 py-7">
+                    <div className="flex flex-col flex-1 gap-4 bg-slate-300 rounded-lg px-6 md:px-5 lg:px-6 py-7 md:py-5 lg:py-6">
                         <div className="flex flex-col justify-center items-center">
                             <LuCheckSquare className="text-4xl text-cyan-800" />
-                            <h1 className="text-slate-950 text-lg">
+                            <h1 className="text-slate-950 text-lg text-center">
                                 Buy with confidence
                             </h1>
                         </div>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function ReadTheGuide() {
     return (
-        <div className="max-w-full bg-slate-200 shadow-md mb-20 md:mb-28">
+        <div className="max-w-full bg-slate-200 shadow-md mb-10">
             <div className="max-w-6xl mx-auto px-3 sm:px-14 lg:px-24 py-10 flex flex-col min-[800px]:flex-row gap-10">
                 <div className="flex flex-col flex-1 justify-center min-[800px]:justify-start items-center min-[800px]:items-start gap-5">
                     <h1 className="text-slate-800 font-semibold text-2xl">
