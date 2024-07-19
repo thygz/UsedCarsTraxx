@@ -12,11 +12,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/free-mode';
 import 'swiper/css/bundle';
 
-export default function HomeSlider({
-    bodytypeListings,
-    carBodytype,
-    showMore,
-}) {
+export default function HomeSlider({ carListings, carBodytype, showMore }) {
     return (
         <Swiper
             slidesPerView={1.25}
@@ -78,13 +74,13 @@ export default function HomeSlider({
             modules={[Pagination, Navigation]}
             className="pb-5 lg:pb-0"
         >
-            {bodytypeListings.map((listing) => (
+            {carListings.map((listing) => (
                 <SwiperSlide key={listing._id}>
                     <Listingitem listing={listing} />
                 </SwiperSlide>
             ))}
             <SwiperSlide>
-                {bodytypeListings.length < 5 ? (
+                {carListings.length < 5 ? (
                     <Link to={'/search'}>
                         <div className="bg-inherit shadow-md hover:shadow-lg rounded-lg w-[95%] flex flex-col justify-center items-center gap-5 py-[4.6rem] sm:py-[4.72rem] md:py-[4.74rem] xl:py-[5.14rem] group">
                             <div className="h-20 w-20 rounded-full bg-slate-200 group-hover:bg-cyan-600 flex justify-center items-center">

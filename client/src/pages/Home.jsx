@@ -19,18 +19,22 @@ import HowUsedcarstraxxWork from '../components/HowUsedcarstraxxWork';
 
 export default function Home() {
     const [latestListings, setLatestListings] = useState([]);
-    const [sedanListings, setSedanListings] = useState([]);
-    const [suvListings, setSuvListings] = useState([]);
-    const [hatchbackListings, setHatchbackListings] = useState([]);
     const [carBodyType, setCarBodyType] = useState('Sedan');
     const [bodyTypeListings, setBodyTypeListings] = useState([]);
     const [carTransmission, setCarTransmission] = useState('automatic');
     const [transmissionListings, setTransmissionListings] = useState([]);
+    const [carPriceOrder, setCarPriceOrder] = useState('desc');
+    const [priceOrderListings, setPriceOrderListings] = useState([]);
     SwiperCore.use([Navigation]);
 
     const bodyTypeOptions = ['Sedan', 'Hatchback', 'SUV', 'MPV/MUV', 'Pickup'];
 
     const transmissionOptions = ['automatic', 'manual', 'cvt', 'others'];
+
+    const priceOrderOptions = [
+        { name: 'Highest to lowest', order: 'desc' },
+        { name: 'Lowest to highest', order: 'asc' },
+    ];
 
     useEffect(() => {
         const fetchLatestListings = async () => {
@@ -53,32 +57,6 @@ export default function Home() {
                 );
                 const data = await res.json();
                 setBodyTypeListings(data);
-                fetchSuvListings();
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        const fetchSuvListings = async () => {
-            try {
-                const res = await fetch(
-                    '/api/listing/get?bodyType=SUV&limit=5'
-                );
-                const data = await res.json();
-                setSuvListings(data);
-                fetchHatchbackListings();
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        const fetchHatchbackListings = async () => {
-            try {
-                const res = await fetch(
-                    '/api/listing/get?bodyType=Hatchback&limit=5'
-                );
-                const data = await res.json();
-                setHatchbackListings(data);
                 fetchAutomaticListings();
             } catch (error) {
                 console.log(error);
@@ -92,6 +70,19 @@ export default function Home() {
                 );
                 const data = await res.json();
                 setTransmissionListings(data);
+                fetchHighestToLowestPriceListing();
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        const fetchHighestToLowestPriceListing = async () => {
+            try {
+                const res = await fetch(
+                    '/api/listing/get?sort=price&order=desc&limit=5'
+                );
+                const data = await res.json();
+                setPriceOrderListings(data);
             } catch (error) {
                 console.log(error);
             }
@@ -124,6 +115,18 @@ export default function Home() {
         }
     };
 
+    const handleClickPriceOrder = async (order) => {
+        try {
+            const res = await fetch(
+                `/api/listing/get?sort=price&order=${order}&limit=5`
+            );
+            const data = await res.json();
+            setPriceOrderListings(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div>
             <ScrollToTop />
@@ -148,11 +151,9 @@ export default function Home() {
                     </h1>
                 </div>
             </div>
-            <div className="">
-                <SearchInput />
-            </div>
+            <SearchInput />
             <HowUsedcarstraxxWork />
-            <div className="max-w-6xl mx-auto px-5 py-3 flex flex-col gap-8 mt-10 md:mt-16 mb-10 md:mb-16">
+            <div className="max-w-6xl mx-auto px-5 py-3 flex flex-col gap-16 lg:gap-8 mt-10 mb-20 lg:mb-16">
                 <div>
                     <div className="mt-3 mb-5">
                         <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-2">
@@ -175,35 +176,11 @@ export default function Home() {
                             </button>
                         ))}
                     </div>
-                    {carBodyType === 'Sedan' ? (
-                        <HomeSlider
-                            bodytypeListings={bodyTypeListings}
-                            carBodytype={`bodyType=${carBodyType}`}
-                            showMore={carBodyType}
-                        />
-                    ) : (
-                        <HomeSlider
-                            bodytypeListings={bodyTypeListings}
-                            carBodytype={`bodyType=${carBodyType}`}
-                            showMore={carBodyType}
-                        />
-                    )}
-                    {/* <div className="flex flex-wrap justify-between gap-y-7">
-                            {sedanListings.map((listing) => (
-                                <Listingitem
-                                    listing={listing}
-                                    key={listing._id}
-                                />
-                            ))}
-                        </div>
-                        <div className="max-w-full flex justify-end">
-                            <Link
-                                to={'/search?bodyType=Sedan'}
-                                className="text-xs m-2 text-end text-cyan-800 hover:underline uppercase"
-                            >
-                                Show more Sedan
-                            </Link>
-                        </div> */}
+                    <HomeSlider
+                        carListings={bodyTypeListings}
+                        carBodytype={`bodyType=${carBodyType}`}
+                        showMore={carBodyType}
+                    />
                 </div>
                 <div>
                     <div className="mt-3 mb-5">
@@ -227,74 +204,15 @@ export default function Home() {
                             </button>
                         ))}
                     </div>
-                    {carTransmission === 'automatic' ? (
-                        <HomeSlider
-                            bodytypeListings={transmissionListings}
-                            carBodytype={`transmission=${carTransmission}`}
-                            showMore={carTransmission}
-                        />
-                    ) : (
-                        <HomeSlider
-                            bodytypeListings={transmissionListings}
-                            carBodytype={`transmission=${carTransmission}`}
-                            showMore={carTransmission}
-                        />
-                    )}
-                    {/* <HomeSlider
-                            bodytypeListings={transmissionListings}
-                            carBodytype={`transmission=${carTransmission}`}
-                            showMore={carTransmission}
-                        /> */}
-                    {/* <div className="flex flex-wrap justify-between gap-y-7">
-                            {suvListings.map((listing) => (
-                                <Listingitem
-                                    listing={listing}
-                                    key={listing._id}
-                                />
-                            ))}
-                        </div>
-                        <div className="max-w-full flex justify-end">
-                            <Link
-                                to={'/search?bodyType=SUV'}
-                                className="text-xs m-2 text-end text-cyan-800 hover:underline uppercase"
-                            >
-                                Show more SUV
-                            </Link>
-                        </div> */}
+                    <HomeSlider
+                        carListings={transmissionListings}
+                        carBodytype={`transmission=${carTransmission}`}
+                        showMore={carTransmission}
+                    />
                 </div>
             </div>
             <CarBrand />
-            <div className="max-w-6xl mx-auto px-5 py-3 flex flex-col gap-8 mt-10 md:mt-16 mb-10 md:mb-20">
-                {hatchbackListings && hatchbackListings.length > 0 && (
-                    <div>
-                        <div className="my-3">
-                            <h2 className="text-xl lg:text-2xl font-semibold text-slate-800">
-                                Hatchback
-                            </h2>
-                        </div>
-                        <HomeSlider
-                            bodytypeListings={hatchbackListings}
-                            carBodytype={'bodyType=Hatchback'}
-                            showMore={'Hatchback'}
-                        />
-                        {/* <div className="flex flex-wrap justify-between gap-y-7">
-                            {hatchbackListings.map((listing) => (
-                                <Listingitem
-                                    listing={listing}
-                                    key={listing._id}
-                                />
-                            ))}
-                        </div> */}
-                        {/* <div className="max-w-full flex justify-end">
-                            <Link
-                                to={'/search?bodyType=Hatchback'}
-                                className="text-xs m-2 text-end text-cyan-800 hover:underline uppercase"
-                            >
-                                Show more Hatchback
-                            </Link>
-                        </div> */}
-                    </div>
-                )}
+            <div className="max-w-6xl mx-auto px-5 py-3 flex flex-col gap-8 my-20">
                 {latestListings && latestListings.length > 0 && (
                     <div>
                         <div className="my-3">
@@ -303,30 +221,44 @@ export default function Home() {
                             </h2>
                         </div>
                         <HomeSlider
-                            bodytypeListings={latestListings}
+                            carListings={latestListings}
                             carBodytype={'sort=createdAt&order=desc'}
-                            showMore={'car'}
+                            showMore={''}
                         />
-                        {/* <div className="flex flex-wrap justify-between gap-y-7">
-                            {latestListings.map((listing) => (
-                                <Listingitem
-                                    listing={listing}
-                                    key={listing._id}
-                                />
-                            ))}
-                        </div> */}
-                        {/* <div className="max-w-full flex justify-end">
-                            <Link
-                                to={'/search?sort=createdAt&order=desc'}
-                                className="text-xs m-2 text-end text-cyan-800 hover:underline uppercase"
-                            >
-                                Show more car
-                            </Link>
-                        </div> */}
                     </div>
                 )}
             </div>
             <ReadTheGuide />
+            <div className="max-w-6xl mx-auto px-5 py-3 flex flex-col gap-8 my-20">
+                <div>
+                    <div className="mt-3 mb-5">
+                        <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-2">
+                            Cars by Price Order
+                        </h2>
+                        {priceOrderOptions.map((item, index) => (
+                            <button
+                                key={index}
+                                className={`pr-2 min-[350px]:pr-3 min-[400px]:pr-5 min-[420px]:pr-6 text-sm font-medium hover:text-cyan-600 duration-300 capitalize ${
+                                    item.order === carPriceOrder
+                                        ? 'text-cyan-600 underline underline-offset-8 decoration-2'
+                                        : 'text-slate-800'
+                                }`}
+                                onClick={() => {
+                                    setCarPriceOrder(item.order);
+                                    handleClickPriceOrder(item.order);
+                                }}
+                            >
+                                {item.name}
+                            </button>
+                        ))}
+                    </div>
+                    <HomeSlider
+                        carListings={priceOrderListings}
+                        carBodytype={`sort=price&order=${carPriceOrder}`}
+                        showMore={''}
+                    />
+                </div>
+            </div>
         </div>
     );
 }
