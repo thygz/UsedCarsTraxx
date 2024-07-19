@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import Listingitem from '../components/Listingitem';
 import ScrollToTop from '../components/ScrollToTop';
 import SearchListingitem from '../components/SearchListingitem';
 import { FaFilter } from 'react-icons/fa';
@@ -13,6 +12,7 @@ export default function Search() {
         transmission: 'allTransmission',
         fuelType: 'allFuelType',
         bodyType: 'allBodyType',
+        price: 'AllPrice',
         sort: 'price',
         order: 'desc',
         modelSearch: '',
@@ -37,6 +37,15 @@ export default function Search() {
         { label: 'Others', value: 'Others' },
     ];
 
+    const priceOptions = [
+        { label: 'All', value: 'AllPrice' },
+        { label: 'Under ₱250,000', value: 'Under 250,000' },
+        { label: 'Under ₱500,000', value: 'Under 500,000' },
+        { label: 'Under ₱750,000', value: 'Under 750,000' },
+        { label: 'Under ₱1,000,000', value: 'Under 1,000,000' },
+        { label: 'Under ₱3,000,000', value: 'Under 3,000,000' },
+    ];
+
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
         const searchTermFromUrl = urlParams.get('searchTerm');
@@ -44,6 +53,7 @@ export default function Search() {
         const transmissionFromUrl = urlParams.get('transmission');
         const fuelTypeFromUrl = urlParams.get('fuelType');
         const bodyTypeFromUrl = urlParams.get('bodyType');
+        const priceFromUrl = urlParams.get('price');
         const sortFromUrl = urlParams.get('sort');
         const orderFromUrl = urlParams.get('order');
 
@@ -53,6 +63,7 @@ export default function Search() {
             transmissionFromUrl ||
             fuelTypeFromUrl ||
             bodyTypeFromUrl ||
+            priceFromUrl ||
             sortFromUrl ||
             orderFromUrl
         ) {
@@ -62,6 +73,7 @@ export default function Search() {
                 transmission: transmissionFromUrl || 'allTransmission',
                 fuelType: fuelTypeFromUrl || 'allFuelType',
                 bodyType: bodyTypeFromUrl || 'allBodyType',
+                price: priceFromUrl || 'AllPrice',
                 sort: sortFromUrl || 'price',
                 order: orderFromUrl || 'desc',
             });
@@ -119,6 +131,17 @@ export default function Search() {
             setSidebardata({ ...sidebardata, bodyType: e.target.value });
         }
 
+        if (
+            e.target.value === 'AllPrice' ||
+            e.target.value === 'Under 250,000' ||
+            e.target.value === 'Under 500,000' ||
+            e.target.value === 'Under 750,000' ||
+            e.target.value === 'Under 1,000,000' ||
+            e.target.value === 'Under 3,000,000'
+        ) {
+            setSidebardata({ ...sidebardata, price: e.target.value });
+        }
+
         if (e.target.id === 'searchTerm') {
             setSidebardata({ ...sidebardata, searchTerm: e.target.value });
         }
@@ -142,6 +165,7 @@ export default function Search() {
         urlParams.set('transmission', sidebardata.transmission);
         urlParams.set('fuelType', sidebardata.fuelType);
         urlParams.set('bodyType', sidebardata.bodyType);
+        urlParams.set('price', sidebardata.price);
         urlParams.set('sort', sidebardata.sort);
         urlParams.set('order', sidebardata.order);
         const searchQuery = urlParams.toString();
@@ -255,8 +279,36 @@ export default function Search() {
                             </div>
                         </div>
                         <div className="flex flex-col flex-1">
-                            <label className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                            <label
+                                htmlFor="price"
+                                className="text-xs font-semibold p-[0.15rem] text-gray-600"
+                            >
                                 Price
+                            </label>
+                            <div className="border-[1px] border-slate-400 px-2">
+                                <select
+                                    type="text"
+                                    // name="bodyType"
+                                    className="py-2 rounded-sm text-sm focus:outline-none w-full bg-inherit cursor-pointer"
+                                    // id="bodyType"
+                                    // required
+                                    value={sidebardata.price}
+                                    onChange={handleChange}
+                                >
+                                    {priceOptions.map((option, index) => (
+                                        <option
+                                            key={index}
+                                            value={option.value}
+                                        >
+                                            {option.label}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                        <div className="flex flex-col flex-1">
+                            <label className="text-xs font-semibold p-[0.15rem] text-gray-600">
+                                Car Listing Order
                             </label>
                             <div className="border-[1px] border-slate-400 px-2">
                                 <select
