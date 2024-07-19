@@ -6,29 +6,34 @@ export default function SearchInput() {
     const [searchTerm, setSearchTerm] = useState('');
     const [modelSearch, setModelSearch] = useState('');
     const [sidebardata, setSidebardata] = useState({
-        sort: 'price',
-        order: 'desc',
+        price: 'AllPrice',
     });
     const navigate = useNavigate();
+
+    const priceOptions = [
+        { label: 'All', value: 'AllPrice' },
+        { label: 'Under ₱250,000', value: 'Under 250,000' },
+        { label: 'Under ₱500,000', value: 'Under 500,000' },
+        { label: 'Under ₱750,000', value: 'Under 750,000' },
+        { label: 'Under ₱1,000,000', value: 'Under 1,000,000' },
+        { label: 'Under ₱3,000,000', value: 'Under 3,000,000' },
+    ];
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set('searchTerm', searchTerm);
         urlParams.set('modelSearch', modelSearch);
-        urlParams.set('sort', sidebardata.sort);
-        urlParams.set('order', sidebardata.order);
+        urlParams.set('price', sidebardata.price);
         const searchQuery = urlParams.toString();
         navigate(`/search?${searchQuery}`);
-        // setToggleMenu(false);
     };
 
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
         const searchTermFromUrl = urlParams.get('searchTerm');
         const modelSearchFromUrl = urlParams.get('modelSearch');
-        const sortFromUrl = urlParams.get('sort');
-        const orderFromUrl = urlParams.get('order');
+        const priceFromUrl = urlParams.get('price');
 
         if (searchTermFromUrl) {
             setSearchTerm(searchTermFromUrl);
@@ -38,19 +43,23 @@ export default function SearchInput() {
             setModelSearch(modelSearchFromUrl);
         }
 
-        if (sortFromUrl || orderFromUrl) {
+        if (priceFromUrl) {
             setSidebardata({
-                sort: sortFromUrl || 'price',
-                order: orderFromUrl || 'desc',
+                price: priceFromUrl || 'AllPrice',
             });
         }
     }, [location.search]);
 
     const handleChange = (e) => {
-        if (e.target.id === 'price_order') {
-            const sort = e.target.value.split('_')[0] || 'price';
-            const order = e.target.value.split('_')[1] || 'desc';
-            setSidebardata({ ...sidebardata, sort, order });
+        if (
+            e.target.value === 'AllPrice' ||
+            e.target.value === 'Under 250,000' ||
+            e.target.value === 'Under 500,000' ||
+            e.target.value === 'Under 750,000' ||
+            e.target.value === 'Under 1,000,000' ||
+            e.target.value === 'Under 3,000,000'
+        ) {
+            setSidebardata({ ...sidebardata, price: e.target.value });
         }
     };
 
@@ -86,61 +95,28 @@ export default function SearchInput() {
                         />
                     </div>
                     <div className="flex flex-col flex-1 w-full">
-                        <label className="text-xs font-medium px-1 text-white uppercase">
+                        <label
+                            htmlFor="price"
+                            className="text-xs font-medium px-1 text-white uppercase"
+                        >
                             Price
                         </label>
                         <div className="border border-slate-400 px-3 py-2 rounded-md bg-white">
                             <select
-                                id="price_order"
                                 className="rounded-sm text-sm text-gray-700 focus:outline-none w-full bg-white cursor-pointer"
                                 onChange={handleChange}
-                                value={`${sidebardata.sort}_${sidebardata.order}`}
-                                // defaultValue={sidebardata.sort}
+                                value={sidebardata.price}
                             >
-                                <option value="price_desc">
-                                    Highest to lowest
-                                </option>
-                                <option value="price_asc">
-                                    Lowest to highest
-                                </option>
-                                <option value="createdAt_desc">
-                                    Latest to oldest post
-                                </option>
-                                <option value="createdAt_asc">
-                                    Oldest to latest post
-                                </option>
+                                {priceOptions.map((option, index) => (
+                                    <option key={index} value={option.value}>
+                                        {option.label}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                     </div>
                 </div>
                 <div className="w-full md:w-auto flex justify-center items-center">
-                    {/* <div className="flex flex-col flex-1 w-full">
-                        <label className="text-xs font-semibold px-1 text-gray-700 uppercase">
-                            Price
-                        </label>
-                        <div className="border border-slate-400 px-3 py-2 rounded-md bg-gray-50">
-                            <select
-                                id="price_order"
-                                className="rounded-sm text-sm text-gray-600 focus:outline-none w-full bg-gray-50 cursor-pointer"
-                                onChange={handleChange}
-                                value={`${sidebardata.sort}_${sidebardata.order}`}
-                                // defaultValue={sidebardata.sort}
-                            >
-                                <option value="price_desc">
-                                    Highest to lowest
-                                </option>
-                                <option value="price_asc">
-                                    Lowest to highest
-                                </option>
-                                <option value="createdAt_desc">
-                                    Latest to oldest post
-                                </option>
-                                <option value="createdAt_asc">
-                                    Oldest to latest post
-                                </option>
-                            </select>
-                        </div>
-                    </div> */}
                     <button className="bg-cyan-600 text-white text-sm sm:text-base font-semibold rounded-md capitalize hover:opacity-90 px-20 lg:px-6 py-3 sm:py-[0.6rem] lg:py-[0.52rem] flex justify-center items-center w-full">
                         Search
                     </button>
