@@ -70,35 +70,6 @@ export const getListings = async (req, res, next) => {
     try {
         const limit = parseInt(req.query.limit) || 9;
         const startIndex = parseInt(req.query.startIndex) || 0;
-        // let offer = req.query.offer;
-
-        // if (offer === undefined || offer === 'false') {
-        //     offer = { $in: [false, true] };
-        // }
-
-        // let furnished = req.query.furnished;
-
-        // if (furnished === undefined || furnished === 'false') {
-        //     furnished = { $in: [false, true] };
-        // }
-
-        // let parking = req.query.parking;
-
-        // if (parking === undefined || parking === 'false') {
-        //     parking = { $in: [false, true] };
-        // }
-
-        // let type = req.query.type;
-
-        // if (type === undefined || type === 'all') {
-        //     type = { $in: ['sale', 'rent'] };
-        // }
-
-        // name:
-        // offer,
-        // furnished,
-        // parking,
-        // type
 
         let transmission = req.query.transmission;
 
@@ -131,6 +102,27 @@ export const getListings = async (req, res, next) => {
             };
         }
 
+        let price = req.query.price;
+
+        if (price === 'Under 250,000') {
+            price = { $lte: 250000 };
+        }
+        if (price === 'Under 500,000') {
+            price = { $lte: 500000 };
+        }
+        if (price === 'Under 750,000') {
+            price = { $lte: 750000 };
+        }
+        if (price === 'Under 1,000,000') {
+            price = { $lte: 1000000 };
+        }
+        if (price === 'Under 3,000,000') {
+            price = { $lte: 3000000 };
+        }
+        if (price === undefined || price === 'AllPrice') {
+            price = { $gte: 1 };
+        }
+
         const searchTerm = req.query.searchTerm || '';
         const modelSearch = req.query.modelSearch || '';
 
@@ -144,6 +136,7 @@ export const getListings = async (req, res, next) => {
             transmission,
             fuelType,
             bodyType,
+            price,
         })
             .sort({
                 [sort]: order,
