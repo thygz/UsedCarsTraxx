@@ -25,7 +25,7 @@ export default function CreateListing() {
         model: '',
         bodyType: 'Sedan',
         engineSize: '',
-        doors: 1,
+        doors: 2,
         year: 1990,
         mileage: 1000,
         price: 10000,
@@ -228,9 +228,6 @@ export default function CreateListing() {
                 </div>
             </div>
             <div className="p-6 bg-inherit rounded-sm max-w-3xl mx-auto">
-                {/* <h1 className="text-2xl font-semibold text-center text-slate-800 mt-5 mb-7 md:mb-10">
-                    Sell Your Car
-                </h1> */}
                 <form onSubmit={handleSubmit} className="flex flex-col">
                     <div className="flex flex-col gap-3 sm:gap-5 flex-1">
                         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
