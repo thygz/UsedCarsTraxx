@@ -470,7 +470,7 @@ export default function Search() {
                 ref={searchResult}
             >
                 <h1 className="text-lg md:text-xl font-semibold pb-5 md:pb-10 text-slate-700 mt-1">
-                    Your Search Results:
+                    Results:
                 </h1>
                 <div className="flex flex-wrap gap-x-4 gap-y-7 pb-10">
                     {!loading && listings.length === 0 && (

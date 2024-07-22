@@ -494,7 +494,7 @@ export default function Listing() {
                     >
                         <Swiper
                             navigation
-                            loop={true}
+                            // loop={true}
                             slidesPerView={1}
                             // style={{
                             //     '--swiper-navigation-color': '#fff',

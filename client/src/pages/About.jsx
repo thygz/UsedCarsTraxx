@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function About() {
     return (
-        <div className="pt-10 sm:pt-14 pb-20 px-4 max-w-3xl mx-auto">
+        <div className="pt-10 sm:pt-14 pb-20 px-5 max-w-3xl mx-auto">
             <ScrollToTop />
             <h1 className="text-3xl font-bold mb-14 text-slate-800 capitalize text-center">
                 About Us
