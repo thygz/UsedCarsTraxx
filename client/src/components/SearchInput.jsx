@@ -124,8 +124,8 @@ export default function SearchInput() {
             </form>
             <div className="w-full">
                 <p className="text-[0.7rem] text-center text-slate-900">
-                    Note: Can be searched even only one input is filled in or
-                    key word is not complete.
+                    Note: Search even one input is filled in or key word is not
+                    complete.
                 </p>
             </div>
         </div>
