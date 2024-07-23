@@ -4,6 +4,7 @@ import ScrollToTop from '../components/ScrollToTop';
 import SearchListingitem from '../components/SearchListingitem';
 import { FaFilter } from 'react-icons/fa';
 import { RiCloseLine } from 'react-icons/ri';
+import ScrollToTopButton from '../components/ScrollToTopButton';
 
 export default function Search() {
     const navigate = useNavigate();
@@ -173,7 +174,7 @@ export default function Search() {
 
         const scrollToElement = () => {
             window.scrollTo({
-                top: searchResult.current.offsetTop,
+                top: 0,
                 behavior: 'smooth',
             });
         };
@@ -196,10 +197,10 @@ export default function Search() {
     };
 
     return (
-        <div className="flex flex-col-reverse md:flex-row max-w-6xl mx-auto p-3 md:pt-10 md:pb-14 lg:px-4 min-h-[75vh]">
+        <div className="flex flex-col-reverse md:flex-row max-w-6xl mx-auto px-5 py-3 md:pt-10 md:pb-14 lg:px-4 min-h-[75vh]">
             <ScrollToTop />
             <div
-                className={`md:pr-4 p-3 md:px-0 md:pt-[5rem] md:border-r-2 lg:w-[22%] bg-white md:bg-inherit fixed md:static left-0 right-0 z-50 md:z-0 transition-all duration-150 ease-in ${
+                className={`md:pr-4 p-5 md:px-0 md:pt-[5rem] md:border-r-2 lg:w-[22%] bg-white max-h-[90%] overflow-y-scroll md:overflow-hidden md:bg-inherit fixed md:static left-0 right-0 z-50 md:z-0 transition-all duration-150 ease-in ${
                     toggleFilter ? 'bottom-0' : 'bottom-[-100%]'
                 }`}
             >
@@ -469,7 +470,7 @@ export default function Search() {
                 className="p-2 md:p-0 md:ml-5 xl:ml-7 flex-1"
                 ref={searchResult}
             >
-                <h1 className="text-lg md:text-xl font-semibold pb-5 md:pb-10 text-slate-700 mt-1">
+                <h1 className="text-lg md:text-xl font-semibold pb-5 text-slate-700 mt-1">
                     Results:
                 </h1>
                 <div className="flex flex-wrap gap-x-4 gap-y-7 pb-10">
@@ -481,9 +482,9 @@ export default function Search() {
                         </div>
                     )}
                     {loading && (
-                        <p className="text-xl text-slate-700 text-center w-full">
-                            Loading...
-                        </p>
+                        <div className="flex justify-center items-center w-full min-h-[50vh]">
+                            <p className="text-xl text-slate-700">Loading...</p>
+                        </div>
                     )}
                     {!loading &&
                         listings &&
@@ -509,6 +510,7 @@ export default function Search() {
             >
                 <FaFilter className="text-white" />
             </div>
+            <ScrollToTopButton />
             <div
                 onClick={() => setToggleFilter(false)}
                 className={`fixed bg-black bg-opacity-60 z-40 top-0 left-0 right-0 bottom-0 ${
