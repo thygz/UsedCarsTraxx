@@ -156,7 +156,7 @@ export default function Home() {
             <div className="max-w-6xl mx-auto px-5 py-3 flex flex-col gap-16 lg:gap-8 mt-10 mb-20 lg:mb-16">
                 <div>
                     <div className="mt-3 mb-5">
-                        <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-2">
+                        <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-4">
                             Cars by Body Type
                         </h2>
                         {bodyTypeOptions.map((item, index) => (
@@ -184,7 +184,7 @@ export default function Home() {
                 </div>
                 <div>
                     <div className="mt-3 mb-5">
-                        <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-2">
+                        <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-4">
                             Cars by Transmission
                         </h2>
                         {transmissionOptions.map((item, index) => (
@@ -232,7 +232,7 @@ export default function Home() {
             <div className="max-w-6xl mx-auto px-5 py-3 flex flex-col gap-8 my-20">
                 <div>
                     <div className="mt-3 mb-5">
-                        <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-2">
+                        <h2 className="text-xl lg:text-2xl font-semibold text-slate-800 mb-4">
                             Cars by Price Order
                         </h2>
                         {priceOrderOptions.map((item, index) => (

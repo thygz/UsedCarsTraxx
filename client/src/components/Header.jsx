@@ -221,7 +221,7 @@ export default function Header() {
                                                 Welcome {currentUser.username}!
                                             </p>
                                         </div>
-                                        <div className="h-[1px] w-full bg-slate-400 mb-2"></div>
+                                        <div className="h-[1px] w-full bg-slate-200 mb-2"></div>
                                         <ul
                                             className="flex flex-col text-sm font-semibold"
                                             onClick={() =>

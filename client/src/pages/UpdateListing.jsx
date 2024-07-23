@@ -218,7 +218,7 @@ export default function CreateListing() {
             <ScrollToTop />
             <div className="p-3 bg-inherit rounded-sm">
                 <h1 className="text-2xl font-semibold text-center text-slate-800 mt-5 mb-7 md:mb-10">
-                    Update/Edit Your Car For Sale
+                    Edit Your Car For Sale
                 </h1>
                 <form onSubmit={handleSubmit} className="flex flex-col">
                     <div className="flex flex-col gap-3 sm:gap-5 flex-1">
