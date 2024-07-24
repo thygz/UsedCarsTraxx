@@ -84,7 +84,7 @@ export default function Favorites() {
     };
 
     return (
-        <div className="px-3 pt-10 pb-14 max-w-3xl mx-auto min-h-[75vh]">
+        <div className="px-3 pt-10 pb-20 max-w-3xl mx-auto min-h-[75vh]">
             <ScrollToTop />
             <div className="p-3 bg-inherit">
                 {!loading && favoriteListing && favoriteListing.length > 0 ? (

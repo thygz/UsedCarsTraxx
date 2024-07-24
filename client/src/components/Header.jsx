@@ -53,7 +53,7 @@ export default function Header() {
         }
     };
     return (
-        <header className="bg-slate-100 shadow-md sticky top-0 z-30">
+        <header className="bg-[#f8faff] shadow-md sticky top-0 z-30">
             <div className="flex justify-between items-center max-w-6xl mx-auto px-3 py-2 h-[54px]">
                 <div
                     className={`flex justify-center items-center gap-1 ${
@@ -70,7 +70,7 @@ export default function Header() {
                 </div>
                 <div className="flex justify-center items-center gap-10">
                     <div
-                        className={`flex flex-col-reverse lg:flex-row justify-end lg:justify-center items-start lg:items-center gap-3 lg:gap-10 fixed lg:static w-[260px] lg:w-[100%] top-0 bottom-0 bg-slate-100 px-3 py-10 lg:p-0 z-30 transition-all duration-150 ease-in ${
+                        className={`flex flex-col-reverse lg:flex-row justify-end lg:justify-center items-start lg:items-center gap-3 lg:gap-10 fixed lg:static w-[260px] lg:w-[100%] top-0 bottom-0 bg-[#f8faff] px-3 py-10 lg:p-0 z-30 transition-all duration-150 ease-in ${
                             toggleMenu ? 'right-0' : 'right-[-260px]'
                         }`}
                     >
@@ -199,7 +199,7 @@ export default function Header() {
                     <div className={`${toggleMenu ? 'hidden' : 'visible'}`}>
                         {currentUser ? (
                             <div
-                                className="hidden lg:flex justify-center items-center text-cyan-800 hover:text-cyan-600 duration-300 text-sm font-semibold tracking-wide bg-slate-50 px-2 gap-2 rounded-full border-[1px] border-gray-300 relative whitespace-nowrap cursor-pointer z-20 h-[2.15rem]"
+                                className="hidden lg:flex justify-center items-center text-cyan-800 hover:text-cyan-600 duration-300 text-sm font-semibold tracking-wide bg-[#f8faff] px-2 gap-2 rounded-full border-[1px] border-gray-300 relative whitespace-nowrap cursor-pointer z-20 h-[2.15rem]"
                                 onMouseEnter={() => setToggleProfile(true)}
                                 onMouseLeave={() => setToggleProfile(false)}
                             >
@@ -215,7 +215,7 @@ export default function Header() {
                                     }`}
                                 >
                                     <div className="pt-14"></div>
-                                    <div className="bg-slate-50 pt-3 pb-3 border-2 rounded-md cursor-default">
+                                    <div className="bg-[#f8faff] pt-3 pb-3 border-2 rounded-md cursor-default">
                                         <div className="mb-2 pl-5 pr-16">
                                             <p className="text-cyan-500 font-semibold text-sm truncate max-w-[9rem]">
                                                 Welcome {currentUser.username}!
@@ -261,7 +261,7 @@ export default function Header() {
                         ) : (
                             <div>
                                 <div
-                                    className="hidden lg:flex justify-center items-center text-cyan-800 hover:text-cyan-600 duration-300 text-sm font-semibold tracking-wide bg-slate-50 p-2 gap-2 rounded-full border-[1px] border-gray-300 relative whitespace-nowrap cursor-pointer"
+                                    className="hidden lg:flex justify-center items-center text-cyan-800 hover:text-cyan-600 duration-300 text-sm font-semibold tracking-wide bg-[#f8faff] p-2 gap-2 rounded-full border-[1px] border-gray-300 relative whitespace-nowrap cursor-pointer"
                                     onMouseEnter={() =>
                                         setToggleLoginSignup(true)
                                     }
@@ -280,7 +280,7 @@ export default function Header() {
                                         }`}
                                     >
                                         <div className="pt-14"></div>
-                                        <div className="bg-slate-50 border-2 p-3 rounded-md">
+                                        <div className="bg-[#f8faff] border-2 p-3 rounded-md">
                                             <ul
                                                 className="flex text-sm font-semibold gap-2"
                                                 onClick={() =>
@@ -313,7 +313,7 @@ export default function Header() {
                 <div className="lg:hidden">
                     {currentUser ? (
                         <div
-                            className={`flex lg:hidden justify-center items-center text-cyan-800 hover:text-cyan-600 duration-300 text-sm font-semibold tracking-wide bg-white py-[0.4rem] px-2 gap-2 rounded-full border-[1px] border-gray-300 relative whitespace-nowrap cursor-pointer ${
+                            className={`flex lg:hidden justify-center items-center text-cyan-800 hover:text-cyan-600 duration-300 text-sm font-semibold tracking-wide bg-[#f8faff] py-[0.4rem] px-2 gap-2 rounded-full border-[1px] border-gray-300 relative whitespace-nowrap cursor-pointer ${
                                 toggleMenu ? 'hidden' : 'visible'
                             }`}
                             onClick={() => setToggleMenu(true)}
@@ -328,7 +328,7 @@ export default function Header() {
                     ) : (
                         <div>
                             <div
-                                className={`flex lg:hidden justify-center items-center text-cyan-800 hover:text-cyan-600 duration-300 text-sm font-semibold tracking-wide bg-white p-2 gap-2 rounded-full border-[1px] border-gray-300 relative whitespace-nowrap cursor-pointer ${
+                                className={`flex lg:hidden justify-center items-center text-cyan-800 hover:text-cyan-600 duration-300 text-sm font-semibold tracking-wide bg-[#f8faff] p-2 gap-2 rounded-full border-[1px] border-gray-300 relative whitespace-nowrap cursor-pointer ${
                                     toggleMenu ? 'hidden' : 'visible'
                                 }`}
                                 onClick={() => setToggleMenu(true)}
