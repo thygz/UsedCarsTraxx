@@ -5,6 +5,7 @@ import SearchListingitem from '../components/SearchListingitem';
 import { FaFilter } from 'react-icons/fa';
 import { RiCloseLine } from 'react-icons/ri';
 import ScrollToTopButton from '../components/ScrollToTopButton';
+import MoonLoader from 'react-spinners/MoonLoader';
 
 export default function Search() {
     const navigate = useNavigate();
@@ -211,19 +212,6 @@ export default function Search() {
                     onSubmit={handleSubmit}
                     className="flex flex-col gap-7 lg:gap-8"
                 >
-                    {/* <div className="flex items-center gap-2">
-                        <label className="whitespace-nowrap font-semibold">
-                            Make
-                        </label>
-                        <input
-                            type="text"
-                            id="searchTerm"
-                            placeholder="Search..."
-                            className="border rounded-lg p-3 w-full"
-                            value={sidebardata.searchTerm}
-                            onChange={handleChange}
-                        />
-                    </div> */}
                     <div className="flex flex-col gap-3">
                         <div className="flex flex-col flex-1">
                             <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
@@ -475,15 +463,18 @@ export default function Search() {
                 </h1>
                 <div className="flex flex-wrap gap-x-4 gap-y-7 pb-10">
                     {!loading && listings.length === 0 && (
-                        <div className="flex justify-center items-center w-full min-h-[50vh]">
+                        <div className="flex justify-center items-center w-full min-h-[70vh]">
                             <p className="text-xl font-semibold text-slate-600">
                                 No listing found!
                             </p>
                         </div>
                     )}
                     {loading && (
-                        <div className="flex justify-center items-center w-full min-h-[50vh]">
-                            <p className="text-xl text-slate-700">Loading...</p>
+                        <div className="flex flex-col gap-2 justify-center items-center w-full min-h-[70vh]">
+                            <MoonLoader size={25} color="#155f75" />
+                            <p className="text-center text-2xl font-semibold text-slate-600">
+                                Loading
+                            </p>
                         </div>
                     )}
                     {!loading &&

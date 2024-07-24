@@ -7,6 +7,7 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { Link, useParams } from 'react-router-dom';
 import { LiaSearchPlusSolid } from 'react-icons/lia';
 import { toast } from 'react-toastify';
+import MoonLoader from 'react-spinners/MoonLoader';
 
 export default function Favorites() {
     const [error, setError] = useState(false);
@@ -174,9 +175,12 @@ export default function Favorites() {
                 ) : (
                     <div className="flex justify-center items-center h-[60vh]">
                         {loading ? (
-                            <p className="text-center text-2xl font-semibold text-slate-600">
-                                Loading...
-                            </p>
+                            <div className="flex flex-col justify-center items-center gap-2">
+                                <MoonLoader size={25} color="#155f75" />
+                                <p className="text-center text-2xl font-semibold text-slate-600">
+                                    Loading
+                                </p>
+                            </div>
                         ) : (
                             <div className="flex flex-col gap-3">
                                 <p className="text-xl font-semibold text-slate-600">

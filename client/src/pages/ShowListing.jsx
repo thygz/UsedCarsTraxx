@@ -5,6 +5,7 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { MdOutlineEdit } from 'react-icons/md';
 import ScrollToTop from '../components/ScrollToTop';
 import { toast } from 'react-toastify';
+import MoonLoader from 'react-spinners/MoonLoader';
 
 export default function ShowListing() {
     const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -165,9 +166,12 @@ export default function ShowListing() {
                             </p>
                         )}
                         {listingLoading ? (
-                            <p className="text-center text-2xl font-semibold text-slate-600">
-                                Loading...
-                            </p>
+                            <div className="flex flex-col justify-center items-center gap-2">
+                                <MoonLoader size={25} color="#155f75" />
+                                <p className="text-center text-2xl font-semibold text-slate-600">
+                                    Loading
+                                </p>
+                            </div>
                         ) : (
                             <p className="text-xl font-semibold text-slate-600">
                                 You have no listing yet.
