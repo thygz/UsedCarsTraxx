@@ -13,6 +13,7 @@ import ScrollToTop from '../components/ScrollToTop';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { IoMdClose } from 'react-icons/io';
 import carThreeD from '../assets/3dCar.webp';
+import MoonLoader from 'react-spinners/MoonLoader';
 
 export default function CreateListing() {
     const { currentUser } = useSelector((state) => state.user);
@@ -525,13 +526,24 @@ export default function CreateListing() {
                                     hidden
                                     ref={imageFileRef}
                                 />
-                                <div
-                                    onClick={() => imageFileRef.current.click()}
-                                    className="flex flex-col justify-center items-center gap-1 border border-slate-400 border-dashed cursor-pointer p-3 text-gray-700 hover:text-cyan-600 font-medium"
-                                >
-                                    <AiOutlineCloudUpload className="text-2xl" />
-                                    <p className="text-xs">Upload images</p>
-                                </div>
+                                {uploading ? (
+                                    <div className="flex flex-col justify-center items-center gap-1 border border-slate-500 border-dashed cursor-pointer p-3 text-gray-700 hover:text-cyan-600 font-medium">
+                                        <MoonLoader size={20} color="#155f75" />
+                                        <p className="text-xs">
+                                            Uploading images
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div
+                                        onClick={() =>
+                                            imageFileRef.current.click()
+                                        }
+                                        className="flex flex-col justify-center items-center gap-1 border border-slate-500 border-dashed cursor-pointer p-3 text-gray-700 hover:text-cyan-600 font-medium"
+                                    >
+                                        <AiOutlineCloudUpload className="text-2xl" />
+                                        <p className="text-xs">Upload images</p>
+                                    </div>
+                                )}
                             </div>
                             <p className="text-red-700 text-sm">
                                 {imageUploadError && imageUploadError}

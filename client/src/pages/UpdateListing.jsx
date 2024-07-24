@@ -12,6 +12,7 @@ import { FaUpload } from 'react-icons/fa6';
 import ScrollToTop from '../components/ScrollToTop';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { IoMdClose } from 'react-icons/io';
+import MoonLoader from 'react-spinners/MoonLoader';
 
 export default function CreateListing() {
     const { currentUser } = useSelector((state) => state.user);
@@ -214,7 +215,7 @@ export default function CreateListing() {
     };
 
     return (
-        <main className="px-3 pt-3 md:pt-10 pb-14 max-w-3xl mx-auto">
+        <main className="px-3 pt-3 md:pt-10 pb-20 max-w-3xl mx-auto">
             <ScrollToTop />
             <div className="p-3 bg-inherit rounded-sm">
                 <h1 className="text-2xl font-semibold text-center text-slate-800 mt-5 mb-7 md:mb-10">
@@ -517,13 +518,24 @@ export default function CreateListing() {
                                     hidden
                                     ref={imageFileRef}
                                 />
-                                <div
-                                    onClick={() => imageFileRef.current.click()}
-                                    className="flex flex-col justify-center items-center gap-1 border border-slate-500 border-dashed cursor-pointer p-3 text-gray-700 hover:text-cyan-600 font-medium"
-                                >
-                                    <AiOutlineCloudUpload className="text-2xl" />
-                                    <p className="text-xs">Upload images</p>
-                                </div>
+                                {uploading ? (
+                                    <div className="flex flex-col justify-center items-center gap-1 border border-slate-500 border-dashed cursor-pointer p-3 text-gray-700 hover:text-cyan-600 font-medium">
+                                        <MoonLoader size={20} color="#155f75" />
+                                        <p className="text-xs">
+                                            Uploading images
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div
+                                        onClick={() =>
+                                            imageFileRef.current.click()
+                                        }
+                                        className="flex flex-col justify-center items-center gap-1 border border-slate-500 border-dashed cursor-pointer p-3 text-gray-700 hover:text-cyan-600 font-medium"
+                                    >
+                                        <AiOutlineCloudUpload className="text-2xl" />
+                                        <p className="text-xs">Upload images</p>
+                                    </div>
+                                )}
                             </div>
                             <p className="text-red-700 text-sm">
                                 {imageUploadError && imageUploadError}
