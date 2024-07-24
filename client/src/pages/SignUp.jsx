@@ -82,7 +82,7 @@ export default function SignUp() {
                         <input
                             type="text"
                             className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
-                                validationErrors.username
+                                validationErrors.username || error
                                     ? 'border-red-600 focus:outline-none'
                                     : 'border-gray-300 focus:outline-gray-400'
                             }`}
@@ -102,7 +102,7 @@ export default function SignUp() {
                         <input
                             type="email"
                             className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
-                                validationErrors.email
+                                validationErrors.email || error
                                     ? 'border-red-600 focus:outline-none'
                                     : 'border-gray-300 focus:outline-gray-400'
                             }`}
@@ -112,6 +112,11 @@ export default function SignUp() {
                         {validationErrors.email && (
                             <span className="text-xs text-red-600 font-semibold px-1">
                                 {validationErrors.email}
+                            </span>
+                        )}
+                        {error && (
+                            <span className="text-xs text-red-600 font-semibold px-1">
+                                Email or username is already used
                             </span>
                         )}
                     </div>
@@ -154,7 +159,6 @@ export default function SignUp() {
                         <span className="text-cyan-800">Login</span>
                     </Link>
                 </div>
-                {error && <p className="text-red-500 mt-5 text-xs">{error}</p>}
             </div>
         </div>
     );
