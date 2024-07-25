@@ -100,7 +100,7 @@ export default function CreateListing() {
                 (snapshot) => {
                     const progress =
                         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log(`Upload is ${progress}% done`);
+                    // console.log(`Upload is ${progress}% done`);
                 },
                 (error) => {
                     reject(error);
@@ -528,7 +528,7 @@ export default function CreateListing() {
                                 />
                                 {uploading ? (
                                     <div className="flex flex-col justify-center items-center gap-1 border border-slate-500 border-dashed cursor-pointer p-3 text-gray-700 hover:text-cyan-600 font-medium">
-                                        <MoonLoader size={20} color="#155f75" />
+                                        <MoonLoader size={18} color="#155f75" />
                                         <p className="text-xs">
                                             Uploading images
                                         </p>
@@ -545,7 +545,7 @@ export default function CreateListing() {
                                     </div>
                                 )}
                             </div>
-                            <p className="text-red-700 text-sm">
+                            <p className="text-red-600 font-semibold text-xs">
                                 {imageUploadError && imageUploadError}
                             </p>
                             {formData.imageUrls.length > 0 &&
