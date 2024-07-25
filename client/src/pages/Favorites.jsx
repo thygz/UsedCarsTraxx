@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { Link, useParams } from 'react-router-dom';
-import { LiaSearchPlusSolid } from 'react-icons/lia';
 import { toast } from 'react-toastify';
 import MoonLoader from 'react-spinners/MoonLoader';
 
@@ -182,7 +181,7 @@ export default function Favorites() {
                                 </p>
                             </div>
                         ) : (
-                            <div className="flex flex-col gap-3">
+                            <div className="flex flex-col gap-5">
                                 <p className="text-xl font-semibold text-slate-600">
                                     You have no favorite listing yet.
                                 </p>
@@ -190,9 +189,9 @@ export default function Favorites() {
                                     to={'/search'}
                                     className="flex flex-1 justify-center items-center"
                                 >
-                                    <button className="flex flex-col justify-center items-center p-3 text-slate-600 text-sm rounded-md font-medium hover:bg-slate-100">
-                                        <LiaSearchPlusSolid className="text-5xl -scale-x-100" />
-                                        Check cars
+                                    <button className="flex gap-2 justify-center items-center px-5 py-1 text-white text-sm rounded-full font-semibold bg-gradient-to-r from-cyan-600 to-cyan-400 hover:bg-opacity-20">
+                                        Search car
+                                        <GiRaceCar className="text-center text-4xl text-slate-900" />
                                     </button>
                                 </Link>
                             </div>
