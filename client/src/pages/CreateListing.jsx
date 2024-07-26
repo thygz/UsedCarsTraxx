@@ -26,10 +26,10 @@ export default function CreateListing() {
         model: '',
         bodyType: 'Sedan',
         engineSize: '',
-        doors: 2,
-        year: 1990,
-        mileage: 1000,
-        price: 10000,
+        doors: '',
+        year: '',
+        mileage: '',
+        price: '',
         transmission: 'automatic',
         fuelType: 'gasoline',
         address: '',
@@ -274,10 +274,7 @@ export default function CreateListing() {
                                 <div className="border border-slate-300 px-2">
                                     <select
                                         type="text"
-                                        // name="bodyType"
                                         className="py-2 rounded-sm text-sm focus:outline-none w-full bg-inherit"
-                                        // id="bodyType"
-                                        // required
                                         value={formData.bodyType}
                                         onChange={handleChange}
                                     >
@@ -302,8 +299,6 @@ export default function CreateListing() {
                                     type="text"
                                     className="border bg-inherit border-slate-300 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="engineSize"
-                                    // min="0.8"
-                                    // max="8.0"
                                     maxLength="5"
                                     minLength="1"
                                     required
@@ -367,7 +362,7 @@ export default function CreateListing() {
                                     className="border bg-inherit border-slate-300 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                     id="price"
                                     min="10000"
-                                    max="5000000"
+                                    max="10000000"
                                     required
                                     onChange={handleChange}
                                     value={formData.price}
@@ -483,7 +478,6 @@ export default function CreateListing() {
                             </p>
                             <input
                                 type="text"
-                                // placeholder="Address"
                                 className="border bg-inherit border-slate-300 px-3 py-2 rounded-sm text-sm focus:outline-slate-400"
                                 id="address"
                                 required
@@ -497,8 +491,7 @@ export default function CreateListing() {
                             </p>
                             <textarea
                                 type="text"
-                                // placeholder="Description"
-                                className="border bg-inherit border-slate-300 p-3 rounded-sm text-sm focus:outline-slate-400"
+                                className="border bg-inherit border-slate-300 p-3 rounded-sm text-sm focus:outline-slate-400 h-40"
                                 id="description"
                                 required
                                 onChange={handleChange}
