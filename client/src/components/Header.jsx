@@ -12,6 +12,10 @@ import {
     signOutUserSuccess,
 } from '../redux/user/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { FaUserEdit } from 'react-icons/fa';
+import { FaList } from 'react-icons/fa';
+import { AiFillDelete } from 'react-icons/ai';
+import { IoLogOutSharp } from 'react-icons/io5';
 
 export default function Header() {
     const { currentUser } = useSelector((state) => state.user);
@@ -93,30 +97,34 @@ export default function Header() {
                                         onClick={() => setToggleMenu(false)}
                                     >
                                         <Link to="/profile">
-                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12">
-                                                Edit Profile
-                                            </li>
+                                            <div className="flex gap-2 py-3 pl-5 pr-12 items-center text-cyan-800 hover:text-cyan-500 duration-300">
+                                                <FaUserEdit className="text-lg" />
+                                                <li>Edit Profile</li>
+                                            </div>
                                         </Link>
                                         <Link to="/show-listing">
-                                            <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12">
-                                                Show Listings
-                                            </li>
+                                            <div className="flex gap-2 py-3 pl-5 pr-12 items-center text-cyan-800 hover:text-cyan-500 duration-300">
+                                                <FaList className="text-sm" />
+                                                <li>Show Listings</li>
+                                            </div>
                                         </Link>
-                                        <li
-                                            className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 cursor-pointer"
+                                        <div
+                                            className="flex gap-2 py-3 pl-5 pr-12 items-center text-cyan-800 hover:text-cyan-500 duration-300 cursor-pointer"
                                             onClick={() =>
                                                 setToggleDeleteModal(true)
                                             }
                                         >
-                                            Delete Account
-                                        </li>
-                                        <Link to="/sign-in">
-                                            <li
-                                                className="text-cyan-800 hover:text-cyan-500 duration-300 py-3 pl-5 pr-12 cursor-pointer"
+                                            <AiFillDelete className="text-lg" />
+                                            <li>Delete Account</li>
+                                        </div>
+                                        <Link to="sign-in">
+                                            <div
+                                                className="flex gap-2 py-3 pl-5 pr-12 items-center text-cyan-800 hover:text-cyan-500 duration-300 cursor-pointer"
                                                 onClick={handleSignOut}
                                             >
-                                                Log out
-                                            </li>
+                                                <IoLogOutSharp className="text-xl" />
+                                                <li>Log out</li>
+                                            </div>
                                         </Link>
                                     </ul>
                                 </div>
@@ -229,30 +237,34 @@ export default function Header() {
                                             }
                                         >
                                             <Link to="/profile">
-                                                <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12">
-                                                    Edit Profile
-                                                </li>
+                                                <div className="flex gap-2 py-2 pl-5 pr-12 items-center text-cyan-800 hover:text-cyan-500 duration-300">
+                                                    <FaUserEdit className="text-lg" />
+                                                    <li>Edit Profile</li>
+                                                </div>
                                             </Link>
                                             <Link to="/show-listing">
-                                                <li className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12">
-                                                    Show Listings
-                                                </li>
+                                                <div className="flex gap-2 py-2 pl-5 pr-12 items-center text-cyan-800 hover:text-cyan-500 duration-300">
+                                                    <FaList className="text-sm" />
+                                                    <li>Show Listings</li>
+                                                </div>
                                             </Link>
-                                            <li
-                                                className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 cursor-pointer"
+                                            <div
+                                                className="flex gap-2 py-2 pl-5 pr-12 items-center text-cyan-800 hover:text-cyan-500 duration-300 cursor-pointer"
                                                 onClick={() =>
                                                     setToggleDeleteModal(true)
                                                 }
                                             >
-                                                Delete Account
-                                            </li>
+                                                <AiFillDelete className="text-lg" />
+                                                <li>Delete Account</li>
+                                            </div>
                                             <Link to="sign-in">
-                                                <li
-                                                    className="text-cyan-800 hover:text-cyan-500 duration-300 py-2 pl-5 pr-12 cursor-pointer"
+                                                <div
+                                                    className="flex gap-2 py-2 pl-5 pr-12 items-center text-cyan-800 hover:text-cyan-500 duration-300 cursor-pointer"
                                                     onClick={handleSignOut}
                                                 >
-                                                    Log out
-                                                </li>
+                                                    <IoLogOutSharp className="text-xl" />
+                                                    <li>Log out</li>
+                                                </div>
                                             </Link>
                                         </ul>
                                     </div>
