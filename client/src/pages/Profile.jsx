@@ -22,6 +22,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ScrollToTop from '../components/ScrollToTop';
+import MoonLoader from 'react-spinners/MoonLoader';
 
 export default function Profile() {
     const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -29,6 +30,7 @@ export default function Profile() {
     const [file, setFile] = useState(undefined);
     const [filePerc, setFilePerc] = useState(0);
     const [fileUploadError, setFileUploadError] = useState(false);
+    const [uploading, setUploading] = useState(false);
     const [formData, setFormData] = useState({
         username: '' || currentUser.username,
         email: '' || currentUser.email,
@@ -62,15 +64,18 @@ export default function Profile() {
                 const progress =
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 setFilePerc(Math.round(progress));
+                setUploading(true);
             },
             (error) => {
                 setFileUploadError(true);
+                setUploading(false);
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     setFormData({ ...formData, avatar: downloadURL });
                 });
                 setFileUploadError(false);
+                setUploading(false);
             }
         );
     };
@@ -190,23 +195,24 @@ export default function Profile() {
                                 alt="profile"
                                 className="rounded-full h-28 w-28 object-cover self-center mt-2 md:mt-0"
                             />
-                            <p className="capitalize text-sm underline">
-                                Upload a new photo
-                            </p>
+                            {uploading ? (
+                                <div className="flex gap-1 justify-center items-center">
+                                    <MoonLoader size={16} color="#155f75" />
+                                    <p className="capitalize text-sm font-medium">
+                                        Uploading
+                                    </p>
+                                </div>
+                            ) : (
+                                <p className="capitalize text-sm underline">
+                                    Upload a new photo
+                                </p>
+                            )}
                         </div>
-                        <p className="text-xs mt-3 mx-auto text-center max-w-[8.5rem]">
+                        <p className="text-xs mt-3 mx-auto text-center">
                             {fileUploadError ? (
                                 <span className="text-red-700">
                                     Error image upload (Image must be less than
                                     2mb)
-                                </span>
-                            ) : filePerc > 0 && filePerc < 100 ? (
-                                <span className="text-slate-700">
-                                    Uploading {filePerc}%
-                                </span>
-                            ) : filePerc === 100 ? (
-                                <span className="text-green-700">
-                                    Image successfully uploaded!
                                 </span>
                             ) : (
                                 ''
