@@ -23,17 +23,17 @@ export default function Home() {
     const [bodyTypeListings, setBodyTypeListings] = useState([]);
     const [carTransmission, setCarTransmission] = useState('automatic');
     const [transmissionListings, setTransmissionListings] = useState([]);
-    const [carPriceOrder, setCarPriceOrder] = useState('desc');
+    const [carPriceOrder, setCarPriceOrder] = useState('asc');
     const [priceOrderListings, setPriceOrderListings] = useState([]);
     SwiperCore.use([Navigation]);
 
     const bodyTypeOptions = ['Sedan', 'Hatchback', 'SUV', 'MPV/MUV', 'Pickup'];
 
-    const transmissionOptions = ['automatic', 'manual', 'cvt', 'others'];
+    const transmissionOptions = ['automatic', 'manual', 'cvt'];
 
     const priceOrderOptions = [
-        { name: 'Highest to lowest', order: 'desc' },
         { name: 'Lowest to highest', order: 'asc' },
+        { name: 'Highest to lowest', order: 'desc' },
     ];
 
     useEffect(() => {
@@ -79,7 +79,7 @@ export default function Home() {
         const fetchHighestToLowestPriceListing = async () => {
             try {
                 const res = await fetch(
-                    '/api/listing/get?sort=price&order=desc&limit=5'
+                    '/api/listing/get?sort=price&order=asc&limit=5'
                 );
                 const data = await res.json();
                 setPriceOrderListings(data);
