@@ -105,19 +105,19 @@ export const getListings = async (req, res, next) => {
         let price = req.query.price;
 
         if (price === 'Under 250,000') {
-            price = { $lte: 250000 };
+            price = { $lt: 250000 };
         }
         if (price === 'Under 500,000') {
-            price = { $lte: 500000 };
+            price = { $lt: 500000 };
         }
         if (price === 'Under 750,000') {
-            price = { $lte: 750000 };
+            price = { $lt: 750000 };
         }
         if (price === 'Under 1,000,000') {
-            price = { $lte: 1000000 };
+            price = { $lt: 1000000 };
         }
         if (price === 'Under 3,000,000') {
-            price = { $lte: 3000000 };
+            price = { $lt: 3000000 };
         }
         if (price === undefined || price === 'AllPrice') {
             price = { $gte: 1 };
