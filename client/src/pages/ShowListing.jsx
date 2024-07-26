@@ -159,7 +159,7 @@ export default function ShowListing() {
                         ))}
                     </div>
                 ) : (
-                    <div className="flex justify-center items-center h-[60vh]">
+                    <div className="flex flex-col gap-5 justify-center items-center h-[60vh]">
                         {showListingsError && (
                             <p className="text-xl font-semibold text-red-700">
                                 Error showing the listings

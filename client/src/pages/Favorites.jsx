@@ -172,7 +172,7 @@ export default function Favorites() {
                         ))}
                     </div>
                 ) : (
-                    <div className="flex justify-center items-center h-[60vh]">
+                    <div className="flex flex-col gap-5 justify-center items-center h-[60vh]">
                         {loading ? (
                             <div className="flex flex-col justify-center items-center gap-2">
                                 <MoonLoader size={25} color="#155f75" />
@@ -190,7 +190,7 @@ export default function Favorites() {
                                     className="flex flex-1 justify-center items-center"
                                 >
                                     <button className="flex gap-2 justify-center items-center px-5 py-1 text-white text-sm rounded-full font-semibold bg-gradient-to-r from-cyan-600 to-cyan-400 hover:bg-opacity-20">
-                                        Search car
+                                        Search cars
                                         <GiRaceCar className="text-center text-4xl text-slate-900" />
                                     </button>
                                 </Link>
