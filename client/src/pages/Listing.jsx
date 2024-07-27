@@ -209,7 +209,7 @@ export default function Listing() {
         <main className="">
             <ScrollToTop />
             {listing && !loading ? (
-                <div className="flex flex-col max-w-full mx-auto gap-7 sm:gap-14 lg:gap-16 rounded-sm">
+                <div className="flex flex-col max-w-full mx-auto gap-7 sm:gap-20 rounded-sm">
                     <div className="w-full">
                         <Swiper
                             slidesPerView={1}
@@ -457,10 +457,10 @@ export default function Listing() {
                                     <div className="h-[1px] bg-gray-300"></div>
                                 </div>
                             </div>
-                            <h1 className="font-bold mt-10 text-gray-800">
+                            <h1 className="font-bold mt-12 text-gray-800">
                                 Description
                             </h1>
-                            <p className="text-sm mt-2 whitespace-pre-wrap font-medium">
+                            <p className="text-sm mt-2 whitespace-pre-wrap font-medium leading-7">
                                 {listing.description}
                             </p>
                         </div>
