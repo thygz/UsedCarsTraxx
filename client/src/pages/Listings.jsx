@@ -475,13 +475,8 @@ export default function Listings() {
                     >
                         <Swiper
                             navigation
-                            loop={true}
+                            // loop={true}
                             slidesPerView={1}
-                            // style={{
-                            //     '--swiper-navigation-color': '#fff',
-                            //     '--swiper-pagination-color': '#fff',
-                            //     '--swiper-navigation-size': '2rem',
-                            // }}
                             breakpoints={{
                                 320: {
                                     navigation: {
@@ -506,13 +501,6 @@ export default function Listings() {
                                             }}
                                         ></div>
                                     </div>
-                                    {/* <div className="flex justify-center items-center">
-                                        <img
-                                            src={url}
-                                            alt="image"
-                                            className="h-auto max-w-full"
-                                        />
-                                    </div> */}
                                 </SwiperSlide>
                             ))}
                         </Swiper>

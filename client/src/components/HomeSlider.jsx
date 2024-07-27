@@ -17,10 +17,6 @@ export default function HomeSlider({ carListings, carBodytype, showMore }) {
         <Swiper
             slidesPerView={1.25}
             spaceBetween={6}
-            // pagination={{
-            //     clickable: true,
-            // }}
-            // navigation
             breakpoints={{
                 320: {
                     slidesPerView: 1.15,

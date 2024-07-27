@@ -221,7 +221,6 @@ export default function Search() {
                                 type="text"
                                 className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-sm bg-inherit focus:outline-slate-400"
                                 id="searchTerm"
-                                // placeholder="Search..."
                                 onChange={handleChange}
                                 value={sidebardata.searchTerm}
                             />
@@ -234,7 +233,6 @@ export default function Search() {
                                 type="text"
                                 className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-sm bg-inherit focus:outline-slate-400"
                                 id="modelSearch"
-                                // placeholder="Search..."
                                 onChange={handleChange}
                                 value={sidebardata.modelSearch}
                             />
@@ -249,10 +247,7 @@ export default function Search() {
                             <div className="border-[1px] border-slate-400 px-2">
                                 <select
                                     type="text"
-                                    // name="bodyType"
                                     className="py-2 rounded-sm text-sm focus:outline-none w-full bg-inherit cursor-pointer"
-                                    // id="bodyType"
-                                    // required
                                     value={sidebardata.bodyType}
                                     onChange={handleChange}
                                 >
@@ -277,10 +272,7 @@ export default function Search() {
                             <div className="border-[1px] border-slate-400 px-2">
                                 <select
                                     type="text"
-                                    // name="bodyType"
                                     className="py-2 rounded-sm text-sm focus:outline-none w-full bg-inherit cursor-pointer"
-                                    // id="bodyType"
-                                    // required
                                     value={sidebardata.price}
                                     onChange={handleChange}
                                 >
@@ -304,7 +296,6 @@ export default function Search() {
                                     id="price_order"
                                     className="py-2 rounded-sm text-sm focus:outline-none w-full bg-inherit cursor-pointer"
                                     onChange={handleChange}
-                                    // defaultValue={'price_desc'}
                                     value={`${sidebardata.sort}_${sidebardata.order}`}
                                 >
                                     <option value="price_desc">

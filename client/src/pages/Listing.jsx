@@ -370,25 +370,6 @@ export default function Listing() {
                             )}
                             {contact && <Contact listing={listing} />}
                         </div>
-                        {/* <div className="fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer">
-                            <FaShare
-                                className="text-slate-500"
-                                onClick={() => {
-                                    navigator.clipboard.writeText(
-                                        window.location.href
-                                    );
-                                    setCopied(true);
-                                    setTimeout(() => {
-                                        setCopied(false);
-                                    }, 2000);
-                                }}
-                            />
-                        </div>
-                        {copied && (
-                            <p className="fixed top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2">
-                                Link copied!
-                            </p>
-                        )} */}
                     </div>
                     <div className="w-full p-3 sm:p-0">
                         <div className="max-w-3xl mx-auto text-slate-700 px-3 sm:px-10 lg:px-0 py-3 sm:py-0 bg-inherit sm:bg-inherit">
@@ -496,11 +477,6 @@ export default function Listing() {
                             navigation
                             // loop={true}
                             slidesPerView={1}
-                            // style={{
-                            //     '--swiper-navigation-color': '#fff',
-                            //     '--swiper-pagination-color': '#fff',
-                            //     '--swiper-navigation-size': '2rem',
-                            // }}
                             breakpoints={{
                                 320: {
                                     navigation: {
@@ -525,13 +501,6 @@ export default function Listing() {
                                             }}
                                         ></div>
                                     </div>
-                                    {/* <div className="flex justify-center items-center">
-                                        <img
-                                            src={url}
-                                            alt="image"
-                                            className="h-auto max-w-full"
-                                        />
-                                    </div> */}
                                 </SwiperSlide>
                             ))}
                         </Swiper>

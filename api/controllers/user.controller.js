@@ -93,13 +93,6 @@ export const addFavoriteCar = async (req, res, next) => {
 
 export const getFavoriteCar = async (req, res, next) => {
     try {
-        // const user = await User.find(
-        //     {
-        //         _id: req.params.id,
-        //     },
-        //     { 'favorites._id': 1 }
-        // );
-
         const user = await User.find(
             {
                 _id: req.params.id,

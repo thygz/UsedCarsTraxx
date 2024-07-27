@@ -11,7 +11,6 @@ import UpdateListing from './pages/UpdateListing';
 import Listing from './pages/Listing';
 import Search from './pages/Search';
 import ShowListing from './pages/ShowListing';
-import StartSearch from './pages/StartSearch';
 import Footer from './components/Footer';
 import Favorites from './pages/Favorites';
 import Listings from './pages/Listings';
@@ -26,7 +25,6 @@ export default function App() {
                 <Route path="/sign-up" element={<SignUp />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/search" element={<Search />}></Route>
-                <Route path="/start-search" element={<StartSearch />}></Route>
                 <Route path="/listing/:listingId" element={<Listing />}></Route>
                 <Route
                     path="/listings/:listingId"
