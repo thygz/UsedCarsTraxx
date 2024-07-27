@@ -14,6 +14,7 @@ import { GiRaceCar } from 'react-icons/gi';
 import { toast } from 'react-toastify';
 import { IoMdHeart } from 'react-icons/io';
 import { IoMdHeartDislike } from 'react-icons/io';
+import MoonLoader from 'react-spinners/MoonLoader';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -208,7 +209,7 @@ export default function Listing() {
         <main className="">
             <ScrollToTop />
             {listing && !loading ? (
-                <div className="flex flex-col max-w-full mx-auto gap-7 sm:gap-14 lg:gap-10 rounded-sm">
+                <div className="flex flex-col max-w-full mx-auto gap-7 sm:gap-14 lg:gap-16 rounded-sm">
                     <div className="w-full">
                         <Swiper
                             slidesPerView={1}
@@ -224,7 +225,6 @@ export default function Listing() {
                             breakpoints={{
                                 780: {
                                     slidesPerView: 2,
-                                    // spaceBetween: 6,
                                 },
                             }}
                             className="listing-image"
@@ -526,9 +526,12 @@ export default function Listing() {
             ) : (
                 <div className="flex justify-center items-center h-[80vh]">
                     {loading && (
-                        <p className="text-center text-2xl font-semibold text-slate-600">
-                            Loading...
-                        </p>
+                        <div className="flex flex-col justify-center items-center gap-2">
+                            <MoonLoader size={25} color="#155f75" />
+                            <p className="text-center text-2xl font-semibold text-slate-600">
+                                Loading
+                            </p>
+                        </div>
                     )}
                     {error && (
                         <p className="text-center text-2xl font-semibold text-slate-600">
@@ -537,7 +540,7 @@ export default function Listing() {
                     )}
                 </div>
             )}
-            <div className="max-w-3xl xl:max-w-4xl mx-auto px-5 py-3 sm:px-10 lg:px-0 flex flex-col gap-8 mt-10 mb-8 md:mb-12">
+            <div className="max-w-3xl xl:max-w-4xl mx-auto px-5 py-3 sm:px-10 lg:px-0 flex flex-col gap-8 my-10 md:mt-24 md:mb-16">
                 {recommendedListings && recommendedListings.length > 0 && (
                     <div>
                         <div className="mt-5 mb-3">
