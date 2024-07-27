@@ -293,9 +293,9 @@ export default function Listings() {
                                                                     onClick={() => {
                                                                         addToFavoriteHandler();
                                                                     }}
-                                                                    className="flex flex-col gap-1 justify-center items-center mr-3 cursor-pointer group"
+                                                                    className="flex flex-col gap-1 justify-center items-center mr-3 cursor-pointer"
                                                                 >
-                                                                    <GiRaceCar className="h-9 sm:h-10 w-9 sm:w-10 rounded-full bg-gray-300 flex flex-col justify-center items-center p-1 group-hover:text-white group-hover:bg-cyan-500" />
+                                                                    <GiRaceCar className="h-9 sm:h-10 w-9 sm:w-10 rounded-full bg-gray-300 flex flex-col justify-center items-center p-1" />
                                                                     <p className="text-slate-700 font-semibold text-xs sm:text-sm">
                                                                         Save
                                                                     </p>
@@ -310,9 +310,9 @@ export default function Listings() {
                                                                         addToFavoriteHandler();
                                                                         toggleFavorite();
                                                                     }}
-                                                                    className="flex flex-col gap-1 justify-center items-center mr-3 cursor-pointer group"
+                                                                    className="flex flex-col gap-1 justify-center items-center mr-3 cursor-pointer"
                                                                 >
-                                                                    <GiRaceCar className="h-9 sm:h-10 w-9 sm:w-10 rounded-full bg-gray-300 flex flex-col justify-center items-center p-1 group-hover:text-white group-hover:bg-cyan-500" />
+                                                                    <GiRaceCar className="h-9 sm:h-10 w-9 sm:w-10 rounded-full bg-gray-300 flex flex-col justify-center items-center p-1" />
                                                                     <p className="text-slate-700 font-semibold text-xs sm:text-sm">
                                                                         Save
                                                                     </p>
@@ -342,9 +342,9 @@ export default function Listings() {
                                 {!currentUser && (
                                     <Link
                                         to={'/sign-in'}
-                                        className="flex flex-col gap-1 justify-center items-center mr-3 cursor-pointer group"
+                                        className="flex flex-col gap-1 justify-center items-center mr-3 cursor-pointer"
                                     >
-                                        <GiRaceCar className="h-9 sm:h-10 w-9 sm:w-10 rounded-full bg-gray-300 flex flex-col justify-center items-center p-1 group-hover:text-white group-hover:bg-cyan-500" />
+                                        <GiRaceCar className="h-9 sm:h-10 w-9 sm:w-10 rounded-full bg-gray-300 flex flex-col justify-center items-center p-1" />
                                         <p className="text-slate-700 font-semibold text-xs sm:text-sm">
                                             Save
                                         </p>
