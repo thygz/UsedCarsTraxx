@@ -37,19 +37,6 @@ export default function Home() {
     ];
 
     useEffect(() => {
-        const fetchLatestListings = async () => {
-            try {
-                const res = await fetch(
-                    '/api/listing/get?sort=createdAt&order=desc&limit=5'
-                );
-                const data = await res.json();
-                setLatestListings(data);
-                fetchSedanListings();
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
         const fetchSedanListings = async () => {
             try {
                 const res = await fetch(
@@ -70,6 +57,19 @@ export default function Home() {
                 );
                 const data = await res.json();
                 setTransmissionListings(data);
+                fetchLatestListings();
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        const fetchLatestListings = async () => {
+            try {
+                const res = await fetch(
+                    '/api/listing/get?sort=createdAt&order=desc&limit=5'
+                );
+                const data = await res.json();
+                setLatestListings(data);
                 fetchHighestToLowestPriceListing();
             } catch (error) {
                 console.log(error);
@@ -88,7 +88,7 @@ export default function Home() {
             }
         };
 
-        fetchLatestListings();
+        fetchSedanListings();
     }, []);
 
     const handleClickBodyType = async (bodyTypeName) => {
