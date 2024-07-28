@@ -466,7 +466,7 @@ export default function Listings() {
                         </div>
                     </div>
                     <div
-                        className={`absolute inset-0 mx-auto my-auto p-0 md:p-10 lg:p-20 2xl:p-80 z-40 ${
+                        className={`fixed inset-0 mx-auto my-auto z-40 ${
                             !toggleImage
                                 ? 'opacity-0 pointer-events-none'
                                 : 'opacity-1 pointer-events-auto'
@@ -492,7 +492,7 @@ export default function Listings() {
                         >
                             {listing.imageUrls.map((url) => (
                                 <SwiperSlide key={url}>
-                                    <div className="h-[100vh] md:h-[90vh] lg:h-[80vh] 2xl:h-[60vh]">
+                                    <div className="h-[100vh] sm:p-20">
                                         <div
                                             className="h-full"
                                             style={{
