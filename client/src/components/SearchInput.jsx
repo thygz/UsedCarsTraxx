@@ -76,7 +76,7 @@ export default function SearchInput() {
                         </p>
                         <input
                             type="text"
-                            className="border border-slate-400 bg-white px-3 py-2 rounded-md text-base text-gray-700 focus:outline-gray-400"
+                            className="border border-slate-400 bg-white px-3 py-[6px] rounded-md text-lg text-gray-700 focus:outline-gray-400"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -87,7 +87,7 @@ export default function SearchInput() {
                         </p>
                         <input
                             type="text"
-                            className="border border-slate-400 bg-white px-3 py-2 rounded-md text-base text-gray-700 focus:outline-gray-400"
+                            className="border border-slate-400 bg-white px-3 py-[6px] rounded-md text-lg text-gray-700 focus:outline-gray-400"
                             value={modelSearch}
                             onChange={(e) => setModelSearch(e.target.value)}
                         />
