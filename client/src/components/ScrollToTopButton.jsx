@@ -25,10 +25,10 @@ export default function ScrollToTopButton() {
         <div>
             {showButton && (
                 <button
-                    className="fixed bottom-14 md:bottom-3 right-2 h-10 w-10 rounded-full bg-cyan-500 flex justify-center items-center shadow-2xl"
+                    className="fixed bottom-16 md:bottom-4 right-4 h-10 w-10 rounded-full bg-slate-400 flex justify-center items-center shadow-2xl"
                     onClick={handleScrollToTop}
                 >
-                    <FaArrowUp className="text-white text-xl" />
+                    <FaArrowUp className="text-slate-900 text-xl" />
                 </button>
             )}
         </div>

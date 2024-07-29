@@ -5,12 +5,12 @@ import { LuCheckSquare } from 'react-icons/lu';
 export default function HowUsedcarstraxxWork() {
     return (
         <div className="max-w-full mt-20">
-            <div className="max-w-6xl mx-auto pt-5 md:pt-10 pb-10">
-                <h1 className="text-center mb-16 text-slate-800 text-2xl font-semibold px-3">
+            <div className="max-w-6xl mx-auto pt-5 pb-5 md:py-10">
+                <h1 className="text-center mb-5 md:mb-12 text-slate-800 text-2xl font-semibold px-3">
                     How UsedCarsTraxx Works
                 </h1>
-                <div className="flex flex-col md:flex-row gap-14 md:gap-5 lg:gap-10 px-16 md:px-5 lg:px-20 xl:px-28">
-                    <div className="flex flex-col flex-1 gap-4 bg-slate-300 rounded-lg px-4 md:px-3 xl:px-4 py-7 md:py-5 lg:py-6">
+                <div className="flex flex-col md:flex-row gap-3 md:gap-5 lg:gap-10 px-12 md:px-5 lg:px-20 xl:px-28">
+                    <div className="flex flex-col flex-1 gap-4 rounded-lg px-4 md:px-3 xl:px-4 py-7 md:py-5 lg:py-6">
                         <div className="flex flex-col justify-center items-center">
                             <MdOutlineScreenSearchDesktop className="text-4xl text-cyan-800" />
                             <h1 className="text-slate-950 text-base xl:text-lg text-center">
@@ -24,7 +24,7 @@ export default function HowUsedcarstraxxWork() {
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-col flex-1 gap-4 bg-slate-300 rounded-lg px-4 md:px-3 xl:px-4 py-7 md:py-5 lg:py-6">
+                    <div className="flex flex-col flex-1 gap-4 rounded-lg px-4 md:px-3 xl:px-4 py-7 md:py-5 lg:py-6">
                         <div className="flex flex-col justify-center items-center">
                             <FaRegHandPointUp className="text-4xl text-cyan-800" />
                             <h1 className="text-slate-950 text-base xl:text-lg text-center">
@@ -39,7 +39,7 @@ export default function HowUsedcarstraxxWork() {
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-col flex-1 gap-4 bg-slate-300 rounded-lg px-4 md:px-3 xl:px-4 py-7 md:py-5 lg:py-6">
+                    <div className="flex flex-col flex-1 gap-4 rounded-lg px-4 md:px-3 xl:px-4 py-7 md:py-5 lg:py-6">
                         <div className="flex flex-col justify-center items-center">
                             <LuCheckSquare className="text-4xl text-cyan-800" />
                             <h1 className="text-slate-950 text-base xl:text-lg text-center">

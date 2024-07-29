@@ -61,7 +61,7 @@ export default function SignIn() {
                         </p>
                         <input
                             type="email"
-                            className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                            className={`border bg-inherit px-3 py-2 rounded-sm text-base ${
                                 error
                                     ? 'border-red-600 focus:outline-none'
                                     : 'border-gray-300 focus:outline-gray-400'
@@ -81,7 +81,7 @@ export default function SignIn() {
                         </p>
                         <input
                             type="password"
-                            className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                            className={`border bg-inherit px-3 py-2 rounded-sm text-base ${
                                 error
                                     ? 'border-red-600 focus:outline-none'
                                     : 'border-gray-300 focus:outline-gray-400'
@@ -92,7 +92,7 @@ export default function SignIn() {
                     </div>
                     <button
                         disabled={loading}
-                        className="bg-cyan-700 text-white p-2 mt-5 rounded-sm font-semibold hover:opacity-95 disabled:opacity-80"
+                        className="bg-cyan-700 text-white p-[9px] mt-5 rounded-sm font-semibold hover:opacity-95 disabled:opacity-80"
                     >
                         {loading ? 'Loading...' : 'Login'}
                     </button>

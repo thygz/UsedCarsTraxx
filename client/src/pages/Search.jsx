@@ -2,10 +2,10 @@ import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ScrollToTop from '../components/ScrollToTop';
 import SearchListingitem from '../components/SearchListingitem';
-import { FaFilter } from 'react-icons/fa';
 import { RiCloseLine } from 'react-icons/ri';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import MoonLoader from 'react-spinners/MoonLoader';
+import { IoFilter } from 'react-icons/io5';
 
 export default function Search() {
     const navigate = useNavigate();
@@ -201,7 +201,7 @@ export default function Search() {
         <div className="flex flex-col-reverse md:flex-row max-w-6xl mx-auto px-5 py-3 md:pt-10 md:pb-14 lg:px-4 min-h-[75vh]">
             <ScrollToTop />
             <div
-                className={`md:pr-4 p-5 md:px-0 md:pt-[5rem] md:border-r-2 lg:w-[22%] bg-white max-h-[90%] overflow-y-scroll md:overflow-hidden md:bg-inherit fixed md:static left-0 right-0 z-50 md:z-0 transition-all duration-150 ease-in ${
+                className={`md:pr-4 px-8 py-8 md:px-0 md:pt-[5rem] md:border-r-2 lg:w-[22%] bg-slate-100 max-h-[100%] overflow-y-scroll md:overflow-hidden md:bg-inherit fixed md:static left-0 right-0 z-50 md:z-0 transition-all duration-150 ease-in ${
                     toggleFilter ? 'bottom-0' : 'bottom-[-100%]'
                 }`}
             >
@@ -212,14 +212,14 @@ export default function Search() {
                     onSubmit={handleSubmit}
                     className="flex flex-col gap-7 lg:gap-8"
                 >
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-5 md:gap-3">
                         <div className="flex flex-col flex-1">
                             <p className="text-xs font-semibold p-[0.15rem] text-gray-600">
                                 Vehicle Make
                             </p>
                             <input
                                 type="text"
-                                className="border-[1px] border-slate-400 px-3 py-[6px] rounded-sm text-base bg-inherit focus:outline-slate-400"
+                                className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-base bg-inherit focus:outline-slate-400"
                                 id="searchTerm"
                                 onChange={handleChange}
                                 value={sidebardata.searchTerm}
@@ -231,7 +231,7 @@ export default function Search() {
                             </p>
                             <input
                                 type="text"
-                                className="border-[1px] border-slate-400 px-3 py-[6px] rounded-sm text-base bg-inherit focus:outline-slate-400"
+                                className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-base bg-inherit focus:outline-slate-400"
                                 id="modelSearch"
                                 onChange={handleChange}
                                 value={sidebardata.modelSearch}
@@ -247,7 +247,7 @@ export default function Search() {
                             <div className="border-[1px] border-slate-400 px-2">
                                 <select
                                     type="text"
-                                    className="py-2 rounded-sm text-base focus:outline-none w-full bg-inherit cursor-pointer"
+                                    className="py-[0.6rem] rounded-sm text-base focus:outline-none w-full bg-inherit cursor-pointer"
                                     value={sidebardata.bodyType}
                                     onChange={handleChange}
                                 >
@@ -272,7 +272,7 @@ export default function Search() {
                             <div className="border-[1px] border-slate-400 px-2">
                                 <select
                                     type="text"
-                                    className="py-2 rounded-sm text-base focus:outline-none w-full bg-inherit cursor-pointer"
+                                    className="py-[0.6rem] rounded-sm text-base focus:outline-none w-full bg-inherit cursor-pointer"
                                     value={sidebardata.price}
                                     onChange={handleChange}
                                 >
@@ -294,7 +294,7 @@ export default function Search() {
                             <div className="border-[1px] border-slate-400 px-2">
                                 <select
                                     id="price_order"
-                                    className="py-2 rounded-sm text-base focus:outline-none w-full bg-inherit cursor-pointer"
+                                    className="py-[0.6rem] rounded-sm text-base focus:outline-none w-full bg-inherit cursor-pointer"
                                     onChange={handleChange}
                                     value={`${sidebardata.sort}_${sidebardata.order}`}
                                 >
@@ -431,13 +431,13 @@ export default function Search() {
                             </div>
                         </div>
                     </div>
-                    <button className="bg-cyan-700 text-white p-2 mt-5 rounded-sm font-semibold hover:opacity-95 disabled:opacity-80">
+                    <button className="bg-cyan-700 text-white p-[9px] mt-5 rounded-sm font-semibold hover:opacity-95 disabled:opacity-80">
                         Search
                     </button>
                 </form>
                 <RiCloseLine
                     onClick={() => setToggleFilter(false)}
-                    className="text-2xl text-cyan-800 absolute top-2 right-3 md:hidden cursor-pointer"
+                    className="text-3xl text-slate-600 absolute top-3 right-3 md:hidden cursor-pointer"
                 />
                 <div className="hidden">
                     {toggleFilter
@@ -446,7 +446,7 @@ export default function Search() {
                 </div>
             </div>
             <div
-                className="p-2 md:p-0 md:ml-5 xl:ml-7 flex-1"
+                className="p-2 md:p-0 md:ml-1 lg:ml-5 xl:ml-7 flex-1"
                 ref={searchResult}
             >
                 <h1 className="text-lg md:text-xl font-semibold pb-5 text-slate-700 mt-1">
@@ -487,10 +487,10 @@ export default function Search() {
                 </div>
             </div>
             <div
-                className="fixed bottom-3 right-2 h-10 w-10 rounded-full bg-cyan-700 flex justify-center items-center shadow-2xl md:hidden"
+                className="fixed bottom-5 right-4 h-10 w-10 rounded-full bg-slate-400 flex justify-center items-center md:hidden"
                 onClick={() => setToggleFilter(true)}
             >
-                <FaFilter className="text-white" />
+                <IoFilter className="text-2xl" />
             </div>
             <ScrollToTopButton />
             <div

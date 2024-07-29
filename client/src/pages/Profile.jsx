@@ -224,7 +224,7 @@ export default function Profile() {
                                 placeholder="username"
                                 defaultValue={currentUser.username}
                                 id="username"
-                                className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                                className={`border bg-inherit px-3 py-2 rounded-sm text-base ${
                                     validationErrors.username
                                         ? 'border-red-600 focus:outline-none'
                                         : 'border-gray-300 focus:outline-gray-400'
@@ -246,7 +246,7 @@ export default function Profile() {
                                 placeholder="email"
                                 defaultValue={currentUser.email}
                                 id="email"
-                                className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                                className={`border bg-inherit px-3 py-2 rounded-sm text-base ${
                                     validationErrors.email
                                         ? 'border-red-600 focus:outline-none'
                                         : 'border-gray-300 focus:outline-gray-400'
@@ -266,7 +266,7 @@ export default function Profile() {
                             <input
                                 type="password"
                                 id="password"
-                                className={`border bg-inherit px-3 py-2 rounded-sm text-sm ${
+                                className={`border bg-inherit px-3 py-2 rounded-sm text-base ${
                                     validationErrors.password
                                         ? 'border-red-600 focus:outline-none'
                                         : 'border-gray-300 focus:outline-gray-400'
@@ -281,7 +281,7 @@ export default function Profile() {
                         </div>
                         <button
                             disabled={loading}
-                            className="bg-cyan-700 text-white p-2 mt-5 rounded-sm font-semibold hover:opacity-95 disabled:opacity-80"
+                            className="bg-cyan-700 text-white p-[9px] mt-5 rounded-sm font-semibold hover:opacity-95 disabled:opacity-80"
                         >
                             {loading ? 'Loading...' : 'Save Changes'}
                         </button>
