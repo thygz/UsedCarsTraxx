@@ -41,7 +41,7 @@ export default function CarBrand() {
                         </div>
                     </div>
                     <Link to={'/search'}>
-                        <button className="flex justify-center items-center shadow-slate-400 shadow-sm bg-cyan-800 w-52 py-2 text-white text-sm sm:text-base rounded-md font-semibold hover:opacity-90">
+                        <button className="flex justify-center items-center bg-cyan-800 w-52 py-2 text-white text-sm sm:text-base rounded-md font-semibold hover:opacity-90">
                             Check all cars
                         </button>
                     </Link>

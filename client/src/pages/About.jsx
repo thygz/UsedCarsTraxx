@@ -5,7 +5,7 @@ export default function About() {
     return (
         <div className="pt-10 sm:pt-14 pb-20 px-5 max-w-3xl mx-auto">
             <ScrollToTop />
-            <h1 className="text-3xl font-bold mb-14 text-slate-800 capitalize text-center">
+            <h1 className="text-3xl font-bold mb-8 text-slate-800 capitalize text-center">
                 About Us
             </h1>
             <p className="mb-8 text-slate-700 text-justify">
@@ -21,10 +21,10 @@ export default function About() {
                 to find that ideal vehicle while making the experience easy and
                 enjoyable.""
             </p>
-            <h1 className="text-2xl font-bold mb-8 text-slate-800 capitalize text-center">
+            <h1 className="text-xl font-bold mb-5 text-slate-800 capitalize">
                 What car should you buy?
             </h1>
-            <p className="mb-8 text-slate-700 text-justify">
+            <p className="mb-10 text-slate-700 text-justify">
                 This guide will outline a very simple process by which you can
                 narrow down your selection to a few models that will best fit
                 you and your lifestyle. You’ll also get some resources that
@@ -32,7 +32,7 @@ export default function About() {
                 With so many different makes and models out there, trying to
                 figure out which car you want to buy can be overwhelming.
             </p>
-            <h1 className="text-xl font-bold text-slate-800 capitalize mb-2">
+            <h1 className="text-xl font-bold text-slate-800 capitalize mb-5">
                 Figure out what you need
             </h1>
             <p className="mb-4 text-slate-700 text-justify">
@@ -46,7 +46,7 @@ export default function About() {
                 your budget, you can save yourself from making payments and put
                 that money in the bank instead.
             </p>
-            <p className="mb-8 text-slate-700 text-justify">
+            <p className="mb-10 text-slate-700 text-justify">
                 Before you start looking at cars, take the time to think about
                 what your needs and priorities for your car are. You may already
                 have an idea of what you want, but if you start by figuring out
@@ -59,7 +59,7 @@ export default function About() {
                 buying a sweet ride that turns into a headache when you take it
                 home.
             </p>
-            <h1 className="text-xl font-bold text-slate-800 capitalize mb-2">
+            <h1 className="text-xl font-bold text-slate-800 capitalize mb-5">
                 Get an idea of what you want
             </h1>
             <p className="mb-4 text-slate-700 text-justify">
@@ -80,7 +80,7 @@ export default function About() {
                 a car in person or sitting in the driver’s seat will help you
                 move it up, down, or entirely off your list.
             </p>
-            <p className="mb-10 text-slate-700 text-justify">
+            <p className="mb-16 text-slate-700 text-justify">
                 At this point, you’re really just trying to get an idea of
                 what’s available. Look around, even hop in the driver’s seat of
                 a few cars and see how things feel, but no need to start taking
