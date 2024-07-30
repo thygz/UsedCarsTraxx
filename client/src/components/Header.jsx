@@ -318,8 +318,8 @@ export default function Header() {
                     </div>
                     <div className="hidden">
                         {toggleMenu || toggleDeleteModal
-                            ? (document.body.style.overflowY = 'hidden')
-                            : (document.body.style.overflowY = 'visible')}
+                            ? (document.body.style.overflow = 'hidden')
+                            : (document.body.style.overflow = 'visible')}
                     </div>
                 </div>
                 <div className="lg:hidden">
