@@ -25,6 +25,15 @@ export default function Header() {
     const [toggleLoginSignup, setToggleLoginSignup] = useState(false);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            setToggleMenu(false);
+            setToggleDeleteModal(false);
+            setToggleProfile(false);
+            setToggleLoginSignup(false);
+        });
+    }, []);
+
     const handleSignOut = async () => {
         try {
             dispatch(signOutUserStart());
