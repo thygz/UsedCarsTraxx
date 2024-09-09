@@ -219,7 +219,7 @@ export default function Search() {
                             </p>
                             <input
                                 type="text"
-                                className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-base bg-inherit focus:outline-slate-400"
+                                className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-base lg:text-sm bg-inherit focus:outline-slate-400"
                                 id="searchTerm"
                                 onChange={handleChange}
                                 value={sidebardata.searchTerm}
@@ -231,7 +231,7 @@ export default function Search() {
                             </p>
                             <input
                                 type="text"
-                                className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-base bg-inherit focus:outline-slate-400"
+                                className="border-[1px] border-slate-400 px-3 py-2 rounded-sm text-base lg:text-sm bg-inherit focus:outline-slate-400"
                                 id="modelSearch"
                                 onChange={handleChange}
                                 value={sidebardata.modelSearch}
@@ -247,7 +247,7 @@ export default function Search() {
                             <div className="border-[1px] border-slate-400 px-2">
                                 <select
                                     type="text"
-                                    className="py-[0.6rem] rounded-sm text-base focus:outline-none w-full bg-inherit cursor-pointer"
+                                    className="py-[0.6rem] rounded-sm text-base lg:text-sm focus:outline-none w-full bg-inherit cursor-pointer"
                                     value={sidebardata.bodyType}
                                     onChange={handleChange}
                                 >
@@ -272,7 +272,7 @@ export default function Search() {
                             <div className="border-[1px] border-slate-400 px-2">
                                 <select
                                     type="text"
-                                    className="py-[0.6rem] rounded-sm text-base focus:outline-none w-full bg-inherit cursor-pointer"
+                                    className="py-[0.6rem] rounded-sm text-base lg:text-sm focus:outline-none w-full bg-inherit cursor-pointer"
                                     value={sidebardata.price}
                                     onChange={handleChange}
                                 >
@@ -294,7 +294,7 @@ export default function Search() {
                             <div className="border-[1px] border-slate-400 px-2">
                                 <select
                                     id="price_order"
-                                    className="py-[0.6rem] rounded-sm text-base focus:outline-none w-full bg-inherit cursor-pointer"
+                                    className="py-[0.6rem] rounded-sm text-base lg:text-sm focus:outline-none w-full bg-inherit cursor-pointer"
                                     onChange={handleChange}
                                     value={`${sidebardata.sort}_${sidebardata.order}`}
                                 >

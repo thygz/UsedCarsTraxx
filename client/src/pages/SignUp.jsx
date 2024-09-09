@@ -81,7 +81,7 @@ export default function SignUp() {
                         </p>
                         <input
                             type="text"
-                            className={`border bg-inherit px-3 py-2 rounded-sm text-base ${
+                            className={`border bg-inherit px-3 py-2 rounded-sm text-base lg:text-sm ${
                                 validationErrors.username || error
                                     ? 'border-red-600 focus:outline-none'
                                     : 'border-gray-300 focus:outline-gray-400'
@@ -101,7 +101,7 @@ export default function SignUp() {
                         </p>
                         <input
                             type="email"
-                            className={`border bg-inherit px-3 py-2 rounded-sm text-base ${
+                            className={`border bg-inherit px-3 py-2 rounded-sm text-base lg:text-sm ${
                                 validationErrors.email || error
                                     ? 'border-red-600 focus:outline-none'
                                     : 'border-gray-300 focus:outline-gray-400'
@@ -126,7 +126,7 @@ export default function SignUp() {
                         </p>
                         <input
                             type="password"
-                            className={`border bg-inherit px-3 py-2 rounded-sm text-base ${
+                            className={`border bg-inherit px-3 py-2 rounded-sm text-base lg:text-sm ${
                                 validationErrors.password
                                     ? 'border-red-600 focus:outline-none'
                                     : 'border-gray-300 focus:outline-gray-400'
@@ -142,7 +142,7 @@ export default function SignUp() {
                     </div>
                     <button
                         disabled={loading}
-                        className="bg-cyan-700 text-white p-[9px] mt-5 rounded-sm font-semibold hover:opacity-95 disabled:opacity-80"
+                        className="bg-cyan-700 text-white p-[9px] lg:p-2 mt-5 rounded-sm font-semibold hover:opacity-95 disabled:opacity-80"
                     >
                         {loading ? 'Loading...' : 'Sign Up'}
                     </button>

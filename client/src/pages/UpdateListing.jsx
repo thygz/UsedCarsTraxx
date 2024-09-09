@@ -230,7 +230,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="text"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base lg:text-sm focus:outline-slate-400"
                                     id="make"
                                     maxLength="50"
                                     minLength="2"
@@ -245,7 +245,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="text"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base lg:text-sm focus:outline-slate-400"
                                     id="model"
                                     maxLength="50"
                                     minLength="2"
@@ -266,7 +266,7 @@ export default function CreateListing() {
                                 <div className="border border-slate-400 px-2">
                                     <select
                                         type="text"
-                                        className="py-[0.6rem] rounded-sm text-base focus:outline-none w-full bg-inherit"
+                                        className="py-[0.6rem] rounded-sm text-base lg:text-sm focus:outline-none w-full bg-inherit"
                                         value={formData.bodyType}
                                         onChange={handleChange}
                                     >
@@ -289,7 +289,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="text"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base lg:text-sm focus:outline-slate-400"
                                     id="engineSize"
                                     maxLength="5"
                                     minLength="1"
@@ -304,7 +304,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="number"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base lg:text-sm focus:outline-slate-400"
                                     id="doors"
                                     min="2"
                                     max="5"
@@ -321,7 +321,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="number"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base lg:text-sm focus:outline-slate-400"
                                     id="year"
                                     min="1900"
                                     max="3000"
@@ -336,7 +336,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="number"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base lg:text-sm focus:outline-slate-400"
                                     id="mileage"
                                     min="500"
                                     max="500000"
@@ -351,7 +351,7 @@ export default function CreateListing() {
                                 </p>
                                 <input
                                     type="number"
-                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base focus:outline-slate-400"
+                                    className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base lg:text-sm focus:outline-slate-400"
                                     id="price"
                                     min="10000"
                                     max="10000000"
@@ -470,7 +470,7 @@ export default function CreateListing() {
                             </p>
                             <input
                                 type="text"
-                                className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base focus:outline-slate-400"
+                                className="border bg-inherit border-slate-400 px-3 py-2 rounded-sm text-base lg:text-sm focus:outline-slate-400"
                                 id="address"
                                 required
                                 onChange={handleChange}
@@ -483,7 +483,7 @@ export default function CreateListing() {
                             </p>
                             <textarea
                                 type="text"
-                                className="border bg-inherit border-slate-400 p-3 rounded-sm text-base focus:outline-slate-400 h-40"
+                                className="border bg-inherit border-slate-400 p-3 rounded-sm text-base lg:text-sm focus:outline-slate-400 h-40"
                                 id="description"
                                 required
                                 onChange={handleChange}
@@ -557,7 +557,7 @@ export default function CreateListing() {
                                 ))}
                             <button
                                 disabled={loading || uploading}
-                                className="bg-cyan-700 text-white p-[9px] my-3 rounded-sm font-semibold hover:opacity-95 disabled:opacity-80"
+                                className="bg-cyan-700 text-white p-[9px] lg:p-2 my-3 rounded-sm font-semibold hover:opacity-95 disabled:opacity-80"
                             >
                                 {loading ? 'Updating...' : 'Update'}
                             </button>
