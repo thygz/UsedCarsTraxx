@@ -45,7 +45,7 @@ export default function SignIn() {
         }
     };
     return (
-        <div className="max-w-sm md:max-w-md mx-auto px-3 pt-10 pb-14 min-h-[75vh]">
+        <div className="max-w-sm md:max-w-md mx-auto sm:px-3 pt-10 pb-14 min-h-[75vh]">
             <ScrollToTop />
             <div className="bg-inherit px-4 py-6 md:p-7 border-2">
                 <h1 className="text-2xl text-center mb-7 font-bold text-slate-800">
@@ -109,6 +109,14 @@ export default function SignIn() {
                         <span className="text-cyan-800">Sign Up</span>
                     </Link>
                 </div>
+            </div>
+            <div className="mt-5 bg-slate-100 px-4 py-3 md:px-7 border-2 text-xs">
+                <p className="font-medium">Testing Account</p>
+                <p className="mt-1">Email address: thyg@gmail.com</p>
+                <p>Password: thyg@!!@</p>
+                <p className="mt-2 italic">
+                    Note: You can sign-up and create your own account.
+                </p>
             </div>
         </div>
     );
